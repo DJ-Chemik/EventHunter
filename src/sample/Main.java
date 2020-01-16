@@ -8,11 +8,20 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private int windowWidth = 1280;
+    private int windowHeight = 720;
+
+    public void setResolution(int width, int height) {
+        windowWidth = width;
+        windowHeight = height;
+    }
+
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, windowWidth, windowHeight));
         primaryStage.show();
     }
 
