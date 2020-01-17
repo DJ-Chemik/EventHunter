@@ -9,7 +9,12 @@ public class StartScreenController extends Screen {
     private Button startButton;
 
     @FXML
-    public void startClick(){
-        openScreenFromFXMLFilesPackage("MenuScreen.fxml");
+    public void startAsUserClick(){
+        openScreenFromFXMLFilesPackage("UserMenuScreen.fxml");
+    }
+
+    @FXML
+    public void startAsAdminClick(){
+        openScreenFromFXMLFilesPackage("AdminMenuScreen.fxml");
     }
 }

@@ -12,10 +12,6 @@ public abstract class Screen {
         this.mainScreenController = mainScreenController;
     }
 
-    public void openStartScreen(){
-        mainScreenController.loadStartPane();
-    }
-
     public void openScreen(String localization){
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(localization));
         Pane pane = null;
