@@ -8,6 +8,11 @@ import java.util.ArrayList;
 public class AdminMenuScreenController extends Screen {
 
     @FXML
+    public void backButtonClick(){
+        openScreenFromFXMLFilesPackage("StartScreen.fxml");
+    }
+
+    @FXML
     public void addEventClick(){
         Integer[] numbers = {0,1,2,3,4,6};
         String[] names = {"ID Występu", "Nazwa", "Data", "Cena biletu","Ilość miejsc", "Rodzaj imprezy"};
