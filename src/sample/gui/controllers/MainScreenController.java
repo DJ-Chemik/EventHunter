@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainScreenController extends Screen{
 
@@ -29,10 +30,10 @@ public class MainScreenController extends Screen{
         setScreen(pane);
     }
 
-
     public void setScreen(Pane pane) {
         mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
     }
+
 
 }
