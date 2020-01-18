@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controllers.AdminAddScreenController">
@@ -18,7 +20,7 @@
       <Label fx:id="label1" layoutX="25.0" layoutY="292.0" text="Label 1" />
       <Label fx:id="label2" layoutX="25.0" layoutY="330.0" text="Label 2" />
       <Label fx:id="label3" layoutX="25.0" layoutY="370.0" text="Label 3" />
-      <Label fx:id="label4" layoutX="25.0" layoutY="410.0" text="Label 4" />
+      <Label fx:id="label4" layoutX="25.0" layoutY="410.0" maxWidth="110.0" text="Label 4" wrapText="true" />
       <Label fx:id="label5" layoutX="25.0" layoutY="450.0" text="Label 5" />
       <Label fx:id="label6" layoutX="25.0" layoutY="490.0" text="Label 6" />
       <ComboBox fx:id="comboBox6" editable="true" layoutX="140.0" layoutY="488.0" prefHeight="25.0" prefWidth="500.0" />
@@ -30,5 +32,10 @@
       <Label fx:id="label9" layoutX="25.0" layoutY="614.0" text="Label 9" />
       <Label fx:id="label0" layoutX="25.0" layoutY="252.0" text="Label 0" />
       <ListView fx:id="listView" layoutX="748.0" layoutY="248.0" prefHeight="385.0" prefWidth="500.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="100.0" prefWidth="150.0" text="&lt;-- BACK">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

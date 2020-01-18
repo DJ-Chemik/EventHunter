@@ -56,10 +56,21 @@ public class AdminAddScreenController extends Screen {
     }
 
     private void displayOnlyNeededFieldsAndLabels(){
+        int[] j= {0};
         StaticData.getActiveFieldsNumbers().forEach(
-                integer -> {
-                    labels.get(integer).setVisible(true);
-                    fields.get(integer).setVisible(true);
+                (i) -> {
+                    labels.get(i).setVisible(true);
+                    labels.get(i).setText(StaticData.getActiveLabelsNames().get(j[0]));
+                    fields.get(i).setVisible(true);
+                    j[0]++;
                 });
+
+
+
+    }
+
+    @FXML
+    public void backButtonClick(){
+        openScreenFromFXMLFilesPackage("AdminMenuScreen.fxml");
     }
 }

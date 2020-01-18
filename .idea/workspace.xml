@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/gui/StaticData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/AdminAddScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/AdminAddScreenController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/AdminMenuScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/AdminMenuScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/MainScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/fxmlFiles/AdminAddScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/fxmlFiles/AdminAddScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/gui/StaticData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/StaticData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/gui/controllers/AdminAddScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/controllers/AdminAddScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/gui/controllers/AdminMenuScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/controllers/AdminMenuScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/gui/controllers/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/controllers/MainScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/gui/fxmlFiles/AdminAddScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/fxmlFiles/AdminAddScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/gui/fxmlFiles/AdminEditScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/gui/fxmlFiles/AdminEditScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,10 +232,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579298850004" />
-    <state x="-1155" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1579368232623">
+    <state x="-1155" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1579375133617">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579368232623" />
+    <state x="-1155" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579375133617" />
     <state x="-1109" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1579281746674">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -246,22 +244,22 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579281364833" />
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1579374185163">
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1579389758707">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579374185163" />
-    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1579374185163">
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579389758707" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1579389758707">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579374185163" />
-    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1579374185163">
+    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579389758707" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1579389758706">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579374185163" />
-    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1579374185163">
+    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579389758706" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1579389758707">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579374185163" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579389758707" />
     <state width="1877" height="288" key="GridCell.Tab.1.bottom" timestamp="1579373369621">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -282,6 +280,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1480" y="95" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579281740149" />
+    <state x="-1368" y="253" key="Vcs.Push.Dialog.v2" timestamp="1579389368114">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1368" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1579389368114" />
     <state x="-1259" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1579281275119">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
