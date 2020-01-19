@@ -16,11 +16,14 @@ public class AdminAddScreenController extends Screen {
     @FXML
     ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
+    Button addButton6, addButton7, addButton8, addButton9;
+    @FXML
     ListView<String> listView;
 
     ArrayList<Label> labels = new ArrayList<>();
     ArrayList<TextField> textFields = new ArrayList<>();
     ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+    ArrayList<Button> addButtons = new ArrayList<>();
     ArrayList<Control> fields = new ArrayList<>();
 
     public void initialize() {
@@ -50,10 +53,16 @@ public class AdminAddScreenController extends Screen {
         comboBoxes.add(comboBox7);
         comboBoxes.add(comboBox8);
         comboBoxes.add(comboBox9);
+        addButtons.add(addButton6);
+        addButtons.add(addButton7);
+        addButtons.add(addButton8);
+        addButtons.add(addButton9);
+
 
         labels.forEach(label -> label.setVisible(false));
         textFields.forEach(textField -> textField.setVisible(false));
         comboBoxes.forEach(comboBox -> comboBox.setVisible(false));
+        addButtons.forEach(addButton -> addButton.setVisible(false));
         fields.addAll(textFields);
         fields.addAll(comboBoxes);
     }
@@ -64,12 +73,9 @@ public class AdminAddScreenController extends Screen {
                 (i) -> {
                     labels.get(i).setVisible(true);
                     labels.get(i).setText(StaticData.getActiveLabelsNames().get(j[0]));
-                    fields.get(i).setVisible(true);
                     j[0]++;
+                    fields.get(i).setVisible(true);
                 });
-
-
-
     }
 
     private void specificTypeDataInitialize(){
@@ -84,9 +90,25 @@ public class AdminAddScreenController extends Screen {
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
             }
+            if (StaticData.getElementOfIngeretion()=="Place"){
+                addButton7.setVisible(true);
+                addButton7.setDisable(true);
+            }
+            if (StaticData.getElementOfIngeretion()=="Town"){
+                addButton7.setVisible(true);
+                addButton7.setDisable(true);
+            }
+            if (StaticData.getElementOfIngeretion()=="MusicDisc"){
+                addButton7.setVisible(true);
+                addButton7.setDisable(true);
+            }
             if (StaticData.getElementOfIngeretion()=="Performance"){
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
+                addButton7.setDisable(true);
+                addButton7.setDisable(true);
+                addButton8.setVisible(true);
+                addButton8.setDisable(true);
             }
 
         }else if (StaticData.getTypeOfIngeretion()=="Edit"){
@@ -101,6 +123,8 @@ public class AdminAddScreenController extends Screen {
         if (StaticData.getElementOfIngeretion()=="Event"){
             label8.setVisible(true);
             comboBox8.setVisible(true);
+            addButton8.setVisible(true);
+            addButton8.setDisable(true);
             if (comboBox6.getValue()=="Koncert"){
                 label8.setText("Muzycy");
             }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
@@ -112,6 +136,8 @@ public class AdminAddScreenController extends Screen {
             textField3.setVisible(true);
             label7.setVisible(true);
             comboBox7.setVisible(true);
+            addButton7.setVisible(true);
+            addButton7.setDisable(true);
             if (comboBox6.getValue()=="Muzyk"){
                 label0.setText("ID Muzyka");
                 label3.setText("Pseudonim");
@@ -119,17 +145,20 @@ public class AdminAddScreenController extends Screen {
                 label8.setVisible(true);
                 label8.setText("Utwory");
                 comboBox8.setVisible(true);
+                addButton8.setVisible(true);
+                addButton8.setDisable(true);
             }else if (comboBox6.getValue()=="Aktor"){
                 label0.setText("ID Aktora");
                 label3.setText("Nazwa Grupy");
                 label7.setText("Przedstawienia");
                 label8.setVisible(false);
                 comboBox8.setVisible(false);
-
+                addButton8.setVisible(false);
             }
         }
 
     }
+
     @FXML
     public void changeComboBox7(){
 
@@ -140,6 +169,23 @@ public class AdminAddScreenController extends Screen {
     }
     @FXML
     public void changeComboBox9(){
+
+    }
+
+    @FXML
+    public void addButton6Click(){
+
+    }
+    @FXML
+    public void addButton7Click(){
+
+    }
+    @FXML
+    public void addButton8Click(){
+
+    }
+    @FXML
+    public void addButton9Click(){
 
     }
 

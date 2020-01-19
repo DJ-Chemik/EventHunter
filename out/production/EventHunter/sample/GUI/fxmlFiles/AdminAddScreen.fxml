@@ -36,5 +36,25 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
+      <Button fx:id="addButton6" layoutX="653.0" layoutY="488.0" maxHeight="25.0" mnemonicParsing="false" onAction="#addButton6Click" prefHeight="25.0" prefWidth="40.0" text="+">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="addButton7" layoutX="653.0" layoutY="530.0" maxHeight="25.0" mnemonicParsing="false" onAction="#addButton7Click" prefHeight="25.0" prefWidth="40.0" text="+">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="addButton8" layoutX="653.0" layoutY="568.0" maxHeight="25.0" mnemonicParsing="false" onAction="#addButton8Click" prefHeight="25.0" prefWidth="40.0" text="+">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="addButton9" layoutX="653.0" layoutY="608.0" maxHeight="25.0" mnemonicParsing="false" onAction="#addButton9Click" prefHeight="25.0" prefWidth="40.0" text="+">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
