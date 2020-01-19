@@ -1,5 +1,6 @@
 package sample.gui.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.gui.StaticData;
@@ -13,9 +14,9 @@ public class AdminAddScreenController extends Screen {
     @FXML
     TextField textField0, textField1, textField2, textField3, textField4, textField5;
     @FXML
-    ComboBox<Object> comboBox6, comboBox7, comboBox8, comboBox9;
+    ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
-    ListView<Object> listView;
+    ListView<String> listView;
 
     ArrayList<Label> labels = new ArrayList<>();
     ArrayList<TextField> textFields = new ArrayList<>();
@@ -23,6 +24,12 @@ public class AdminAddScreenController extends Screen {
     ArrayList<Control> fields = new ArrayList<>();
 
     public void initialize() {
+        addElementsofViewToArrays();
+        displayOnlyNeededFieldsAndLabels();
+        specificTypeDataInitialize();
+    }
+
+    private void addElementsofViewToArrays(){
         labels.add(label0);
         labels.add(label1);
         labels.add(label2);
@@ -49,10 +56,6 @@ public class AdminAddScreenController extends Screen {
         comboBoxes.forEach(comboBox -> comboBox.setVisible(false));
         fields.addAll(textFields);
         fields.addAll(comboBoxes);
-
-
-        displayOnlyNeededFieldsAndLabels();
-
     }
 
     private void displayOnlyNeededFieldsAndLabels(){
@@ -66,6 +69,77 @@ public class AdminAddScreenController extends Screen {
                 });
 
 
+
+    }
+
+    private void specificTypeDataInitialize(){
+        if (StaticData.getTypeOfIngeretion()=="Add"){
+
+            if (StaticData.getElementOfIngeretion()=="Event"){
+                comboBox6.getItems().add("Koncert");
+                comboBox6.getItems().add("Kabaret");
+                comboBox6.getItems().add("Występ Teatralny");
+            }
+            if (StaticData.getElementOfIngeretion()=="Person"){
+                comboBox6.getItems().add("Muzyk");
+                comboBox6.getItems().add("Aktor");
+            }
+            if (StaticData.getElementOfIngeretion()=="Performance"){
+                comboBox6.getItems().add("Kabaret");
+                comboBox6.getItems().add("Występ Teatralny");
+            }
+
+        }else if (StaticData.getTypeOfIngeretion()=="Edit"){
+
+        }else if (StaticData.getTypeOfIngeretion()=="Delete"){
+
+        }
+    }
+
+    @FXML
+    public void changeComboBox6(){
+        if (StaticData.getElementOfIngeretion()=="Event"){
+            label8.setVisible(true);
+            comboBox8.setVisible(true);
+            if (comboBox6.getValue()=="Koncert"){
+                label8.setText("Muzycy");
+            }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
+                label8.setText("Przedstawienia");
+            }
+        }
+        if (StaticData.getElementOfIngeretion()=="Person"){
+            label3.setVisible(true);
+            textField3.setVisible(true);
+            label7.setVisible(true);
+            comboBox7.setVisible(true);
+            if (comboBox6.getValue()=="Muzyk"){
+                label0.setText("ID Muzyka");
+                label3.setText("Pseudonim");
+                label7.setText("Płyty");
+                label8.setVisible(true);
+                label8.setText("Utwory");
+                comboBox8.setVisible(true);
+            }else if (comboBox6.getValue()=="Aktor"){
+                label0.setText("ID Aktora");
+                label3.setText("Nazwa Grupy");
+                label7.setText("Przedstawienia");
+                label8.setVisible(false);
+                comboBox8.setVisible(false);
+
+            }
+        }
+
+    }
+    @FXML
+    public void changeComboBox7(){
+
+    }
+    @FXML
+    public void changeComboBox8(){
+
+    }
+    @FXML
+    public void changeComboBox9(){
 
     }
 

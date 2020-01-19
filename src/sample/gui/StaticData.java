@@ -6,6 +6,9 @@ public class StaticData {
 
     private static ArrayList<Integer> activeFieldsNumbers = new ArrayList<>();
     private static ArrayList<String> activeLabelsNames = new ArrayList<>();
+    private static String typeOfIngeretion = "";
+    private static String elementOfIngeretion = "";
+
 
     public static ArrayList<String> getActiveLabelsNames() {
         return activeLabelsNames;
@@ -27,5 +30,18 @@ public class StaticData {
         for (int number: numbers) {
             activeFieldsNumbers.add(number);
         }
+    }
+
+    public static void setTypeAndElementOfIngeretion(String type, String element){
+        typeOfIngeretion=type;
+        elementOfIngeretion=element;
+    }
+
+    public static String getTypeOfIngeretion() {
+        return typeOfIngeretion;
+    }
+
+    public static String getElementOfIngeretion() {
+        return elementOfIngeretion;
     }
 }
