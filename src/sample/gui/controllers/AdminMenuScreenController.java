@@ -109,30 +109,37 @@ public class AdminMenuScreenController extends Screen {
 
     @FXML
     public void deleteEventClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Event");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deletePersonClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Person");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deletePlaceClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Place");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deleteTownClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Town");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deleteSongClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Song");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deleteMusicDiscClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "MusicDisc");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
     @FXML
     public void deletePerformanceClick(){
+        StaticData.setTypeAndElementOfIngeretion("Delete", "Performance");
         openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
 }
