@@ -16,7 +16,7 @@ public class AdminAddScreenController extends Screen {
     @FXML
     ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
-    Button addButton6, addButton7, addButton8, addButton9;
+    Button addButton6, addButton7, addButton8, addButton9, addButtonMain;
     @FXML
     ListView<String> listView;
 
@@ -186,6 +186,11 @@ public class AdminAddScreenController extends Screen {
     }
     @FXML
     public void addButton9Click(){
+
+    }
+
+    @FXML
+    public void addButtonMainClick(){
 
     }
 

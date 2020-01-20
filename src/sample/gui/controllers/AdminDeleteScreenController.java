@@ -22,7 +22,7 @@ public class AdminDeleteScreenController extends Screen {
 
     @FXML
     public void searchTextFieldChange() {
-        System.out.println("A");
+
     }
 
     @FXML
