@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: CCCCCC; -fx-border-color: AA0000; -fx-border-width: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controllers.StartScreenController">
+   <children>
+      <Button fx:id="startAsUserButton" layoutX="421.0" layoutY="77.0" mnemonicParsing="false" onAction="#startAsUserClick" prefHeight="146.0" prefWidth="439.0" style="-fx-background-color: AACC11;" text="Start as USER">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="startAsAdminButton" layoutX="421.0" layoutY="259.0" mnemonicParsing="false" onAction="#startAsAdminClick" prefHeight="146.0" prefWidth="439.0" style="-fx-background-color: AACC11;" text="Start as ADMINISTRATOR">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
