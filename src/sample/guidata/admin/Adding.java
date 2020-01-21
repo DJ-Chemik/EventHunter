@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Adding {
 
-    private static DatabaseObjectTypes typeOfObject; //All options in DatabaseObjectTypes enum class
+    private static DatabaseEnum.ObjectTypes typeOfObject; //All options in DatabaseEnum enum class
     private static Map<String, String> tupleParameters = new HashMap<>();
 
     public static void addToDatabase(){
@@ -37,11 +37,11 @@ public class Adding {
         tupleParameters.size();
     }
 
-    public static DatabaseObjectTypes getTypeOfObject() {
+    public static DatabaseEnum.ObjectTypes getTypeOfObject() {
         return typeOfObject;
     }
 
-    public static void setTypeOfObject(DatabaseObjectTypes typeOfObject) {
+    public static void setTypeOfObject(DatabaseEnum.ObjectTypes typeOfObject) {
         Adding.typeOfObject = typeOfObject;
     }
 }

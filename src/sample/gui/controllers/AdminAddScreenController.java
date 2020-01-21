@@ -1,11 +1,10 @@
 package sample.gui.controllers;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
-import sample.guidata.admin.DatabaseObjectTypes;
+import sample.guidata.admin.DatabaseEnum;
 
 import java.util.ArrayList;
 
@@ -203,28 +202,28 @@ public class AdminAddScreenController extends Screen {
         String type = StaticData.getElementOfIngerention();
         if (type=="Event"){
             if (comboBox6.getValue()=="Koncert"){
-                Adding.setTypeOfObject(DatabaseObjectTypes.CONCERT);
+                Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.CONCERT);
             }else if (comboBox6.getValue()=="Kabaret"){
-                Adding.setTypeOfObject(DatabaseObjectTypes.CABARET);
+                Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.CABARET);
             }else if (comboBox6.getValue()=="Występ Teatralny"){
-                Adding.setTypeOfObject(DatabaseObjectTypes.THEATRE_SPECTACLE);
+                Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.THEATRE_SPECTACLE);
             }
         }else if (type=="Person"){
             if (comboBox6.getValue()=="Aktor"){
-                Adding.setTypeOfObject(DatabaseObjectTypes.ACTOR);
+                Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.ACTOR);
             }else if (comboBox6.getValue()=="Muzyk"){
-                Adding.setTypeOfObject(DatabaseObjectTypes.MUSICIAN);
+                Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.MUSICIAN);
             }
         }else if (type=="Place"){
-            Adding.setTypeOfObject(DatabaseObjectTypes.PLACE);
+            Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.PLACE);
         }else if (type=="Town"){
-            Adding.setTypeOfObject(DatabaseObjectTypes.TOWN);
+            Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.TOWN);
         }else if (type=="Song"){
-            Adding.setTypeOfObject(DatabaseObjectTypes.SONG);
+            Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.SONG);
         }else if (type=="MusicDisc"){
-            Adding.setTypeOfObject(DatabaseObjectTypes.MUSIC_DISC);
+            Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.MUSIC_DISC);
         }else if (type=="Performance"){
-            Adding.setTypeOfObject(DatabaseObjectTypes.PERFORMANCE);
+            Adding.setTypeOfObject(DatabaseEnum.ObjectTypes.PERFORMANCE);
         }
     }
 
