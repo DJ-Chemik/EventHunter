@@ -1,9 +1,11 @@
 package sample.gui.controllers;
 
-import javafx.collections.ObservableList;
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.gui.StaticData;
+import sample.guidata.admin.Adding;
+import sample.guidata.admin.DatabaseObjectTypes;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class AdminAddScreenController extends Screen {
     ArrayList<ComboBox> comboBoxes = new ArrayList<>();
     ArrayList<Button> addButtons = new ArrayList<>();
     ArrayList<Control> fields = new ArrayList<>();
+
 
     public void initialize() {
         addElementsofViewToArrays();
@@ -79,30 +82,30 @@ public class AdminAddScreenController extends Screen {
     }
 
     private void specificTypeDataInitialize(){
-        if (StaticData.getTypeOfIngeretion()=="Add"){
+        if (StaticData.getTypeOfIngerention()=="Add"){
 
-            if (StaticData.getElementOfIngeretion()=="Event"){
+            if (StaticData.getElementOfIngerention()=="Event"){
                 comboBox6.getItems().add("Koncert");
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
             }
-            if (StaticData.getElementOfIngeretion()=="Person"){
+            if (StaticData.getElementOfIngerention()=="Person"){
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
             }
-            if (StaticData.getElementOfIngeretion()=="Place"){
+            if (StaticData.getElementOfIngerention()=="Place"){
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
-            if (StaticData.getElementOfIngeretion()=="Town"){
+            if (StaticData.getElementOfIngerention()=="Town"){
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
-            if (StaticData.getElementOfIngeretion()=="MusicDisc"){
+            if (StaticData.getElementOfIngerention()=="MusicDisc"){
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
-            if (StaticData.getElementOfIngeretion()=="Performance"){
+            if (StaticData.getElementOfIngerention()=="Performance"){
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
                 addButton7.setDisable(true);
@@ -111,16 +114,16 @@ public class AdminAddScreenController extends Screen {
                 addButton8.setDisable(true);
             }
 
-        }else if (StaticData.getTypeOfIngeretion()=="Edit"){
+        }else if (StaticData.getTypeOfIngerention()=="Edit"){
 
-        }else if (StaticData.getTypeOfIngeretion()=="Delete"){
+        }else if (StaticData.getTypeOfIngerention()=="Delete"){
 
         }
     }
 
     @FXML
     public void changeComboBox6(){
-        if (StaticData.getElementOfIngeretion()=="Event"){
+        if (StaticData.getElementOfIngerention()=="Event"){
             label8.setVisible(true);
             comboBox8.setVisible(true);
             addButton8.setVisible(true);
@@ -131,7 +134,7 @@ public class AdminAddScreenController extends Screen {
                 label8.setText("Przedstawienia");
             }
         }
-        if (StaticData.getElementOfIngeretion()=="Person"){
+        if (StaticData.getElementOfIngerention()=="Person"){
             label3.setVisible(true);
             textField3.setVisible(true);
             label7.setVisible(true);
@@ -191,7 +194,44 @@ public class AdminAddScreenController extends Screen {
 
     @FXML
     public void addButtonMainClick(){
+        addCorrectTypeOfObject();
+        addParametersOfTuple();
+        Adding.addToDatabase();
+    }
 
+    private void addCorrectTypeOfObject(){
+        String type = StaticData.getElementOfIngerention();
+        if (type=="Event"){
+            if (comboBox6.getValue()=="Koncert"){
+                Adding.setTypeOfObject(DatabaseObjectTypes.CONCERT);
+            }else if (comboBox6.getValue()=="Kabaret"){
+                Adding.setTypeOfObject(DatabaseObjectTypes.CABARET);
+            }else if (comboBox6.getValue()=="Występ Teatralny"){
+                Adding.setTypeOfObject(DatabaseObjectTypes.THEATRE_SPECTACLE);
+            }
+        }else if (type=="Person"){
+            if (comboBox6.getValue()=="Aktor"){
+                Adding.setTypeOfObject(DatabaseObjectTypes.ACTOR);
+            }else if (comboBox6.getValue()=="Muzyk"){
+                Adding.setTypeOfObject(DatabaseObjectTypes.MUSICIAN);
+            }
+        }else if (type=="Place"){
+            Adding.setTypeOfObject(DatabaseObjectTypes.PLACE);
+        }else if (type=="Town"){
+            Adding.setTypeOfObject(DatabaseObjectTypes.TOWN);
+        }else if (type=="Song"){
+            Adding.setTypeOfObject(DatabaseObjectTypes.SONG);
+        }else if (type=="MusicDisc"){
+            Adding.setTypeOfObject(DatabaseObjectTypes.MUSIC_DISC);
+        }else if (type=="Performance"){
+            Adding.setTypeOfObject(DatabaseObjectTypes.PERFORMANCE);
+        }
+    }
+
+    private void addParametersOfTuple(){
+        Adding.clearTupleParameters();
+        //TODO
+        //dodawanie par pole-wartość
     }
 
     @FXML
