@@ -97,6 +97,9 @@ public class AdminAddScreenController extends Screen {
                 addButton7.setDisable(true);
             }
             if (StaticData.getElementOfIngerention()=="Town"){
+                addStatesToComboBox();
+                comboBox6.setEditable(false);
+                comboBox6.setPromptText("Wybierz wojewódzwtwo");
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
@@ -119,6 +122,26 @@ public class AdminAddScreenController extends Screen {
 
         }
     }
+
+    private void addStatesToComboBox(){
+        comboBox6.getItems().add("Dolnośląskie");
+        comboBox6.getItems().add("Kujawsko-Pomorskie");
+        comboBox6.getItems().add("Lubelskie");
+        comboBox6.getItems().add("Lubuskie");
+        comboBox6.getItems().add("Łódzkie");
+        comboBox6.getItems().add("Małopolskie");
+        comboBox6.getItems().add("Mazowieckie");
+        comboBox6.getItems().add("Opolskie");
+        comboBox6.getItems().add("Podkarpackie");
+        comboBox6.getItems().add("Podlaskie");
+        comboBox6.getItems().add("Pomorskie");
+        comboBox6.getItems().add("Śląskie");
+        comboBox6.getItems().add("Świętokrzyskie");
+        comboBox6.getItems().add("Warmińsko-Mazurskie");
+        comboBox6.getItems().add("Wielkopolskie");
+        comboBox6.getItems().add("Zachodniopomorskie");
+    }
+
 
     @FXML
     public void changeComboBox6(){
