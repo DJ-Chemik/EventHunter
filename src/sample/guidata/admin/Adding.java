@@ -12,9 +12,9 @@ public class Adding {
 
     public static void addToDatabase() {
         //only for tests is this code below
-        /*for (DatabaseEnum.fields field : tupleParameters.keySet()) {
+        for (DatabaseEnum.fields field : tupleParameters.keySet()) {
             System.out.println(tupleParameters.get(field));;
-        }*/
+        }
     }
 
     public static void addToTupleParameters(DatabaseEnum.fields field, ArrayList<String> value){
