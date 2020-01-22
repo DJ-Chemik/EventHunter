@@ -241,7 +241,7 @@ public class AdminAddScreenController extends Screen {
         if (canBeEmpty){
             return comboBox.getValue();
         }else{
-            if (comboBox.getItems().isEmpty()){
+            if (comboBox.getValue().isEmpty()){
                 throw new NullPointerException();
             }else{
                 return comboBox.getValue();
@@ -318,7 +318,7 @@ public class AdminAddScreenController extends Screen {
             parameters.add(getValueOfField(textField2,true));
             Adding.addToTupleParameters(DatabaseEnum.townFields.ZIP_CODE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,true));
+            parameters.add(getValueOfComboBox(comboBox6,false));
             Adding.addToTupleParameters(DatabaseEnum.townFields.STATE, parameters);
         }else if (type=="Song"){
 
