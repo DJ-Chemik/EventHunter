@@ -32,8 +32,8 @@ public class AdminMenuScreenController extends Screen {
     }
     @FXML
     public void addPlaceClick(){
-        Integer[] numbers = {1,2,6,7};
-        String[] names = {"Nazwa", "Typ Obiektu", "Miejscowość", "Impreza"};
+        Integer[] numbers = {1,2,6};
+        String[] names = {"Nazwa", "Typ Obiektu", "Miejscowość"};
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Add", "Place");
@@ -41,8 +41,8 @@ public class AdminMenuScreenController extends Screen {
     }
     @FXML
     public void addTownClick(){
-        Integer[] numbers = {1,2,6,7};
-        String[] names = {"Nazwa", "Kod pocztowy", "Województwo", "Obiekty"};
+        Integer[] numbers = {1,2,6};
+        String[] names = {"Nazwa", "Kod pocztowy", "Województwo"};
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Add", "Town");

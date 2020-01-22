@@ -23,6 +23,7 @@ public class DatabaseEnum {
      * Event == Cabaret || Theatre Spectacle || Concert
      */
     public enum eventFields implements fields{
+        TYPE,
         NAME,
         DATE,
         TICKET_COST,
@@ -36,7 +37,7 @@ public class DatabaseEnum {
     public enum placeFields implements fields{
         NAME,
         TYPE,
-        TOWN //dufficult to implement
+        TOWN, //dufficult to implement
     }
 
     public enum townFields implements fields{
@@ -49,7 +50,8 @@ public class DatabaseEnum {
         TITLE,
         LENGTH,
         ACTORS,
-        EVENTS
+        EVENTS,
+        TYPE, //Concert or Theatre Spectacl
 
     }
 

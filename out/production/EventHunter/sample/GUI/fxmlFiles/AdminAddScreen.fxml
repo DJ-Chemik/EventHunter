@@ -30,7 +30,7 @@
       <Label fx:id="label8" layoutX="25.0" layoutY="574.0" text="Label 8" />
       <Label fx:id="label9" layoutX="25.0" layoutY="614.0" text="Label 9" />
       <Label fx:id="label0" layoutX="25.0" layoutY="252.0" text="Label 0" />
-      <ListView fx:id="listView" layoutX="748.0" layoutY="248.0" prefHeight="385.0" prefWidth="500.0" />
+      <ListView fx:id="mainListView" layoutX="748.0" layoutY="248.0" prefHeight="385.0" prefWidth="500.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="100.0" prefWidth="150.0" text="&lt;-- BACK">
          <font>
             <Font name="System Bold" size="24.0" />

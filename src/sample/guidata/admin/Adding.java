@@ -12,9 +12,17 @@ public class Adding {
 
     public static void addToDatabase() {
         //only for tests is this code below
-        for (DatabaseEnum.fields field : tupleParameters.keySet()) {
+        /*for (DatabaseEnum.fields field : tupleParameters.keySet()) {
             System.out.println(tupleParameters.get(field));;
-        }
+        }*/
+    }
+
+    public static DatabaseEnum.objectTypes getTypeOfObject() {
+        return typeOfObject;
+    }
+
+    public static void setTypeOfObject(DatabaseEnum.objectTypes typeOfObject) {
+        Adding.typeOfObject = typeOfObject;
     }
 
     public static void addToTupleParameters(DatabaseEnum.fields field, ArrayList<String> value){
@@ -38,15 +46,7 @@ public class Adding {
         tupleParameters.clear();
     }
 
-    public static void getSizeTupleParameters(){
-        tupleParameters.size();
-    }
-
-    public static DatabaseEnum.objectTypes getTypeOfObject() {
-        return typeOfObject;
-    }
-
-    public static void setTypeOfObject(DatabaseEnum.objectTypes typeOfObject) {
-        Adding.typeOfObject = typeOfObject;
+    public static int getSizeTupleParameters(){
+        return tupleParameters.size();
     }
 }
