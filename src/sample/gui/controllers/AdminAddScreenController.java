@@ -1,9 +1,10 @@
 package sample.gui.controllers;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.gui.StaticData;
+import sample.guidata.admin.Adding;
+import sample.guidata.admin.DatabaseEnum;
 
 import java.util.ArrayList;
 
@@ -16,15 +17,16 @@ public class AdminAddScreenController extends Screen {
     @FXML
     ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
-    Button addButton6, addButton7, addButton8, addButton9;
+    Button addButton6, addButton7, addButton8, addButton9, addButtonMain;
     @FXML
-    ListView<String> listView;
+    ListView<String> mainListView;
 
     ArrayList<Label> labels = new ArrayList<>();
     ArrayList<TextField> textFields = new ArrayList<>();
     ArrayList<ComboBox> comboBoxes = new ArrayList<>();
     ArrayList<Button> addButtons = new ArrayList<>();
     ArrayList<Control> fields = new ArrayList<>();
+
 
     public void initialize() {
         addElementsofViewToArrays();
@@ -79,48 +81,232 @@ public class AdminAddScreenController extends Screen {
     }
 
     private void specificTypeDataInitialize(){
-        if (StaticData.getTypeOfIngeretion()=="Add"){
+        if (StaticData.getTypeOfIngerention()=="Add"){
 
-            if (StaticData.getElementOfIngeretion()=="Event"){
+            if (StaticData.getElementOfIngerention()=="Event"){
+                comboBox6.setEditable(false);
+                comboBox7.setEditable(false);
                 comboBox6.getItems().add("Koncert");
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
             }
-            if (StaticData.getElementOfIngeretion()=="Person"){
+            if (StaticData.getElementOfIngerention()=="Person"){
+                comboBox6.setEditable(false);
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
             }
-            if (StaticData.getElementOfIngeretion()=="Place"){
+            if (StaticData.getElementOfIngerention()=="Place"){
+                //addButton7.setVisible(true);
+                //addButton7.setDisable(true);
+                comboBox6.setEditable(false);
+            }
+            if (StaticData.getElementOfIngerention()=="Town"){
+                addStatesToComboBox();
+                comboBox6.setEditable(false);
+                comboBox6.setPromptText("Wybierz wojewódzwtwo");
+                //addButton7.setVisible(true);
+               // addButton7.setDisable(true);
+            }
+            if (StaticData.getElementOfIngerention()=="MusicDisc"){
+                addButton6.setVisible(true);
+                addButton6.setDisable(true);
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
-            if (StaticData.getElementOfIngeretion()=="Town"){
-                addButton7.setVisible(true);
-                addButton7.setDisable(true);
-            }
-            if (StaticData.getElementOfIngeretion()=="MusicDisc"){
-                addButton7.setVisible(true);
-                addButton7.setDisable(true);
-            }
-            if (StaticData.getElementOfIngeretion()=="Performance"){
+            if (StaticData.getElementOfIngerention()=="Performance"){
+                comboBox6.setEditable(false);
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
-                addButton7.setDisable(true);
+                addButton7.setVisible(true);
                 addButton7.setDisable(true);
                 addButton8.setVisible(true);
                 addButton8.setDisable(true);
             }
 
-        }else if (StaticData.getTypeOfIngeretion()=="Edit"){
+        }else if (StaticData.getTypeOfIngerention()=="Edit"){
 
-        }else if (StaticData.getTypeOfIngeretion()=="Delete"){
+        }else if (StaticData.getTypeOfIngerention()=="Delete"){
+
+        }
+    }
+
+    private void addStatesToComboBox(){
+        comboBox6.getItems().add("Dolnośląskie");
+        comboBox6.getItems().add("Kujawsko-Pomorskie");
+        comboBox6.getItems().add("Lubelskie");
+        comboBox6.getItems().add("Lubuskie");
+        comboBox6.getItems().add("Łódzkie");
+        comboBox6.getItems().add("Małopolskie");
+        comboBox6.getItems().add("Mazowieckie");
+        comboBox6.getItems().add("Opolskie");
+        comboBox6.getItems().add("Podkarpackie");
+        comboBox6.getItems().add("Podlaskie");
+        comboBox6.getItems().add("Pomorskie");
+        comboBox6.getItems().add("Śląskie");
+        comboBox6.getItems().add("Świętokrzyskie");
+        comboBox6.getItems().add("Warmińsko-Mazurskie");
+        comboBox6.getItems().add("Wielkopolskie");
+        comboBox6.getItems().add("Zachodniopomorskie");
+    }
+
+
+    @FXML
+    public void addButtonMainClick(){
+        addCorrectTypeOfObject();
+        Adding.clearTupleParameters();
+        addParametersOfTuple();
+        Adding.addToDatabase();
+    }
+
+    private void addCorrectTypeOfObject(){
+        String type = StaticData.getElementOfIngerention();
+        if (type=="Event"){
+            if (comboBox6.getValue()=="Koncert"){
+                Adding.setTypeOfObject(DatabaseEnum.objectTypes.CONCERT);
+            }else if (comboBox6.getValue()=="Kabaret"){
+                Adding.setTypeOfObject(DatabaseEnum.objectTypes.CABARET);
+            }else if (comboBox6.getValue()=="Występ Teatralny"){
+                Adding.setTypeOfObject(DatabaseEnum.objectTypes.THEATRE_SPECTACLE);
+            }
+        }else if (type=="Person"){
+            if (comboBox6.getValue()=="Aktor"){
+                Adding.setTypeOfObject(DatabaseEnum.objectTypes.ACTOR);
+            }else if (comboBox6.getValue()=="Muzyk"){
+                Adding.setTypeOfObject(DatabaseEnum.objectTypes.MUSICIAN);
+            }
+        }else if (type=="Place"){
+            Adding.setTypeOfObject(DatabaseEnum.objectTypes.PLACE);
+        }else if (type=="Town"){
+            Adding.setTypeOfObject(DatabaseEnum.objectTypes.TOWN);
+        }else if (type=="Song"){
+            Adding.setTypeOfObject(DatabaseEnum.objectTypes.SONG);
+        }else if (type=="MusicDisc"){
+            Adding.setTypeOfObject(DatabaseEnum.objectTypes.MUSIC_DISC);
+        }else if (type=="Performance"){
+            Adding.setTypeOfObject(DatabaseEnum.objectTypes.PERFORMANCE);
+        }
+    }
+
+    private void addParametersOfTuple(){
+        String type = StaticData.getElementOfIngerention();
+        String subtype = comboBox6.getValue();
+        ArrayList<String> parameters;
+        if (type=="Event"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.NAME, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.DATE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField3,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.TICKET_COST, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField4,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.TYPE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,false));
+            Adding.addToTupleParameters(DatabaseEnum.eventFields.PLACE, parameters);
+
+        }else if (type=="Person"){
+            if (subtype=="Aktor"){
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField1,false));
+                Adding.addToTupleParameters(DatabaseEnum.actorFields.NAME, parameters);
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField2,false));
+                Adding.addToTupleParameters(DatabaseEnum.actorFields.SURNAME, parameters);
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField3,true));
+                Adding.addToTupleParameters(DatabaseEnum.actorFields.BAND_NAME, parameters);
+                parameters = new ArrayList<>(getValuesOfListView(mainListView,true));
+                Adding.addToTupleParameters(DatabaseEnum.actorFields.PERFORMANCES, parameters);
+            }else if (subtype=="Muzyk"){
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField1,false));
+                Adding.addToTupleParameters(DatabaseEnum.musicianFields.NAME, parameters);
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField2,false));
+                Adding.addToTupleParameters(DatabaseEnum.musicianFields.SURNAME, parameters);
+                parameters = new ArrayList<>();
+                parameters.add(getValueOfField(textField3,true));
+                Adding.addToTupleParameters(DatabaseEnum.musicianFields.NICKNAME, parameters);
+                // TODO: 22.01.2020 Add Adding Lists of Music Discs and Concerts
+
+            }
+        }else if (type=="Place"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.placeFields.NAME, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2,true));
+            Adding.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6, false));
+            Adding.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
+//            parameters = new ArrayList<>(getValuesOfListView(mainListView,true));
+//            Adding.addToTupleParameters(DatabaseEnum.placeFields., parameters);
+        }else if (type=="Town"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.townFields.NAME, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2,true));
+            Adding.addToTupleParameters(DatabaseEnum.townFields.ZIP_CODE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,false));
+            Adding.addToTupleParameters(DatabaseEnum.townFields.STATE, parameters);
+        }else if (type=="Song"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.TITLE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2,true));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField3,true));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.GENRE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,true));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,true));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.MUSICIAN, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,true));
+            Adding.addToTupleParameters(DatabaseEnum.songFields.MUSIC_DISC, parameters);
+
+
+        }else if (type=="MusicDisc"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.TITLE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2, true));
+            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR, parameters);
+            // TODO: 22.01.2020 Add Adding 2 lists: Musicians and Songs
+
+        }else if (type=="Performance"){
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField1,false));
+            Adding.addToTupleParameters(DatabaseEnum.performanceFields.TITLE, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfField(textField2,false));
+            Adding.addToTupleParameters(DatabaseEnum.performanceFields.LENGTH, parameters);
+            parameters = new ArrayList<>();
+            parameters.add(getValueOfComboBox(comboBox6,false));
+            Adding.addToTupleParameters(DatabaseEnum.performanceFields.TYPE, parameters);
+            // TODO: 22.01.2020 Add Adding 2 lists: Events and Actors 
 
         }
     }
 
     @FXML
     public void changeComboBox6(){
-        if (StaticData.getElementOfIngeretion()=="Event"){
+        if (StaticData.getElementOfIngerention()=="Event"){
             label8.setVisible(true);
             comboBox8.setVisible(true);
             addButton8.setVisible(true);
@@ -131,7 +317,7 @@ public class AdminAddScreenController extends Screen {
                 label8.setText("Przedstawienia");
             }
         }
-        if (StaticData.getElementOfIngeretion()=="Person"){
+        if (StaticData.getElementOfIngerention()=="Person"){
             label3.setVisible(true);
             textField3.setVisible(true);
             label7.setVisible(true);
@@ -143,7 +329,7 @@ public class AdminAddScreenController extends Screen {
                 label3.setText("Pseudonim");
                 label7.setText("Płyty");
                 label8.setVisible(true);
-                label8.setText("Utwory");
+                label8.setText("Koncerty");
                 comboBox8.setVisible(true);
                 addButton8.setVisible(true);
                 addButton8.setDisable(true);
@@ -167,11 +353,11 @@ public class AdminAddScreenController extends Screen {
     public void changeComboBox8(){
 
     }
+
     @FXML
     public void changeComboBox9(){
 
     }
-
     @FXML
     public void addButton6Click(){
 
@@ -184,9 +370,55 @@ public class AdminAddScreenController extends Screen {
     public void addButton8Click(){
 
     }
+
     @FXML
     public void addButton9Click(){
 
+    }
+
+    /**
+     *
+     * @return text from textField with or without blocade of return empty string
+     */
+    private String getValueOfField(TextField textField, boolean canBeEmpty){
+        if (canBeEmpty){
+            return textField.getText();
+        }else{
+            if (textField.getText().isEmpty()){
+                throw new NullPointerException();
+            }else{
+                return textField.getText();
+            }
+        }
+    }
+
+    private String getValueOfComboBox(ComboBox<String> comboBox, boolean canBeEmpty){
+        if (canBeEmpty){
+            return comboBox.getValue();
+        }else{
+            if (comboBox.getValue().isEmpty()){
+                throw new NullPointerException();
+            }else{
+                return comboBox.getValue();
+            }
+        }
+    }
+
+    private ArrayList<String> getValuesOfListView(ListView<String> listView, boolean canBeEmpty) {
+        ArrayList<String> result = new ArrayList<>();
+        for (String s : listView.getItems()) {
+            result.add(s);
+        }
+
+        if (canBeEmpty) {
+            return result;
+        } else {
+            if (listView.getItems().isEmpty()) {
+                throw new NullPointerException();
+            } else {
+                return result;
+            }
+        }
     }
 
     @FXML

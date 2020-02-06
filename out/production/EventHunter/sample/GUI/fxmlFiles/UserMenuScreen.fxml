@@ -10,17 +10,9 @@
       xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="sample.gui.controllers.UserMenuScreenController">
    <children>
-      <Button layoutX="536.0" layoutY="299.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="208.0" text="User Menu Pane" wrapText="true">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.3952380952380952">
-               <stops>
-                  <Stop color="YELLOW" />
-                  <Stop color="#00ffd9" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="100.0" prefWidth="150.0" text="&lt;-- BACK">
          <font>
-            <Font size="31.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
    </children>
