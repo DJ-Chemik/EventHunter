@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
 
+import java.sql.SQLException;
+
 public class Main extends Application {
 
     private int windowWidth = 1280;
@@ -31,6 +33,12 @@ public class Main extends Application {
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //connectWithDatabase();
+
+    }
+
+    private void connectWithDatabase() throws SQLException {
         ConnectionWithDatabase db = new ConnectionWithDatabase();
         db.connect();
         System.out.println(db);
@@ -41,7 +49,6 @@ public class Main extends Application {
         aktorController.displayResultOfQuery();
         aktorController.close();
         db.close();
-
     }
 
 
