@@ -19,8 +19,8 @@ public class ConnectionWithDatabase {
     private static Statement statement;
     private static ResultSet resultSet;
 
-    public Connection GetConnection(){
-        return this.connection;
+    public static Connection getConnection(){
+        return connection;
     }
 
     public static void connect(){

@@ -1,5 +1,9 @@
 package sample.guidata.admin;
 
+import sample.database.ConnectionWithDatabase;
+import sample.database.controllers.MiejscowoscController;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +13,42 @@ public class Adding {
 
     private static DatabaseEnum.objectTypes typeOfObject; //All options in DatabaseEnum enum class
     private static Map<DatabaseEnum.fields, ArrayList<String>> tupleParameters = new HashMap<>();
+    private static MiejscowoscController miejscowoscController;
+    private static ConnectionWithDatabase connection;
 
-    public static void addToDatabase() {
+    public static void addToDatabase() throws SQLException {
         //only for tests is this code below
         /*for (DatabaseEnum.fields field : tupleParameters.keySet()) {
             System.out.println(tupleParameters.get(field));;
         }*/
+        if (typeOfObject==DatabaseEnum.objectTypes.CONCERT){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.CABARET){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.THEATRE_SPECTACLE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.PERFORMANCE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.ACTOR){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.MUSICIAN){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.MUSIC_DISC){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.SONG){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.TOWN){
+            MiejscowoscController.setConnection(ConnectionWithDatabase.getConnection());
+            String name = getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
+            String state = getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
+            String zipCode = getElementFromTupleParameters(DatabaseEnum.townFields.ZIP_CODE).get(0);
+            MiejscowoscController.AddMiejscowosc(name, state, zipCode);
+        }
     }
+
+
 
     public static DatabaseEnum.objectTypes getTypeOfObject() {
         return typeOfObject;
