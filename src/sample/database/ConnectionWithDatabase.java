@@ -10,7 +10,8 @@ public class ConnectionWithDatabase {
     private final static String DATABASE_URL = "jdbc:mysql://localhost:3306/projekt?useTimezone=true&serverTimezone=UTC";
 
     private final static String DATABASE_USER = "root";
-    private final static String DATABASE_PASSWORD = "BaZyDaNyCh2019";
+    //private final static String DATABASE_PASSWORD = "BaZyDaNyCh2019";
+    private final static String DATABASE_PASSWORD = "mcdj";
     private final static String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     //obiekt tworzący połączenie z bazą danych.
