@@ -15,6 +15,27 @@ public class Adding {
         /*for (DatabaseEnum.fields field : tupleParameters.keySet()) {
             System.out.println(tupleParameters.get(field));;
         }*/
+        if (typeOfObject==DatabaseEnum.objectTypes.CONCERT){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.CABARET){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.THEATRE_SPECTACLE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.PERFORMANCE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.ACTOR){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.MUSICIAN){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.MUSIC_DISC){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.SONG){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
+
+        }else if (typeOfObject==DatabaseEnum.objectTypes.TOWN){
+
+        }
     }
 
     public static DatabaseEnum.objectTypes getTypeOfObject() {
