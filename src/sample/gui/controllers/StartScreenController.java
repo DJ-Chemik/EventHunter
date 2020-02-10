@@ -27,16 +27,10 @@ public class StartScreenController extends Screen {
     }
 
     @FXML
-    public void connectWithDatabaseButtonClick(){
+    public void connectWithDatabaseButtonClick() {
+        connectWithDatabase();
+        pane.setStyle("-fx-background-color: #0000AA");
 
-        try {
-            connectWithDatabase();
-            pane.setStyle("-fx-background-color: #0000AA");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("CONNECTION ERROR");
-            pane.setStyle("-fx-background-color: #AA0000");
-        }
     }
 
 
