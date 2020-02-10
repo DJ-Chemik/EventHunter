@@ -44,6 +44,8 @@ public class Adding {
         }
     }
 
+
+
     public static DatabaseEnum.objectTypes getTypeOfObject() {
         return typeOfObject;
     }

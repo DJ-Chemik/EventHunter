@@ -38,16 +38,10 @@ public class StartScreenController extends Screen {
         }
     }
 
-    private void connectWithDatabase() throws SQLException {
+    private void connectWithDatabase(){
         ConnectionWithDatabase db = new ConnectionWithDatabase();
         db.connect();
         System.out.println(db);
         System.out.println(db.GetConnection());
-        AktorController aktorController = new AktorController(db.GetConnection());
-        System.out.println(aktorController);
-        aktorController.GetAllFromAktor();
-        aktorController.displayResultOfQuery();
-        aktorController.close();
-        db.close();
     }
 }
