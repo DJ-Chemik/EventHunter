@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
+import sample.database.controllers.MiejscowoscController;
 
 import java.sql.SQLException;
 
@@ -39,15 +40,11 @@ public class StartScreenController extends Screen {
     }
 
     private void connectWithDatabase() throws SQLException {
-        ConnectionWithDatabase db = new ConnectionWithDatabase();
-        db.connect();
-        System.out.println(db);
-        System.out.println(db.GetConnection());
-        AktorController aktorController = new AktorController(db.GetConnection());
+        ConnectionWithDatabase.connect();
+        AktorController aktorController = new AktorController(ConnectionWithDatabase.getConnection());
         System.out.println(aktorController);
-        aktorController.GetAllFromAktor();
-        aktorController.displayResultOfQuery();
-        aktorController.close();
-        db.close();
+        AktorController.GetAllFromAktor();
+        AktorController.displayResultOfQuery();
+        AktorController.close();
     }
 }
