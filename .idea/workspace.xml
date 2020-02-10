@@ -217,11 +217,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1294" />
-    <option name="height" value="1047" />
-  </component>
   <component name="ProjectId" id="1WWzhrXFyFfEj00vuvIXbDk9lb9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -384,7 +379,7 @@
       <workItem from="1581015591827" duration="6405000" />
       <workItem from="1581024790520" duration="7048000" />
       <workItem from="1581071390464" duration="2516000" />
-      <workItem from="1581365360895" duration="3213000" />
+      <workItem from="1581365360895" duration="3492000" />
     </task>
     <servers />
   </component>
