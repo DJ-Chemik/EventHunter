@@ -6,6 +6,7 @@ import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
 import sample.guidata.admin.DatabaseEnum;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AdminAddScreenController extends Screen {
@@ -155,7 +156,11 @@ public class AdminAddScreenController extends Screen {
         addCorrectTypeOfObject();
         Adding.clearTupleParameters();
         addParametersOfTuple();
-        Adding.addToDatabase();
+        try {
+            Adding.addToDatabase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addCorrectTypeOfObject(){
