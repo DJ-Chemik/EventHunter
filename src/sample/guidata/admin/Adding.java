@@ -1,5 +1,6 @@
 package sample.guidata.admin;
 
+import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.MiejscowoscController;
 
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ public class Adding {
 
     private static DatabaseEnum.objectTypes typeOfObject; //All options in DatabaseEnum enum class
     private static Map<DatabaseEnum.fields, ArrayList<String>> tupleParameters = new HashMap<>();
+    private static MiejscowoscController miejscowoscController;
+    private static ConnectionWithDatabase connection;
 
     public static void addToDatabase() throws SQLException {
         //only for tests is this code below
@@ -37,6 +40,7 @@ public class Adding {
         }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.TOWN){
+            MiejscowoscController.setConnection(ConnectionWithDatabase.getConnection());
             String name = getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
             String state = getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
             String zipCode = getElementFromTupleParameters(DatabaseEnum.townFields.ZIP_CODE).get(0);

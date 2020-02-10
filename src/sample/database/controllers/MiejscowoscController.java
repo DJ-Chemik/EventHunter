@@ -16,7 +16,11 @@ public class MiejscowoscController {
         connection = conn;
     }
 
-    public static void AddMiejscowosc(String nazwa,String wojewodztwo,String kodPocztowy) throws SQLException {
+    public static void setConnection(Connection connection) {
+        MiejscowoscController.connection = connection;
+    }
+
+    public static void AddMiejscowosc(String nazwa, String wojewodztwo, String kodPocztowy) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO miejscowość(nazwa, województwo, kod_pocztowy) VALUES(?,?,?)");
         prepStat.setString(1,nazwa);
         prepStat.setString(2,wojewodztwo);

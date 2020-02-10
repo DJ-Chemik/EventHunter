@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
+import sample.database.controllers.MiejscowoscController;
 
 import java.sql.SQLException;
 
@@ -38,10 +39,12 @@ public class StartScreenController extends Screen {
         }
     }
 
+
     private void connectWithDatabase(){
         ConnectionWithDatabase db = new ConnectionWithDatabase();
         db.connect();
         System.out.println(db);
-        System.out.println(db.GetConnection());
+        System.out.println(db.getConnection());
+
     }
 }
