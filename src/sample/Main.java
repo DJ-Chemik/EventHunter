@@ -33,23 +33,9 @@ public class Main extends Application {
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        //connectWithDatabase();
-
     }
 
-    private void connectWithDatabase() throws SQLException {
-        ConnectionWithDatabase db = new ConnectionWithDatabase();
-        db.connect();
-        System.out.println(db);
-        System.out.println(db.GetConnection());
-        AktorController aktorController = new AktorController(db.GetConnection());
-        System.out.println(aktorController);
-        aktorController.GetAllFromAktor();
-        aktorController.displayResultOfQuery();
-        aktorController.close();
-        db.close();
-    }
+
 
 
     public static void main(String[] args) {
