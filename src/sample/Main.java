@@ -7,6 +7,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
+import sample.database.controllers.MiejsceController;
+import sample.database.controllers.MiejscowoscController;
+import sample.database.controllers.WydarzenieController;
+
+import java.sql.Date;
+import java.util.ArrayList;
 
 import java.sql.SQLException;
 
@@ -33,6 +39,7 @@ public class Main extends Application {
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.show();
+        ConnectionWithDatabase.connect();
     }
 
 

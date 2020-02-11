@@ -1,6 +1,7 @@
 package sample.database.controllers;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AktorzyPrzedstawieniaController {
 
@@ -13,6 +14,10 @@ public class AktorzyPrzedstawieniaController {
     private static int result;
 
     public AktorzyPrzedstawieniaController(Connection conn){
+        connection = conn;
+    }
+
+    public static void setConnection(Connection conn){
         connection = conn;
     }
 
@@ -71,5 +76,16 @@ public class AktorzyPrzedstawieniaController {
         prepStat.setDouble(1,idPrzedstawienia);
         prepStat.setDouble(2,idAktora);
         result = prepStat.executeUpdate();
+    }
+
+    public static ArrayList<String> GetResult() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            String idAktora = String.valueOf(resultSet.getDouble(1));
+            String idPrzedstawienia = String.valueOf(resultSet.getDouble(2));
+            temp.add(idAktora);
+            temp.add(idPrzedstawienia);
+        }
+        return temp;
     }
 }

@@ -1,5 +1,6 @@
 package sample.database;
 
+import sample.database.controllers.*;
 import sample.gui.StaticData;
 
 import javax.print.DocFlavor;
@@ -27,6 +28,15 @@ public class ConnectionWithDatabase {
         try {
             Class.forName(DATABASE_DRIVER);
             connection = DriverManager.getConnection( DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            AktorController.setConnection(connection);
+            AktorzyPrzedstawieniaController.setConnection(connection);
+            MiejsceController.setConnection(connection);
+            MiejscowoscController.setConnection(connection);
+            MuzykController.setConnection(connection);
+            PlytaController.setConnection(connection);
+            PrzedstawienieController.setConnection(connection);
+            UtworController.setConnection(connection);
+            WydarzenieController.setConnection(connection);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

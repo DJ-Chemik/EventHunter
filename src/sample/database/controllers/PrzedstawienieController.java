@@ -1,6 +1,7 @@
 package sample.database.controllers;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class PrzedstawienieController {
 
@@ -13,6 +14,10 @@ public class PrzedstawienieController {
     private static int result;
 
     public PrzedstawienieController(Connection conn){
+        connection = conn;
+    }
+
+    public static void setConnection(Connection conn){
         connection = conn;
     }
 
@@ -46,5 +51,18 @@ public class PrzedstawienieController {
         prepStat = connection.prepareStatement("DELETE FROM przedstawienie WHERE id_przedstawienia = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
+    }
+
+    public static ArrayList<String> GetResult() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            String idPrzedstawienia = String.valueOf(resultSet.getDouble(1));
+            String tytul = resultSet.getString(2);
+            String dlugosc = String.valueOf(resultSet.getDouble(3));
+            temp.add(idPrzedstawienia);
+            temp.add(tytul);
+            temp.add(dlugosc);
+        }
+        return temp;
     }
 }
