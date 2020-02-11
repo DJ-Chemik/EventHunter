@@ -7,6 +7,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
+import sample.database.controllers.MiejsceController;
+import sample.database.controllers.MiejscowoscController;
+import sample.database.controllers.WydarzenieController;
+
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -31,17 +37,7 @@ public class Main extends Application {
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.show();
-        ConnectionWithDatabase db = new ConnectionWithDatabase();
-        db.connect();
-        System.out.println(db);
-        System.out.println(db.GetConnection());
-        AktorController aktorController = new AktorController(db.GetConnection());
-        System.out.println(aktorController);
-        aktorController.GetAllFromAktor();
-        aktorController.displayResultOfQuery();
-        aktorController.close();
-        db.close();
-
+        ConnectionWithDatabase.connect();
     }
 
 

@@ -2,26 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_8_0_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/AktorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/AktorzyPrzedstawieniaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/MiejsceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/MiejscowoscController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/MuzykController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/PlytaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/PrzedstawienieController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/UtworController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/database/controllers/WydarzenieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventHunter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EventHunter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/UserMenuScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/GUI/controllers/UserMenuScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/META-INF/EventHunter.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/ConnectionWithDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/ConnectionWithDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/AktorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/AktorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MiejsceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MiejsceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MiejscowoscController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MiejscowoscController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MuzykController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/MuzykController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/PlytaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/PlytaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/PrzedstawienieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/PrzedstawienieController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/UtworController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/UtworController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/WydarzenieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EventHunter/sample/database/controllers/WydarzenieController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/database/ConnectionWithDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/ConnectionWithDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/AktorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/AktorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/AktorzyPrzedstawieniaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/AktorzyPrzedstawieniaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/MiejsceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/MiejsceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/MiejscowoscController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/MiejscowoscController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/MuzykController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/MuzykController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/PlytaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/PlytaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/PrzedstawienieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/PrzedstawienieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/UtworController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/UtworController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/database/controllers/WydarzenieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/database/controllers/WydarzenieController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,130 +50,46 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="aktor: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="aktorzy_przedstawienia: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="kabaret: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="kabaret_przedstawienia: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="koncert: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="koncert_muzycy: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="miejsce: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="miejscowość: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="muzyk: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="muzyk_plyty: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="przedstawienie: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="płyta: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="teatr_przedstawienia: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="utwór: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="projekt@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="wydarzenie: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MySQL - projekt@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="projekt: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="wystep_teatralny: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -262,7 +182,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580943462451" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.18.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -393,6 +313,8 @@
       <workItem from="1581015591827" duration="6405000" />
       <workItem from="1581024790520" duration="7048000" />
       <workItem from="1581071390464" duration="2516000" />
+      <workItem from="1581371564642" duration="8844000" />
+      <workItem from="1581420703349" duration="3061000" />
     </task>
     <servers />
   </component>
