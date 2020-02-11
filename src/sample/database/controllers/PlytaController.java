@@ -19,11 +19,20 @@ public class PlytaController {
         connection = conn;
     }
 
-    public static void AddPlyta(String tytul,int rok) throws SQLException {
+    public static void AddPlyta(String tytul,int rok,ArrayList<String> utwory) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO płyta(tytuł, rok_wydania) VALUES(?,?)");
         prepStat.setString(1,tytul);
         prepStat.setInt(2,rok);
         result = prepStat.executeUpdate();
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
+        double id;
+        if (resultSet.next()) {
+            id = resultSet.getDouble(1);
+        }else{
+            id = 0;
+        }
+        UtworController.SetIdPlytyFromList(utwory,id);
     }
 
     public static void GetAllFromPlyta() throws SQLException{

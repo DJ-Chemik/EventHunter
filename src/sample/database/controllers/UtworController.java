@@ -44,6 +44,16 @@ public class UtworController {
         return temp;
     }
 
+    public static void SetIdPlytyFromList(ArrayList<String> utwory,double idPlyty) throws SQLException {
+        prepStat = connection.prepareStatement("UPDATE utwór SET id_plyty = ? WHERE tytuł = ? AND rok_wydania = ? AND gatunek = ? ");
+        for(int i = 0; i< utwory.size();i+=3){
+            prepStat.setDouble(1,idPlyty);
+            prepStat.setString(2,utwory.get(i));
+            prepStat.setInt(3,Integer.parseInt(utwory.get(i+1)));
+            prepStat.setString(4,utwory.get(i+2));
+        }
+    }
+
     public static void AddUtwor(String tytul,int rok,String gatunek,double wyswietlenia,String imieM,String nazwiskoM,String pseudonimM,String tytułP,int rokWydaniaP) throws SQLException {
         double idMuzyka = GetIdFromMuzyk(imieM,nazwiskoM,pseudonimM);
         double idPlyty = GetIdFromPlyta(tytułP,rokWydaniaP);
