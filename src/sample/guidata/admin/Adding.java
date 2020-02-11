@@ -1,8 +1,11 @@
 package sample.guidata.admin;
 
 import sample.database.ConnectionWithDatabase;
+import sample.database.controllers.AktorController;
+import sample.database.controllers.MiejsceController;
 import sample.database.controllers.MiejscowoscController;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +33,11 @@ public class Adding {
         }else if (typeOfObject==DatabaseEnum.objectTypes.PERFORMANCE){
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.ACTOR){
+            String name = getElementFromTupleParameters(DatabaseEnum.actorFields.NAME).get(0);
+            String surname = getElementFromTupleParameters(DatabaseEnum.actorFields.SURNAME).get(0);
+            String bandName = getElementFromTupleParameters(DatabaseEnum.actorFields.BAND_NAME).get(0);
+            ArrayList<String> performances = getElementFromTupleParameters(DatabaseEnum.actorFields.PERFORMANCES);
+            AktorController.AddAktor(name,surname,bandName);
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.MUSICIAN){
 
@@ -38,9 +46,13 @@ public class Adding {
         }else if (typeOfObject==DatabaseEnum.objectTypes.SONG){
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
-
+            String name = getElementFromTupleParameters(DatabaseEnum.placeFields.NAME).get(0);
+            String type = getElementFromTupleParameters(DatabaseEnum.placeFields.TYPE).get(0);
+            //String town_name = getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(0);
+            //String state_name = getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(1);
+            double id_town = 0; //// TODO: 11.02.2020
+            MiejsceController.AddMiejsce(name, type,id_town);
         }else if (typeOfObject==DatabaseEnum.objectTypes.TOWN){
-            MiejscowoscController.setConnection(ConnectionWithDatabase.getConnection());
             String name = getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
             String state = getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
             String zipCode = getElementFromTupleParameters(DatabaseEnum.townFields.ZIP_CODE).get(0);

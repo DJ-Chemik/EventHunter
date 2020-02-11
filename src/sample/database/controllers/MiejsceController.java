@@ -1,10 +1,12 @@
 package sample.database.controllers;
 
+import sample.database.ConnectionWithDatabase;
+
 import java.sql.*;
 
 public class MiejsceController {
     //obiekt tworzący połączenie z bazą danych.
-    private static Connection connection;
+    private static Connection connection = ConnectionWithDatabase.getConnection();
     //obiekt pozwalający tworzyć nowe wyrażenia SQL
     private static Statement statement;
     private static ResultSet resultSet;
@@ -15,7 +17,8 @@ public class MiejsceController {
         connection = conn;
     }
 
-    public static void AddMiejsce(String nazwa,String typ,double idMiasta) throws SQLException {
+
+    public static void AddMiejsce(String nazwa, String typ, double idMiasta) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO miejsce(nazwa, typ_obiektu, id_miasta) VALUES(?,?,?)");
         prepStat.setString(1,nazwa);
         prepStat.setString(2,typ);

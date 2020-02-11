@@ -1,5 +1,7 @@
 package sample.database.controllers;
 
+import sample.database.ConnectionWithDatabase;
+
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,7 +9,7 @@ import java.text.SimpleDateFormat;
 public class WydarzenieController {
 
     //obiekt tworzący połączenie z bazą danych.
-    private static Connection connection;
+    private static Connection connection = ConnectionWithDatabase.getConnection();
     //obiekt pozwalający tworzyć nowe wyrażenia SQL
     private static Statement statement;
     private static ResultSet resultSet;

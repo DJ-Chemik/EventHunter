@@ -1,11 +1,13 @@
 package sample.database.controllers;
 
+import sample.database.ConnectionWithDatabase;
+
 import java.sql.*;
 
 public class PlytaController {
 
     //obiekt tworzący połączenie z bazą danych.
-    private static Connection connection;
+    private static Connection connection = ConnectionWithDatabase.getConnection();
     //obiekt pozwalający tworzyć nowe wyrażenia SQL
     private static Statement statement;
     private static ResultSet resultSet;
