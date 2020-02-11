@@ -73,7 +73,8 @@ public class DatabaseEnum {
     public enum musicDiscFields implements fields{
         TITLE,
         RELEASE_YEAR,
-        MUSICIANS //a lot of musicians
+        MUSICIANS, //a lot of musicians
+        SONGS //a lot of songs
     }
 
     public enum songFields implements fields{
