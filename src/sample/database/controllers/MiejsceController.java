@@ -3,6 +3,7 @@ package sample.database.controllers;
 import sample.database.ConnectionWithDatabase;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MiejsceController {
     //obiekt tworzący połączenie z bazą danych.
@@ -18,7 +19,20 @@ public class MiejsceController {
     }
 
 
-    public static void AddMiejsce(String nazwa, String typ, double idMiasta) throws SQLException {
+    public static double GetIdFromMiejscowosc(String nazwa,String wojewodztwo) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_miasta FROM miejscowość WHERE nazwa = ? AND województwo = ?");
+        prepStat.setString(1,nazwa);
+        prepStat.setString(2,wojewodztwo);
+        resultSet = prepStat.executeQuery();
+        double temp = 0;
+        while(resultSet.next()) {
+            temp = resultSet.getDouble(1);
+        }
+        return temp;
+    }
+
+    public static void AddMiejsce(String nazwa,String typ,String nazwaMiasta,String wojewodztwo) throws SQLException {
+        double idMiasta = GetIdFromMiejscowosc(nazwaMiasta,wojewodztwo);
         prepStat = connection.prepareStatement("INSERT INTO miejsce(nazwa, typ_obiektu, id_miasta) VALUES(?,?,?)");
         prepStat.setString(1,nazwa);
         prepStat.setString(2,typ);
@@ -50,5 +64,20 @@ public class MiejsceController {
         prepStat = connection.prepareStatement("DELETE FROM miejsce WHERE id_obiektu = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
+    }
+
+    public static ArrayList<String> GetResult() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            String idObiektu = String.valueOf(resultSet.getDouble(1));
+            String nazwa = resultSet.getString(2);
+            String typ = resultSet.getString(3);
+            String idMiasta = String.valueOf(resultSet.getDouble(4));
+            temp.add(idObiektu);
+            temp.add(nazwa);
+            temp.add(typ);
+            temp.add(idMiasta);
+        }
+        return temp;
     }
 }

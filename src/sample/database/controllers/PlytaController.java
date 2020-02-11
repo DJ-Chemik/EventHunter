@@ -3,6 +3,7 @@ package sample.database.controllers;
 import sample.database.ConnectionWithDatabase;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class PlytaController {
 
@@ -48,5 +49,18 @@ public class PlytaController {
         prepStat = connection.prepareStatement("DELETE FROM płyta WHERE id_plyty = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
+    }
+
+    public static ArrayList<String> GetResult() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            String idPlyty = String.valueOf(resultSet.getDouble(1));
+            String tytul = resultSet.getString(2);
+            String rokWydania = String.valueOf(resultSet.getInt(3));
+            temp.add(idPlyty);
+            temp.add(tytul);
+            temp.add(rokWydania);
+        }
+        return temp;
     }
 }

@@ -3,6 +3,7 @@ package sample.database.controllers;
 import sample.database.ConnectionWithDatabase;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AktorController {
 
@@ -52,18 +53,19 @@ public class AktorController {
         result = prepStat.executeUpdate();
     }
 
-    public static void displayResultOfQuery() throws SQLException {
+    public static ArrayList<String> GetResult() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
-            int id = resultSet.getInt(1);
-            String name = resultSet.getString(2);
-            String surname = resultSet.getString(3);
-            String band = resultSet.getString(4);
-            System.out.println("Id: " + id);
-            System.out.println("Name: " + name);
-            System.out.println("Surname: " + surname);
-            System.out.println("Band: " + band);
-            System.out.println("-------------------");
+            String id = String.valueOf(resultSet.getDouble(1));
+            String imie = resultSet.getString(2);
+            String nazwisko = resultSet.getString(3);
+            String grupa = resultSet.getString(4);
+            temp.add(id);
+            temp.add(imie);
+            temp.add(nazwisko);
+            temp.add(grupa);
         }
+        return temp;
     }
 
     public static void close(){
