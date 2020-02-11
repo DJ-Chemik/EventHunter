@@ -6,19 +6,23 @@ import javax.print.DocFlavor;
 import java.sql.*;
 
 public class ConnectionWithDatabase {
-    //private final static String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/projekt";
-    private final static String DATABASE_URL = "jdbc:mysql://localhost:3306/projekt?useTimezone=true&serverTimezone=UTC";
 
-    private final static String DATABASE_USER = "root";
-    //private final static String DATABASE_PASSWORD = "BaZyDaNyCh2019";
-    private final static String DATABASE_PASSWORD = "mcdj";
-    private final static String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static String DATABASE_URL;// = "jdbc:mysql://localhost:3306/projekt?useTimezone=true&serverTimezone=UTC";
+    private  static String DATABASE_USER = "root";
+    private static String DATABASE_PASSWORD = "mcdj";
+    private static String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     //obiekt tworzący połączenie z bazą danych.
     private static Connection connection;
     //obiekt pozwalający tworzyć nowe wyrażenia SQL
     private static Statement statement;
     private static ResultSet resultSet;
+
+    public ConnectionWithDatabase(String host, String port, String schemeName, String user, String password) {
+        DATABASE_USER=user;
+        DATABASE_PASSWORD=password;
+        DATABASE_URL="jdbc:mysql://" + host + ":" + port + "/" + schemeName + "?useTimezone=true&serverTimezone=UTC";
+    }
 
     public static Connection getConnection(){
         return connection;

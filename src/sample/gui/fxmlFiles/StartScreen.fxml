@@ -22,10 +22,10 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField layoutX="40.0" layoutY="590.0" prefHeight="25.0" prefWidth="439.0" promptText="password" />
-      <TextField layoutX="40.0" layoutY="550.0" prefHeight="25.0" prefWidth="439.0" promptText="user" text="root" />
-      <TextField layoutX="40.0" layoutY="510.0" prefHeight="25.0" prefWidth="439.0" promptText="database scheme name" text="projekt" />
-      <TextField layoutX="40.0" layoutY="470.0" prefHeight="25.0" prefWidth="439.0" promptText="port" text="3306" />
-      <TextField layoutX="40.0" layoutY="430.0" prefHeight="25.0" prefWidth="439.0" promptText="server adress ip" text="localhost" />
+      <TextField fx:id="passwordTextField" layoutX="40.0" layoutY="590.0" prefHeight="25.0" prefWidth="439.0" promptText="password" />
+      <TextField fx:id="usernameTextField" layoutX="40.0" layoutY="550.0" prefHeight="25.0" prefWidth="439.0" promptText="user" text="root" />
+      <TextField fx:id="schemeTextField" layoutX="40.0" layoutY="510.0" prefHeight="25.0" prefWidth="439.0" promptText="database scheme name" text="projekt" />
+      <TextField fx:id="portTextField" layoutX="40.0" layoutY="470.0" prefHeight="25.0" prefWidth="439.0" promptText="port" text="3306" />
+      <TextField fx:id="hostTextField" layoutX="40.0" layoutY="430.0" prefHeight="25.0" prefWidth="439.0" promptText="server adress ip" text="localhost" />
    </children>
 </Pane>

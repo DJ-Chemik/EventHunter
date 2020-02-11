@@ -2,6 +2,7 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.AktorController;
@@ -15,6 +16,8 @@ public class StartScreenController extends Screen {
     private Button startButton;
     @FXML
     private Pane pane;
+    @FXML
+    private TextField hostTextField, portTextField, schemeTextField, usernameTextField, passwordTextField;
 
     @FXML
     public void startAsUserClick(){
@@ -35,7 +38,12 @@ public class StartScreenController extends Screen {
 
 
     private void connectWithDatabase(){
-        ConnectionWithDatabase db = new ConnectionWithDatabase();
+        String host = hostTextField.getText();
+        String port = portTextField.getText();
+        String scheme = schemeTextField.getText();
+        String user = usernameTextField.getText();
+        String password = passwordTextField.getText();
+        ConnectionWithDatabase db = new ConnectionWithDatabase(host,port,scheme,user,password);
         db.connect();
         System.out.println(db);
         System.out.println(db.getConnection());
