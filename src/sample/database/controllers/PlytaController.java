@@ -32,10 +32,10 @@ public class PlytaController {
         }else{
             id = 0;
         }
-        UtworController.SetIdPlytyFromList(utwory,id);
+        UtworController.setIdPlytyFromList(utwory,id);
     }
 
-    public static void GetAllFromPlyta() throws SQLException{
+    public static void getAllFromPlyta() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from płyta");
     }
@@ -71,5 +71,23 @@ public class PlytaController {
             temp.add(rokWydania);
         }
         return temp;
+    }
+
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idStr = String.valueOf(resultSet.getInt(1));
+            String tytul = resultSet.getString(2);
+            String rokWydania = String.valueOf(resultSet.getInt(3));
+            String allString = tytul + " " + rokWydania  + " (id: " + idStr + ")";
+            temp.add(allString);
+        }
+        return temp;
+    }
+    private static ArrayList<Double> idList = new ArrayList<>();
+    public static ArrayList<Double> getListOfIDs(){
+        return idList;
     }
 }

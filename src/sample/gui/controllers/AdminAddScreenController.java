@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.database.controllers.AktorController;
 import sample.database.controllers.MiejscowoscController;
+import sample.database.controllers.MuzykController;
+import sample.database.controllers.PlytaController;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
 import sample.guidata.admin.DatabaseEnum;
@@ -30,7 +32,8 @@ public class AdminAddScreenController extends Screen {
     private ArrayList<Button> addButtons = new ArrayList<>();
     private ArrayList<Control> fields = new ArrayList<>();
 
-    private ArrayList<Double> idListOfElementsToComboBoxes = new ArrayList<>();
+    private ArrayList<Double> idListOfElementsToComboBoxes1 = new ArrayList<>();
+    private ArrayList<Double> idListOfElementsToComboBoxes2 = new ArrayList<>();
 
     private ArrayList<Double> idInListView1 = new ArrayList<>();
     private ArrayList<Double> idInListView2 = new ArrayList<>();
@@ -109,8 +112,8 @@ public class AdminAddScreenController extends Screen {
                 comboBox6.setEditable(false);
                 addTownsToComboBox();
                 try {
-                    idListOfElementsToComboBoxes.clear();
-                    idListOfElementsToComboBoxes = MiejscowoscController.getListOfIds();
+                    idListOfElementsToComboBoxes1.clear();
+                    idListOfElementsToComboBoxes1 = MiejscowoscController.getListOfIds();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -119,8 +122,6 @@ public class AdminAddScreenController extends Screen {
                 addStatesToComboBox();
                 comboBox6.setEditable(false);
                 comboBox6.setPromptText("Wybierz wojewódzwtwo");
-                //addButton7.setVisible(true);
-               // addButton7.setDisable(true);
             }
             if (StaticData.getElementOfIngerention()=="MusicDisc"){
                 addButton6.setVisible(true);
@@ -128,14 +129,24 @@ public class AdminAddScreenController extends Screen {
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
+            if (StaticData.getElementOfIngerention()=="Song"){
+                comboBox6.setEditable(false);
+                comboBox7.setEditable(false);
+                addMusiciansToComboBox();
+                addMusicDiscsToComboBox();
+                idListOfElementsToComboBoxes1.clear();
+                idListOfElementsToComboBoxes1 = MuzykController.getListOfIDs();
+                idInListView2.clear();
+                idInListView2 = PlytaController.getListOfIDs();
+            }
             if (StaticData.getElementOfIngerention()=="Performance"){
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
                 comboBox7.setEditable(false);
                 addActorsToComboBox();
-                idListOfElementsToComboBoxes.clear();
-                idListOfElementsToComboBoxes = AktorController.getListOfIDs();
+                idListOfElementsToComboBoxes1.clear();
+                idListOfElementsToComboBoxes1 = AktorController.getListOfIDs();
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
             }
@@ -182,6 +193,26 @@ public class AdminAddScreenController extends Screen {
             AktorController.getAllFromAktor();
             ArrayList<String> actors = AktorController.getListOfStrings();
             comboBox7.getItems().addAll(actors);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addMusiciansToComboBox(){
+        try {
+            MuzykController.getAllFromMuzyk();
+            ArrayList<String> musicians = MuzykController.getListOfStrings();
+            comboBox6.getItems().addAll(musicians);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addMusicDiscsToComboBox(){
+        try {
+            PlytaController.getAllFromPlyta();
+            ArrayList<String> discs = PlytaController.getListOfStrings();
+            comboBox7.getItems().addAll(discs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -275,8 +306,6 @@ public class AdminAddScreenController extends Screen {
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField3,true));
                 Adding.addToTupleParameters(DatabaseEnum.musicianFields.NICKNAME, parameters);
-                // TODO: 22.01.2020 Add Adding Lists of Music Discs and Concerts
-
             }
         }else if (type=="Place"){
             parameters = new ArrayList<>();
@@ -287,7 +316,7 @@ public class AdminAddScreenController extends Screen {
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox6.getSelectionModel().getSelectedIndex();
-            double id = idListOfElementsToComboBoxes.get(numberComboBoxFiledSelected);
+            double id = idListOfElementsToComboBoxes1.get(numberComboBoxFiledSelected);
             parameters.add(String.valueOf(id));
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
         }else if (type=="Town"){
@@ -311,13 +340,19 @@ public class AdminAddScreenController extends Screen {
             parameters.add(getValueOfField(textField3,true));
             Adding.addToTupleParameters(DatabaseEnum.songFields.GENRE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,true));
+            parameters.add(getValueOfField(textField4,true));
             Adding.addToTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,true));
+            int index = comboBox6.getSelectionModel().getSelectedIndex();
+            parameters.add(String.valueOf(idListOfElementsToComboBoxes1.get(index)));
             Adding.addToTupleParameters(DatabaseEnum.songFields.MUSICIAN, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,true));
+            int index2 = comboBox7.getSelectionModel().getSelectedIndex();
+            if (index2!=-1){
+                parameters.add(String.valueOf(idListOfElementsToComboBoxes2.get(index2)));
+            }else{
+                parameters.add(null);
+            }
             Adding.addToTupleParameters(DatabaseEnum.songFields.MUSIC_DISC, parameters);
 
 
@@ -419,7 +454,7 @@ public class AdminAddScreenController extends Screen {
     public void addButton7Click(){
         if (StaticData.getElementOfIngerention() == "Performance") {
             int selectedField = comboBox7.getSelectionModel().getSelectedIndex();
-            double selectedActorID = idListOfElementsToComboBoxes.get(selectedField);
+            double selectedActorID = idListOfElementsToComboBoxes1.get(selectedField);
             if (isThisIdInListView(selectedActorID, 1)==false){
                 String actualFieldOfComboBox = comboBox7.getItems().get(selectedField);
                 mainListView.getItems().add(actualFieldOfComboBox);

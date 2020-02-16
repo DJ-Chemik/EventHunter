@@ -3,12 +3,10 @@ package sample.guidata.admin;
 import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.*;
 
-import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Adding {
@@ -91,7 +89,7 @@ public class Adding {
             String name =getElementFromTupleParameters(DatabaseEnum.musicianFields.NAME).get(0);
             String surname =getElementFromTupleParameters(DatabaseEnum.musicianFields.SURNAME).get(0);
             String nickName =getElementFromTupleParameters(DatabaseEnum.musicianFields.NICKNAME).get(0);
-            MuzykController.AddMuzyk(name,surname,nickName);
+            MuzykController.addMuzyk(name,surname,nickName);
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.MUSIC_DISC){
             String title = getElementFromTupleParameters(DatabaseEnum.musicDiscFields.TITLE).get(0);
@@ -107,11 +105,10 @@ public class Adding {
             int releaseYear = Integer.parseInt(releaseYearString);
             String genre =getElementFromTupleParameters(DatabaseEnum.songFields.GENRE).get(0);
             String youtubeViewsString =getElementFromTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS).get(0);
-            double youtubeViews = Double.parseDouble(youtubeViewsString);
-            String musicianName =getElementFromTupleParameters(DatabaseEnum.songFields.MUSICIAN).get(0);
-            String musicianSurname =getElementFromTupleParameters(DatabaseEnum.songFields.MUSICIAN).get(0);
-            String musicianNickName =getElementFromTupleParameters(DatabaseEnum.songFields.MUSICIAN).get(0);
-            //UtworController.AddUtwor(title,releaseYear,genre,youtubeViews,musicianName,musicianSurname,musicianNickName,); // TODO: 11.02.2020 We must added songs to disc, nor disc to songs
+            Double youtubeViews = Double.valueOf(youtubeViewsString);
+            String musicianID =getElementFromTupleParameters(DatabaseEnum.songFields.MUSICIAN).get(0);
+            String discID = getElementFromTupleParameters(DatabaseEnum.songFields.MUSIC_DISC).get(0);
+            UtworController.addUtwor(title,releaseYear,genre,youtubeViews,musicianID,discID);
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
             String name = getElementFromTupleParameters(DatabaseEnum.placeFields.NAME).get(0);

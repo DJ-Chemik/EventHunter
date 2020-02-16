@@ -19,7 +19,7 @@ public class MuzykController {
         connection = conn;
     }
 
-    public static void AddMuzyk(String imie,String nazwisko,String pseudonim) throws SQLException {
+    public static void addMuzyk(String imie, String nazwisko, String pseudonim) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO muzyk(imie, nazwisko, pseudonim) VALUES(?,?,?)");
         prepStat.setString(1,imie);
         prepStat.setString(2,nazwisko);
@@ -27,12 +27,12 @@ public class MuzykController {
         result = prepStat.executeUpdate();
     }
 
-    public static void GetAllFromMuzyk() throws SQLException{
+    public static void getAllFromMuzyk() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from muzyk");
     }
 
-    public static void GetOneMuzyk(double id) throws SQLException {
+    public static void getOneMuzyk(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from muzyk where id_muzyka = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
@@ -66,5 +66,24 @@ public class MuzykController {
             temp.add(pseudonim);
         }
         return temp;
+    }
+
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idStr = String.valueOf(resultSet.getInt(1));
+            String imie = resultSet.getString(2);
+            String nazwisko = resultSet.getString(3);
+            String pseudonim = resultSet.getString(4);
+            String allString = imie + " \"" + pseudonim + "\" " + nazwisko  + " (id: " + idStr + ")";
+            temp.add(allString);
+        }
+        return temp;
+    }
+    private static ArrayList<Double> idList = new ArrayList<>();
+    public static ArrayList<Double> getListOfIDs(){
+        return idList;
     }
 }
