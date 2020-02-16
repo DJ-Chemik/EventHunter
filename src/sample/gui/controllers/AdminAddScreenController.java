@@ -2,10 +2,7 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import sample.database.controllers.AktorController;
-import sample.database.controllers.MiejscowoscController;
-import sample.database.controllers.MuzykController;
-import sample.database.controllers.PlytaController;
+import sample.database.controllers.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
 import sample.guidata.admin.DatabaseEnum;
@@ -128,6 +125,14 @@ public class AdminAddScreenController extends Screen {
                 addButton6.setDisable(true);
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
+                comboBox6.setEditable(false);
+                comboBox7.setEditable(false);
+                addMusiciansToComboBox();
+                addSongsToComboBox();
+                idListOfElementsToComboBoxes1.clear();
+                idListOfElementsToComboBoxes1 = MuzykController.getListOfIDs();
+                idListOfElementsToComboBoxes2.clear();
+                idListOfElementsToComboBoxes2 = UtworController.getListOfIDs();
             }
             if (StaticData.getElementOfIngerention()=="Song"){
                 comboBox6.setEditable(false);
@@ -213,6 +218,16 @@ public class AdminAddScreenController extends Screen {
             PlytaController.getAllFromPlyta();
             ArrayList<String> discs = PlytaController.getListOfStrings();
             comboBox7.getItems().addAll(discs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addSongsToComboBox(){
+        try {
+            UtworController.getAllFromUtwor();
+            ArrayList<String> songs = UtworController.getListOfStrings();
+            comboBox7.getItems().addAll(songs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -363,7 +378,16 @@ public class AdminAddScreenController extends Screen {
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2, true));
             Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR, parameters);
-            // TODO: 22.01.2020 Add Adding 2 lists: Musicians and Songs
+            parameters = new ArrayList<>();
+            for (double i : idInListView1){
+                parameters.add(String.valueOf(i));
+            }
+            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS,parameters);
+            parameters = new ArrayList<>();
+            for (double i : idInListView2){
+                parameters.add(String.valueOf(i));
+            }
+            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.SONGS,parameters);
 
         }else if (type=="Performance"){
             parameters = new ArrayList<>();
@@ -405,8 +429,10 @@ public class AdminAddScreenController extends Screen {
             }else if (comboBox6.getValue()=="Aktor"){
                 label0.setText("ID Aktora");
                 label3.setText("Nazwa Grupy");
-
             }
+        }
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            addButton6.setDisable(false);
         }
 
     }
@@ -416,7 +442,11 @@ public class AdminAddScreenController extends Screen {
         if (StaticData.getElementOfIngerention() == "Performance") {
             addButton7.setDisable(false);
         }
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            addButton7.setDisable(false);
+        }
     }
+
     @FXML
     public void changeComboBox8(){
 
@@ -445,11 +475,51 @@ public class AdminAddScreenController extends Screen {
         return false;
     }
 
+    private ArrayList<String> additionalListViewData = new ArrayList<>();
+    private int actualListViewInView = 0;
+
+    private void swapListView(int newNumberOfListView){
+        if (newNumberOfListView!=actualListViewInView) {
+            ArrayList<String> tmpListView = new ArrayList<>();
+            for (String s : mainListView.getItems()) {
+                tmpListView.add(s);
+            }
+            mainListView.getItems().clear();
+            mainListView.getItems().addAll(additionalListViewData);
+            additionalListViewData = tmpListView;
+            actualListViewInView=newNumberOfListView;
+        }
+    }
+
+    @FXML
+    public void clickComboBox6(){
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            swapListView(1);
+        }
+    }
+
+    @FXML
+    public void clickComboBox7(){
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            swapListView(2);
+        }
+    }
 
     @FXML
     public void addButton6Click(){
-
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            int selectedField = comboBox6.getSelectionModel().getSelectedIndex();
+            double selectedMusicianID = idListOfElementsToComboBoxes1.get(selectedField);
+            if (isThisIdInListView(selectedMusicianID,1)==false){
+                String actualFieldOfComboBox = comboBox6.getItems().get(selectedField);
+                mainListView.getItems().add(actualFieldOfComboBox);
+                idInListView1.add(selectedMusicianID);
+            }else {
+                System.out.println("This Musician exists in this Disc now.");
+            }
+        }
     }
+
     @FXML
     public void addButton7Click(){
         if (StaticData.getElementOfIngerention() == "Performance") {
@@ -463,7 +533,19 @@ public class AdminAddScreenController extends Screen {
                 System.out.println("This Actor exists in this Performance now.");
             }
         }
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            int selectedField = comboBox7.getSelectionModel().getSelectedIndex();
+            double selectedSongID = idListOfElementsToComboBoxes2.get(selectedField);
+            if (isThisIdInListView(selectedSongID,2)==false){
+                String actualFieldOfComboBox = comboBox7.getItems().get(selectedField);
+                mainListView.getItems().add(actualFieldOfComboBox);
+                idInListView2.add(selectedSongID);
+            }else {
+                System.out.println("This Song exists in this Disc now.");
+            }
+        }
     }
+
     @FXML
     public void addButton8Click(){
 

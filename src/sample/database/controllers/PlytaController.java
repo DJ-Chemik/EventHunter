@@ -19,7 +19,7 @@ public class PlytaController {
         connection = conn;
     }
 
-    public static void AddPlyta(String tytul,int rok,ArrayList<String> utwory) throws SQLException {
+    public static void addPlyta(String tytul, int rok, ArrayList<String> utwory) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO płyta(tytuł, rok_wydania) VALUES(?,?)");
         prepStat.setString(1,tytul);
         prepStat.setInt(2,rok);
@@ -35,18 +35,44 @@ public class PlytaController {
         UtworController.setIdPlytyFromList(utwory,id);
     }
 
+    public static void addPlyta(String tytul, int rok, ArrayList<String> utwory, ArrayList<String> musicians) throws SQLException {
+        prepStat = connection.prepareStatement("INSERT INTO płyta(tytuł, rok_wydania) VALUES(?,?)");
+        prepStat.setString(1,tytul);
+        prepStat.setInt(2,rok);
+        result = prepStat.executeUpdate();
+        getOnePlyta(tytul,rok);
+        double discID = -1;
+        while (resultSet.next()){
+            discID = resultSet.getDouble(1);
+        }
+        for (String strID : musicians){
+            double musicianID = Double.parseDouble(strID);
+            MuzycyPlytyController.addMuzycyPlyty(musicianID,discID);
+        }
+        for (String strID : utwory){
+            double songID = Double.parseDouble(strID);
+            UtworController.editUtwor(songID,discID);
+        }
+    }
+
     public static void getAllFromPlyta() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from płyta");
     }
 
-    public static void GetOnePlyta(double id) throws SQLException {
+    public static void getOnePlyta(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from płyta where id_plyty = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
     }
 
-    public static void EditPlyta(double id,String tytul,int rok) throws SQLException{
+    public static void getOnePlyta(String title, int year) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT * from płyta where tytuł = ?");
+        prepStat.setString(1,title);
+        resultSet = prepStat.executeQuery();
+    }
+
+    public static void editPlyta(double id, String tytul, int rok) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE płyta SET tytuł = ? , rok_wydania = ? WHERE id_plyty = ?");
         prepStat.setString(1,tytul);
         prepStat.setInt(2,rok);
@@ -54,13 +80,13 @@ public class PlytaController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeletePlyta(double id) throws SQLException {
+    public static void deletePlyta(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM płyta WHERE id_plyty = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
     }
 
-    public static ArrayList<String> GetResult() throws SQLException {
+    public static ArrayList<String> getResult() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             String idPlyty = String.valueOf(resultSet.getDouble(1));

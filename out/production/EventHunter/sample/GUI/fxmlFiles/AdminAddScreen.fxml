@@ -22,8 +22,8 @@
       <Label fx:id="label4" layoutX="25.0" layoutY="410.0" maxWidth="110.0" text="Label 4" wrapText="true" />
       <Label fx:id="label5" layoutX="25.0" layoutY="450.0" text="Label 5" />
       <Label fx:id="label6" layoutX="25.0" layoutY="490.0" text="Label 6" />
-      <ComboBox fx:id="comboBox6" editable="true" layoutX="140.0" layoutY="488.0" onAction="#changeComboBox6" prefHeight="25.0" prefWidth="500.0" />
-      <ComboBox fx:id="comboBox7" editable="true" layoutX="140.0" layoutY="528.0" onAction="#changeComboBox7" prefHeight="25.0" prefWidth="500.0" />
+      <ComboBox fx:id="comboBox6" editable="true" layoutX="140.0" layoutY="488.0" onAction="#changeComboBox6" onMouseClicked="#clickComboBox6" prefHeight="25.0" prefWidth="500.0" />
+      <ComboBox fx:id="comboBox7" editable="true" layoutX="140.0" layoutY="528.0" onAction="#changeComboBox7" onMouseClicked="#clickComboBox7" prefHeight="25.0" prefWidth="500.0" />
       <ComboBox fx:id="comboBox8" editable="true" layoutX="140.0" layoutY="568.0" onAction="#changeComboBox8" prefHeight="25.0" prefWidth="500.0" />
       <ComboBox fx:id="comboBox9" editable="true" layoutX="140.0" layoutY="608.0" onAction="#changeComboBox9" prefHeight="25.0" prefWidth="500.0" />
       <Label fx:id="label7" layoutX="25.0" layoutY="534.0" text="Label 7" />

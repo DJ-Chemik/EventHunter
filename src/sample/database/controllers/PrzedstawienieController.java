@@ -19,7 +19,7 @@ public class PrzedstawienieController {
         connection = conn;
     }
 
-    public static void AddPrzedstawienie(String tytul,String dlugosc, String typ, ArrayList<String> actorsIDs) throws SQLException {
+    public static void addPrzedstawienie(String tytul, String dlugosc, String typ, ArrayList<String> actorsIDs) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO przedstawienie(tytul, dlugosc) VALUES(?,?)");
         prepStat.setString(1,tytul);
         prepStat.setString(2,dlugosc);

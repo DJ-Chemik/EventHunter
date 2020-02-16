@@ -94,6 +94,13 @@ public class UtworController {
         result = prepStat.executeUpdate();
     }
 
+    public static void editUtwor(double currentSongId, double newMusicDiscValue) throws SQLException {
+        prepStat = connection.prepareStatement("UPDATE utwór SET id_plyty = ? WHERE id_utworu = ?");
+        prepStat.setDouble(1,newMusicDiscValue);
+        prepStat.setDouble(2,currentSongId);
+        result = prepStat.executeUpdate();
+    }
+
     public static void deleteUtwor(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM utwór WHERE id_utworu = ?");
         prepStat.setDouble(1,id);
