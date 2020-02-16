@@ -345,26 +345,13 @@ public class AdminAddScreenController extends Screen {
         if (StaticData.getElementOfIngerention()=="Person"){
             label3.setVisible(true);
             textField3.setVisible(true);
-            label7.setVisible(true);
-            comboBox7.setVisible(true);
-            addButton7.setVisible(true);
-            addButton7.setDisable(true);
             if (comboBox6.getValue()=="Muzyk"){
                 label0.setText("ID Muzyka");
                 label3.setText("Pseudonim");
-                label7.setText("Płyty");
-                label8.setVisible(true);
-                label8.setText("Koncerty");
-                comboBox8.setVisible(true);
-                addButton8.setVisible(true);
-                addButton8.setDisable(true);
             }else if (comboBox6.getValue()=="Aktor"){
                 label0.setText("ID Aktora");
                 label3.setText("Nazwa Grupy");
-                label7.setText("Przedstawienia");
-                label8.setVisible(false);
-                comboBox8.setVisible(false);
-                addButton8.setVisible(false);
+
             }
         }
 

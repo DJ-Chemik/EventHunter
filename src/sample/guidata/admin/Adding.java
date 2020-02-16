@@ -86,7 +86,7 @@ public class Adding {
             String surname = getElementFromTupleParameters(DatabaseEnum.actorFields.SURNAME).get(0);
             String bandName = getElementFromTupleParameters(DatabaseEnum.actorFields.BAND_NAME).get(0);
             ArrayList<String> performances = getElementFromTupleParameters(DatabaseEnum.actorFields.PERFORMANCES);
-            AktorController.AddAktor(name,surname,bandName); // TODO: 11.02.2020 Need add a all performances
+            AktorController.AddAktor(name,surname,bandName);
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.MUSICIAN){
             String name =getElementFromTupleParameters(DatabaseEnum.musicianFields.NAME).get(0);

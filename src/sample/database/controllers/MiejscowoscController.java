@@ -74,9 +74,7 @@ public class MiejscowoscController {
 
     public static ArrayList<String> getListOfStrings() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
-        ResultSet rs = resultSet;
-        while (rs.next()) {
-
+        while (resultSet.next()) {
             Double id = resultSet.getDouble(1);
             idList.add(id);
             String idStr = String.valueOf(resultSet.getInt(1));
@@ -91,13 +89,6 @@ public class MiejscowoscController {
     private static ArrayList<Double> idList = new ArrayList<>();
 
     public static ArrayList<Double> getListOfIds() throws SQLException {
-//        ArrayList<Double> temp = new ArrayList<>();
-//        ResultSet rs = resultSet;
-//        while (rs.next()) {
-//            Double id = resultSet.getDouble(1);
-//            temp.add(id);
-//        }
-
         return idList;
     }
 
