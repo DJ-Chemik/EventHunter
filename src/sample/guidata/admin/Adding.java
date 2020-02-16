@@ -101,7 +101,7 @@ public class Adding {
             ArrayList<String> musicians = getElementFromTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS);
             ArrayList<String> songs = getElementFromTupleParameters(DatabaseEnum.musicDiscFields.SONGS);
 
-            PlytaController.AddPlyta(title,releaseYear, songs); // TODO: 11.02.2020 Make possible to add a musicians and songs to the disk
+            PlytaController.AddPlyta(title,releaseYear); // TODO: 11.02.2020 Make possible to add a musicians and songs to the disk
         }else if (typeOfObject==DatabaseEnum.objectTypes.SONG){
             String title =getElementFromTupleParameters(DatabaseEnum.songFields.TITLE).get(0);
             String releaseYearString =getElementFromTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR).get(0);

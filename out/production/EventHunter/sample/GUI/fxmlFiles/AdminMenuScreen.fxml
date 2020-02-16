@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: CYAN;" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controllers.AdminMenuScreenController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="100.0" prefWidth="150.0" text="&lt;-- BACK">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="90.0" mnemonicParsing="false" onAction="#addEventClick" prefHeight="90.0" prefWidth="256.0" text="Event" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="346.0" prefHeight="90.0" prefWidth="256.0" style="-fx-background-color: BLUE; -fx-text-fill: WHITE;" text="Add to system new:" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="346.0" layoutY="180.0" mnemonicParsing="false" onAction="#addPersonClick" prefHeight="90.0" prefWidth="256.0" text="Person" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="360.0" mnemonicParsing="false" onAction="#addTownClick" prefHeight="90.0" prefWidth="256.0" text="Town" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="270.0" mnemonicParsing="false" onAction="#addPlaceClick" prefHeight="90.0" prefWidth="256.0" text="Place" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="450.0" mnemonicParsing="false" onAction="#addSongClick" prefHeight="90.0" prefWidth="256.0" text="Song" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="540.0" mnemonicParsing="false" onAction="#addMusicDiscClick" prefHeight="90.0" prefWidth="256.0" text="Music Disc" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="346.0" layoutY="630.0" mnemonicParsing="false" onAction="#addPerformanceClick" prefHeight="90.0" prefWidth="256.0" text="Performance" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="90.0" mnemonicParsing="false" onAction="#deleteEventClick" prefHeight="90.0" prefWidth="256.0" text="Event" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="1024.0" prefHeight="90.0" prefWidth="256.0" style="-fx-background-color: BLUE; -fx-text-fill: WHITE;" text="Delete from system some:" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="1024.0" layoutY="180.0" mnemonicParsing="false" onAction="#deletePersonClick" prefHeight="90.0" prefWidth="256.0" text="Person" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteTownClick" prefHeight="90.0" prefWidth="256.0" text="Town" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="270.0" mnemonicParsing="false" onAction="#deletePlaceClick" prefHeight="90.0" prefWidth="256.0" text="Place" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="450.0" mnemonicParsing="false" onAction="#deleteSongClick" prefHeight="90.0" prefWidth="256.0" text="Song" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="540.0" mnemonicParsing="false" onAction="#deleteMusicDiscClick" prefHeight="90.0" prefWidth="256.0" text="Music Disc" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="1024.0" layoutY="630.0" mnemonicParsing="false" onAction="#deletePerformanceClick" prefHeight="90.0" prefWidth="256.0" text="Performance" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="90.0" mnemonicParsing="false" onAction="#editEventClick" prefHeight="90.0" prefWidth="256.0" text="Event" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="678.0" prefHeight="90.0" prefWidth="256.0" style="-fx-background-color: BLUE; -fx-text-fill: WHITE;" text="Edit:" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="678.0" layoutY="180.0" mnemonicParsing="false" onAction="#editPersonClick" prefHeight="90.0" prefWidth="256.0" text="Person" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="360.0" mnemonicParsing="false" onAction="#editTownClick" prefHeight="90.0" prefWidth="256.0" text="Town" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="270.0" mnemonicParsing="false" onAction="#editPlaceClick" prefHeight="90.0" prefWidth="256.0" text="Place" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="450.0" mnemonicParsing="false" onAction="#editSongClick" prefHeight="90.0" prefWidth="256.0" text="Song" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="540.0" mnemonicParsing="false" onAction="#editMusicDiscClick" prefHeight="90.0" prefWidth="256.0" text="Music Disc" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="678.0" layoutY="630.0" mnemonicParsing="false" onAction="#editPerformanceClick" prefHeight="90.0" prefWidth="256.0" text="Performance" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
