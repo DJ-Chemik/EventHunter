@@ -31,7 +31,7 @@ public class MiejscowoscController {
         result = prepStat.executeUpdate();
     }
 
-    public static void GetAllFromMiejscowosc() throws SQLException{
+    public static void getAllFromMiejscowosc() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from miejscowość");
     }
@@ -57,7 +57,7 @@ public class MiejscowoscController {
         result = prepStat.executeUpdate();
     }
 
-    public static ArrayList<String> GetResult() throws SQLException {
+    public static ArrayList<String> getResult() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             String id = String.valueOf(resultSet.getDouble(1));
@@ -71,4 +71,34 @@ public class MiejscowoscController {
         }
         return temp;
     }
+
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        ResultSet rs = resultSet;
+        while (rs.next()) {
+
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idStr = String.valueOf(resultSet.getInt(1));
+            String nazwa = resultSet.getString(2);
+            String woj = resultSet.getString(3);
+            String kod = resultSet.getString(4);
+            temp.add(nazwa  + " [" + woj + "] (" + kod + ") (id: " + idStr + ")" );
+        }
+        return temp;
+    }
+
+    private static ArrayList<Double> idList = new ArrayList<>();
+
+    public static ArrayList<Double> getListOfIds() throws SQLException {
+//        ArrayList<Double> temp = new ArrayList<>();
+//        ResultSet rs = resultSet;
+//        while (rs.next()) {
+//            Double id = resultSet.getDouble(1);
+//            temp.add(id);
+//        }
+
+        return idList;
+    }
+
 }

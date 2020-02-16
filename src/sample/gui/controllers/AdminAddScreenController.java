@@ -2,6 +2,8 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import sample.database.controllers.MiejsceController;
+import sample.database.controllers.MiejscowoscController;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
 import sample.guidata.admin.DatabaseEnum;
@@ -27,6 +29,8 @@ public class AdminAddScreenController extends Screen {
     ArrayList<ComboBox> comboBoxes = new ArrayList<>();
     ArrayList<Button> addButtons = new ArrayList<>();
     ArrayList<Control> fields = new ArrayList<>();
+
+    ArrayList<Double> idList = new ArrayList<>();
 
 
     public void initialize() {
@@ -100,6 +104,12 @@ public class AdminAddScreenController extends Screen {
                 //addButton7.setVisible(true);
                 //addButton7.setDisable(true);
                 comboBox6.setEditable(false);
+                addTownsToComboBox();
+                try {
+                    idList = MiejscowoscController.getListOfIds();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
             if (StaticData.getElementOfIngerention()=="Town"){
                 addStatesToComboBox();
@@ -150,6 +160,16 @@ public class AdminAddScreenController extends Screen {
         comboBox6.getItems().add("Zachodniopomorskie");
     }
 
+    private void addTownsToComboBox(){
+        try {
+            MiejscowoscController.getAllFromMiejscowosc();
+            ArrayList<String> towns = MiejscowoscController.getListOfStrings();
+            comboBox6.getItems().addAll(towns);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     public void addButtonMainClick(){
@@ -250,10 +270,10 @@ public class AdminAddScreenController extends Screen {
             parameters.add(getValueOfField(textField2,true));
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6, false));
+            int numberComboBoxFiledSelected = comboBox6.getSelectionModel().getSelectedIndex();
+            double id = idList.get(numberComboBoxFiledSelected);
+            parameters.add(String.valueOf(id));
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
-//            parameters = new ArrayList<>(getValuesOfListView(mainListView,true));
-//            Adding.addToTupleParameters(DatabaseEnum.placeFields., parameters);
         }else if (type=="Town"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));

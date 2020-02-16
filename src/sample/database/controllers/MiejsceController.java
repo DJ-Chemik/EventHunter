@@ -40,6 +40,15 @@ public class MiejsceController {
         result = prepStat.executeUpdate();
     }
 
+    public static void AddMiejsce(String nazwa,String typ,String id) throws SQLException {
+        double idMiasta = Double.parseDouble(id);
+        prepStat = connection.prepareStatement("INSERT INTO miejsce(nazwa, typ_obiektu, id_miasta) VALUES(?,?,?)");
+        prepStat.setString(1,nazwa);
+        prepStat.setString(2,typ);
+        prepStat.setDouble(3,idMiasta);
+        result = prepStat.executeUpdate();
+    }
+
     public static void GetAllFromMiejsce() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from miejsce");

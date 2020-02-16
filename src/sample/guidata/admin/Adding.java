@@ -101,7 +101,7 @@ public class Adding {
             ArrayList<String> musicians = getElementFromTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS);
             ArrayList<String> songs = getElementFromTupleParameters(DatabaseEnum.musicDiscFields.SONGS);
 
-            PlytaController.AddPlyta(title,releaseYear); // TODO: 11.02.2020 Make possible to add a musicians and songs to the disk
+            PlytaController.AddPlyta(title,releaseYear,songs); // TODO: 11.02.2020 Make possible to add a musicians and songs to the disk
         }else if (typeOfObject==DatabaseEnum.objectTypes.SONG){
             String title =getElementFromTupleParameters(DatabaseEnum.songFields.TITLE).get(0);
             String releaseYearString =getElementFromTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR).get(0);
@@ -117,9 +117,8 @@ public class Adding {
         }else if (typeOfObject==DatabaseEnum.objectTypes.PLACE){
             String name = getElementFromTupleParameters(DatabaseEnum.placeFields.NAME).get(0);
             String type = getElementFromTupleParameters(DatabaseEnum.placeFields.TYPE).get(0);
-            String town_name = getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(0);
-            String state_name = getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(1);
-            MiejsceController.AddMiejsce(name,type,town_name,state_name);
+            String town_id = getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(0);
+            MiejsceController.AddMiejsce(name,type,town_id);
         }else if (typeOfObject==DatabaseEnum.objectTypes.TOWN){
             String name = getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
             String state = getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
