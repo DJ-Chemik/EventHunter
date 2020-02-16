@@ -2,7 +2,7 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import sample.database.controllers.MiejsceController;
+import sample.database.controllers.AktorController;
 import sample.database.controllers.MiejscowoscController;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
@@ -14,23 +14,26 @@ import java.util.ArrayList;
 public class AdminAddScreenController extends Screen {
 
     @FXML
-    Label label0, label1, label2, label3, label4, label5, label6, label7, label8, label9;
+    private Label label0, label1, label2, label3, label4, label5, label6, label7, label8, label9;
     @FXML
-    TextField textField0, textField1, textField2, textField3, textField4, textField5;
+    private TextField textField0, textField1, textField2, textField3, textField4, textField5;
     @FXML
-    ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
+    private ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
-    Button addButton6, addButton7, addButton8, addButton9, addButtonMain;
+    private Button addButton6, addButton7, addButton8, addButton9, addButtonMain;
     @FXML
-    ListView<String> mainListView;
+    private ListView<String> mainListView;
 
-    ArrayList<Label> labels = new ArrayList<>();
-    ArrayList<TextField> textFields = new ArrayList<>();
-    ArrayList<ComboBox> comboBoxes = new ArrayList<>();
-    ArrayList<Button> addButtons = new ArrayList<>();
-    ArrayList<Control> fields = new ArrayList<>();
+    private ArrayList<Label> labels = new ArrayList<>();
+    private ArrayList<TextField> textFields = new ArrayList<>();
+    private ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+    private ArrayList<Button> addButtons = new ArrayList<>();
+    private ArrayList<Control> fields = new ArrayList<>();
 
-    ArrayList<Double> idList = new ArrayList<>();
+    private ArrayList<Double> idListOfElementsToComboBoxes = new ArrayList<>();
+
+    private ArrayList<Double> idInListView1 = new ArrayList<>();
+    private ArrayList<Double> idInListView2 = new ArrayList<>();
 
 
     public void initialize() {
@@ -106,7 +109,8 @@ public class AdminAddScreenController extends Screen {
                 comboBox6.setEditable(false);
                 addTownsToComboBox();
                 try {
-                    idList = MiejscowoscController.getListOfIds();
+                    idListOfElementsToComboBoxes.clear();
+                    idListOfElementsToComboBoxes = MiejscowoscController.getListOfIds();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -128,10 +132,12 @@ public class AdminAddScreenController extends Screen {
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
+                comboBox7.setEditable(false);
+                addActorsToComboBox();
+                idListOfElementsToComboBoxes.clear();
+                idListOfElementsToComboBoxes = AktorController.getListOfIDs();
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
-                addButton8.setVisible(true);
-                addButton8.setDisable(true);
             }
 
         }else if (StaticData.getTypeOfIngerention()=="Edit"){
@@ -169,6 +175,16 @@ public class AdminAddScreenController extends Screen {
             e.printStackTrace();
         }
 
+    }
+
+    private void addActorsToComboBox(){
+        try {
+            AktorController.getAllFromAktor();
+            ArrayList<String> actors = AktorController.getListOfStrings();
+            comboBox7.getItems().addAll(actors);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -271,7 +287,7 @@ public class AdminAddScreenController extends Screen {
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox6.getSelectionModel().getSelectedIndex();
-            double id = idList.get(numberComboBoxFiledSelected);
+            double id = idListOfElementsToComboBoxes.get(numberComboBoxFiledSelected);
             parameters.add(String.valueOf(id));
             Adding.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
         }else if (type=="Town"){
@@ -324,8 +340,11 @@ public class AdminAddScreenController extends Screen {
             parameters = new ArrayList<>();
             parameters.add(getValueOfComboBox(comboBox6,false));
             Adding.addToTupleParameters(DatabaseEnum.performanceFields.TYPE, parameters);
-            // TODO: 22.01.2020 Add Adding 2 lists: Events and Actors 
-
+            parameters = new ArrayList<>();
+            for (double i: idInListView1) {
+                parameters.add(String.valueOf(i));
+            }
+            Adding.addToTupleParameters(DatabaseEnum.performanceFields.ACTORS, parameters);
         }
     }
 
@@ -358,8 +377,10 @@ public class AdminAddScreenController extends Screen {
     }
 
     @FXML
-    public void changeComboBox7(){
-
+    public void changeComboBox7() {
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            addButton7.setDisable(false);
+        }
     }
     @FXML
     public void changeComboBox8(){
@@ -370,13 +391,43 @@ public class AdminAddScreenController extends Screen {
     public void changeComboBox9(){
 
     }
+
+
+    private boolean isThisIdInListView(double id, int numberOfList) {
+        if (numberOfList == 1) {
+            for (double idd:idInListView1) {
+                if (idd==id){
+                    return true;
+                }
+            }
+        } else if (numberOfList == 2) {
+            for (Double idd:idInListView2) {
+                if (idd==id){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     @FXML
     public void addButton6Click(){
 
     }
     @FXML
     public void addButton7Click(){
-
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            int selectedField = comboBox7.getSelectionModel().getSelectedIndex();
+            double selectedActorID = idListOfElementsToComboBoxes.get(selectedField);
+            if (isThisIdInListView(selectedActorID, 1)==false){
+                String actualFieldOfComboBox = comboBox7.getItems().get(selectedField);
+                mainListView.getItems().add(actualFieldOfComboBox);
+                idInListView1.add(selectedActorID);
+            }else{
+                System.out.println("This Actor exists in this Performance now.");
+            }
+        }
     }
     @FXML
     public void addButton8Click(){

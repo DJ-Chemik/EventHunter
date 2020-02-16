@@ -27,7 +27,7 @@ public class AktorController {
         result = prepStat.executeUpdate();
     }
 
-    public static void GetAllFromAktor() throws SQLException{
+    public static void getAllFromAktor() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from aktor");
     }
@@ -66,6 +66,24 @@ public class AktorController {
             temp.add(grupa);
         }
         return temp;
+    }
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idStr = String.valueOf(resultSet.getInt(1));
+            String imie = resultSet.getString(2);
+            String nazwisko = resultSet.getString(3);
+            String grupa = resultSet.getString(4);
+            String allString = imie + " " + nazwisko  + " (" + grupa + ") (id: " + idStr + ")";
+            temp.add(allString);
+        }
+        return temp;
+    }
+    private static ArrayList<Double> idList = new ArrayList<>();
+    public static ArrayList<Double> getListOfIDs(){
+        return idList;
     }
 
     public static void close(){

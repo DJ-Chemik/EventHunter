@@ -78,8 +78,7 @@ public class Adding {
             String length = getElementFromTupleParameters(DatabaseEnum.performanceFields.LENGTH).get(0);
             String type = getElementFromTupleParameters(DatabaseEnum.performanceFields.TYPE).get(0);
             ArrayList<String> actors = getElementFromTupleParameters(DatabaseEnum.performanceFields.ACTORS);
-            ArrayList<String> events = getElementFromTupleParameters(DatabaseEnum.performanceFields.EVENTS); // TODO: 11.02.2020 Are we need this option here?
-            PrzedstawienieController.AddPrzedstawienie(title, length); // TODO: 11.02.2020 Need add a all actors AND add type od performance (CABARET or THEATHRE_SPECTACL)
+            PrzedstawienieController.AddPrzedstawienie(title, length, type, actors);
 
         }else if (typeOfObject==DatabaseEnum.objectTypes.ACTOR){
             String name = getElementFromTupleParameters(DatabaseEnum.actorFields.NAME).get(0);

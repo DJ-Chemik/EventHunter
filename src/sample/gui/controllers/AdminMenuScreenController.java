@@ -68,8 +68,8 @@ public class AdminMenuScreenController extends Screen {
     }
     @FXML
     public void addPerformanceClick(){
-        Integer[] numbers = {1,2,6,7,8};
-        String[] names = {"Tytuł", "Długość", "Rodzaj występu", "Konkretne występy", "Aktorzy"};
+        Integer[] numbers = {1,2,6,7};
+        String[] names = {"Tytuł", "Długość", "Rodzaj występu","Aktorzy"};
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Add", "Performance");
