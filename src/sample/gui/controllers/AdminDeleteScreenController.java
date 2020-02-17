@@ -22,7 +22,6 @@ public class AdminDeleteScreenController extends Screen {
     private TextField searchTextField;
 
 
-
     /**
      * Map with key: String from DTBS object
      * and value: this object id;
@@ -63,33 +62,33 @@ public class AdminDeleteScreenController extends Screen {
             }
             if (StaticData.getElementOfIngerention() == "Town") {
                 MiejscowoscController.getAllFromMiejscowosc();
-                objectNames=MiejscowoscController.getListOfStrings();
-                objectsIDs=MiejscowoscController.getListOfIds();
+                objectNames = MiejscowoscController.getListOfStrings();
+                objectsIDs = MiejscowoscController.getListOfIds();
                 comboBoxSpecificType.setVisible(false);
             }
             if (StaticData.getElementOfIngerention() == "MusicDisc") {
                 PlytaController.getAllFromPlyta();
-                objectNames=PlytaController.getListOfStrings();
-                objectsIDs=PlytaController.getListOfIDs();
+                objectNames = PlytaController.getListOfStrings();
+                objectsIDs = PlytaController.getListOfIDs();
                 comboBoxSpecificType.setVisible(false);
             }
             if (StaticData.getElementOfIngerention() == "Song") {
                 UtworController.getAllFromUtwor();
-                objectNames=UtworController.getListOfStrings();
-                objectsIDs=UtworController.getListOfIDs();
+                objectNames = UtworController.getListOfStrings();
+                objectsIDs = UtworController.getListOfIDs();
                 comboBoxSpecificType.setVisible(false);
             }
             if (StaticData.getElementOfIngerention() == "Performance") {
                 PrzedstawienieController.getAllFromPrzedstawienie();
-                objectNames=PrzedstawienieController.getListOfStrings();
-                objectsIDs=PrzedstawienieController.getListOfIDs();
+                objectNames = PrzedstawienieController.getListOfStrings();
+                objectsIDs = PrzedstawienieController.getListOfIDs();
                 comboBoxSpecificType.setVisible(false);
             }
 
-            if (objectNames!=null){
+            if (objectNames != null) {
                 listView.getItems().addAll(objectNames);
-                for (int i=0; i<objectNames.size();i++){
-                    objectsIdMap.put(objectNames.get(i),objectsIDs.get(i));
+                for (int i = 0; i < objectNames.size(); i++) {
+                    objectsIdMap.put(objectNames.get(i), objectsIDs.get(i));
                 }
             }
         }
@@ -98,16 +97,84 @@ public class AdminDeleteScreenController extends Screen {
 
     @FXML
     public void comboBoxSpecificTypeChange() {
-        if (StaticData.getElementOfIngerention()=="Person"){
-            
+        int index = comboBoxSpecificType.getSelectionModel().getSelectedIndex();
+        ArrayList<String> objectsNames = null;
+        ArrayList<Double> objectsIDs = null;
+        if (StaticData.getElementOfIngerention() == "Person") {
+            if (comboBoxSpecificType.getItems().get(index) == "Aktor") {
+                try {
+                    AktorController.getAllFromAktor();
+                    objectsNames = AktorController.getListOfStrings();
+                    objectsIDs = AktorController.getListOfIDs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else if (comboBoxSpecificType.getItems().get(index) == "Muzyk") {
+                try {
+                    MuzykController.getAllFromMuzyk();
+                    objectsNames=MuzykController.getListOfStrings();
+                    objectsIDs=MuzykController.getListOfIDs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            if (objectsIDs!=null && objectsNames!=null){
+                for (int i=0;i<objectsIDs.size();i++){
+                    objectsIdMap.put(objectsNames.get(i),objectsIDs.get(i));
+                }
+                listView.setVisible(true);
+                listView.getItems().setAll(objectsNames);
+            }
+
         }
-        if (StaticData.getElementOfIngerention()=="Event"){
+        if (StaticData.getElementOfIngerention() == "Event") {
+            try {
+                WydarzenieController.getAllFromWydarzenie();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (comboBoxSpecificType.getItems().get(index) == "Występ Teatralny") {
+                try {
+                    objectsNames=WydarzenieController.getListOfTheathreSpectaclStrings();
+                    objectsIDs=WydarzenieController.getListOfIDs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }else if (comboBoxSpecificType.getItems().get(index) == "Kabaret") {
+                try {
+                    objectsNames=WydarzenieController.getListOfCabaretsStrings();
+                    objectsIDs=WydarzenieController.getListOfIDs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }else if (comboBoxSpecificType.getItems().get(index).equals("Koncert")) {
+                try {
+                    objectsNames=WydarzenieController.getListOfConcertStrings();
+                    objectsIDs=WydarzenieController.getListOfIDs();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (objectsIDs!=null && objectsNames!=null){
+                objectsIdMap.clear();
+                for (int i=0;i<objectsIDs.size();i++){
+                    objectsIdMap.put(objectsNames.get(i),objectsIDs.get(i));
+                }
+                listView.setVisible(true);
+                listView.getItems().setAll(objectsNames);
+            }
 
         }
     }
 
     @FXML
     public void searchTextFieldChange() {
+
+    }
+
+    @FXML
+    public void deleteButtonClick() {
 
     }
 
