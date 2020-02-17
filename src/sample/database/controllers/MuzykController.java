@@ -47,7 +47,7 @@ public class MuzykController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeleteMuzyk(double id) throws SQLException {
+    public static void deleteMuzyk(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM muzyk WHERE id_muzyka = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();

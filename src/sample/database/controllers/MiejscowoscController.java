@@ -51,7 +51,7 @@ public class MiejscowoscController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeleteMiejscowosc(double id) throws SQLException {
+    public static void deleteMiejscowosc(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM miejscowość WHERE id_miasta = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
