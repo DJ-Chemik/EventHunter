@@ -10,6 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema projekt
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `projekt` ;
 
 -- -----------------------------------------------------
 -- Schema projekt
@@ -86,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `projekt`.`miejscowość` (
   `kod_pocztowy` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_miasta`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -105,8 +106,11 @@ CREATE TABLE IF NOT EXISTS `projekt`.`miejsce` (
   INDEX `miejscowosc_fk` (`id_miasta` ASC) VISIBLE,
   CONSTRAINT `miejscowosc_fk`
     FOREIGN KEY (`id_miasta`)
-    REFERENCES `projekt`.`miejscowość` (`id_miasta`))
+    REFERENCES `projekt`.`miejscowość` (`id_miasta`)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB
+AUTO_INCREMENT = 18
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -128,7 +132,8 @@ CREATE TABLE IF NOT EXISTS `projekt`.`wydarzenie` (
   INDEX `miejsce_fk` (`id_obiektu` ASC) VISIBLE,
   CONSTRAINT `miejsce_fk`
     FOREIGN KEY (`id_obiektu`)
-    REFERENCES `projekt`.`miejsce` (`id_obiektu`))
+    REFERENCES `projekt`.`miejsce` (`id_obiektu`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -144,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `projekt`.`kabaret` (
   PRIMARY KEY (`id_wydarzenia`),
   CONSTRAINT `kab_wydarzenie_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`))
+    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -162,10 +168,14 @@ CREATE TABLE IF NOT EXISTS `projekt`.`kabaret_przedstawienia` (
   INDEX `kabaret_fk` (`id_wydarzenia` ASC) VISIBLE,
   CONSTRAINT `kab_przedstawienie_fk`
     FOREIGN KEY (`id_przedstawienia`)
-    REFERENCES `projekt`.`przedstawienie` (`id_przedstawienia`),
+    REFERENCES `projekt`.`przedstawienie` (`id_przedstawienia`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `kabaret_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`kabaret` (`id_wydarzenia`))
+    REFERENCES `projekt`.`kabaret` (`id_wydarzenia`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -181,7 +191,8 @@ CREATE TABLE IF NOT EXISTS `projekt`.`koncert` (
   PRIMARY KEY (`id_wydarzenia`),
   CONSTRAINT `konc_wydarzenie_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`))
+    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -215,10 +226,14 @@ CREATE TABLE IF NOT EXISTS `projekt`.`koncert_muzycy` (
   INDEX `koncert_fk` (`id_wydarzenia` ASC) VISIBLE,
   CONSTRAINT `k_muzyk_fk`
     FOREIGN KEY (`id_muzyka`)
-    REFERENCES `projekt`.`muzyk` (`id_muzyka`),
+    REFERENCES `projekt`.`muzyk` (`id_muzyka`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `koncert_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`koncert` (`id_wydarzenia`))
+    REFERENCES `projekt`.`koncert` (`id_wydarzenia`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -251,10 +266,14 @@ CREATE TABLE IF NOT EXISTS `projekt`.`muzyk_plyty` (
   INDEX `m_muzyk_fk` (`id_muzyka` ASC) VISIBLE,
   CONSTRAINT `m_muzyk_fk`
     FOREIGN KEY (`id_muzyka`)
-    REFERENCES `projekt`.`muzyk` (`id_muzyka`),
+    REFERENCES `projekt`.`muzyk` (`id_muzyka`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `muzyk_plyta_fk`
     FOREIGN KEY (`id_plyty`)
-    REFERENCES `projekt`.`płyta` (`id_plyty`))
+    REFERENCES `projekt`.`płyta` (`id_plyty`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -270,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `projekt`.`wystep_teatralny` (
   PRIMARY KEY (`id_wydarzenia`),
   CONSTRAINT `wys_wydarzenie_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`))
+    REFERENCES `projekt`.`wydarzenie` (`id_wydarzenia`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -288,10 +308,14 @@ CREATE TABLE IF NOT EXISTS `projekt`.`teatr_przedstawienia` (
   INDEX `teatr_przedstawienie_fk` (`id_przedstawienia` ASC) VISIBLE,
   CONSTRAINT `teatr_przedstawienie_fk`
     FOREIGN KEY (`id_przedstawienia`)
-    REFERENCES `projekt`.`przedstawienie` (`id_przedstawienia`),
+    REFERENCES `projekt`.`przedstawienie` (`id_przedstawienia`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `wystep_teatralny_fk`
     FOREIGN KEY (`id_wydarzenia`)
-    REFERENCES `projekt`.`wystep_teatralny` (`id_wydarzenia`))
+    REFERENCES `projekt`.`wystep_teatralny` (`id_wydarzenia`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -315,10 +339,12 @@ CREATE TABLE IF NOT EXISTS `projekt`.`utwór` (
   INDEX `u_plyta_fk` (`id_plyty` ASC) VISIBLE,
   CONSTRAINT `u_muzyk_fk`
     FOREIGN KEY (`id_muzyka`)
-    REFERENCES `projekt`.`muzyk` (`id_muzyka`),
+    REFERENCES `projekt`.`muzyk` (`id_muzyka`)
+    ON DELETE CASCADE,
   CONSTRAINT `u_plyta_fk`
     FOREIGN KEY (`id_plyty`)
-    REFERENCES `projekt`.`płyta` (`id_plyty`))
+    REFERENCES `projekt`.`płyta` (`id_plyty`)
+    ON DELETE SET NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
