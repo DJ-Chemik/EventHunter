@@ -96,7 +96,6 @@ public class AdminDeleteScreenController extends Screen {
         }
     }
 
-
     @FXML
     public void comboBoxSpecificTypeChange() {
         int index = comboBoxSpecificType.getSelectionModel().getSelectedIndex();
@@ -214,6 +213,11 @@ public class AdminDeleteScreenController extends Screen {
         if (StaticData.getElementOfIngerention() == "Performance") {
             Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PERFORMANCE,id);
         }
+        refresh();
+    }
+
+    private void refresh(){
+        openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
 
     @FXML
