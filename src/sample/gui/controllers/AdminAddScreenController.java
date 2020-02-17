@@ -40,6 +40,7 @@ public class AdminAddScreenController extends Screen {
         addElementsofViewToArrays();
         displayOnlyNeededFieldsAndLabels();
         specificTypeDataInitialize();
+
     }
 
     private void addElementsofViewToArrays(){

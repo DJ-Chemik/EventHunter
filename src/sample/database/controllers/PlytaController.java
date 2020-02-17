@@ -103,6 +103,7 @@ public class PlytaController {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             Double id = resultSet.getDouble(1);
+            idList.clear();
             idList.add(id);
             String idStr = String.valueOf(resultSet.getInt(1));
             String tytul = resultSet.getString(2);
