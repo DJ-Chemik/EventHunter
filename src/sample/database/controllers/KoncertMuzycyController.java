@@ -21,4 +21,53 @@ public class KoncertMuzycyController {
     }
 
     // TODO: 17.02.2020 Add a rest of function like is in AktorzyPrzedstawieniaController
+    public static void GetAllFromKoncertMuzycy() throws SQLException{
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT * from koncert_muzycy");
+    }
+
+    public static void GetMuzycyByIdKoncertu(double idKoncertu) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT * from koncert_muzycy where id_wydarzenia = ?");
+        prepStat.setDouble(1,idKoncertu);
+        resultSet = prepStat.executeQuery();
+    }
+
+    public static void GetKoncertyByIdMuzyka(double idMuzyka) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT * from koncert_muzycy where id_muzyka = ?");
+        prepStat.setDouble(1,idMuzyka);
+        resultSet = prepStat.executeQuery();
+    }
+
+    public static void EditKoncertByIdMuzyka(double idMuzyka,double idKoncertu) throws SQLException{
+        prepStat = connection.prepareStatement("UPDATE koncert_muzycy SET id_wydarzenia = ? WHERE id_muzyka = ?");
+        prepStat.setDouble(1,idKoncertu);
+        prepStat.setDouble(2,idMuzyka);
+        result = prepStat.executeUpdate();
+    }
+
+    public static void EditMuzykByIdKoncertu(double idKoncertu,double idMuzyka) throws SQLException{
+        prepStat = connection.prepareStatement("UPDATE koncert_muzycy SET id_muzyka = ? WHERE id_wydarzenia = ?");
+        prepStat.setDouble(1,idMuzyka);
+        prepStat.setDouble(2,idKoncertu);
+        result = prepStat.executeUpdate();
+    }
+
+    public static void DeleteByIdMuzyka(double idMuzyka) throws SQLException {
+        prepStat = connection.prepareStatement("DELETE FROM koncert_muzycy WHERE id_muzyka = ?");
+        prepStat.setDouble(1,idMuzyka);
+        result = prepStat.executeUpdate();
+    }
+
+    public static void DeleteByIdKoncertu(double idKoncertu) throws SQLException {
+        prepStat = connection.prepareStatement("DELETE FROM koncert_muzycy WHERE id_wydarzenia = ?");
+        prepStat.setDouble(1,idKoncertu);
+        result = prepStat.executeUpdate();
+    }
+
+    public static void DeleteFromKoncertMuzycy(double idKoncertu,double idMuzyka) throws SQLException {
+        prepStat = connection.prepareStatement("DELETE FROM koncert_muzycy WHERE id_muzyka = ? AND id_wydarzenia = ?");
+        prepStat.setDouble(1,idMuzyka);
+        prepStat.setDouble(2,idKoncertu);
+        result = prepStat.executeUpdate();
+    }
 }
