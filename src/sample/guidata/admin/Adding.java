@@ -13,8 +13,6 @@ public class Adding {
 
     private static DatabaseEnum.objectTypes typeOfObject; //All options in DatabaseEnum enum class
     private static Map<DatabaseEnum.fields, ArrayList<String>> tupleParameters = new HashMap<>();
-    private static MiejscowoscController miejscowoscController;
-    private static ConnectionWithDatabase connection;
 
     public static void addToDatabase() throws SQLException {
         //only for tests is this code below
