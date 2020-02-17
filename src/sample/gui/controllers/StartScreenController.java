@@ -15,9 +15,23 @@ public class StartScreenController extends Screen {
     @FXML
     private Button startButton;
     @FXML
-    private Pane pane;
+    private Pane pane, connectPane;
     @FXML
     private TextField hostTextField, portTextField, schemeTextField, usernameTextField, passwordTextField;
+
+    private static boolean isAppConnectedToDatabase = false;
+    private static String styleWhenAppIsConnectedToDatabase = "-fx-background-color: #0000AA";
+    private static String styleWhenAppIsNotConnectedToDatabase = "-fx-background-color: #880000";
+
+
+    public void initialize(){
+        if  (isAppConnectedToDatabase){
+            pane.setStyle(styleWhenAppIsConnectedToDatabase);
+            connectPane.setVisible(false);
+        }else{
+            pane.setStyle(styleWhenAppIsNotConnectedToDatabase);
+        }
+    }
 
     @FXML
     public void startAsUserClick(){
@@ -32,8 +46,9 @@ public class StartScreenController extends Screen {
     @FXML
     public void connectWithDatabaseButtonClick() {
         connectWithDatabase();
-        pane.setStyle("-fx-background-color: #0000AA");
-
+        isAppConnectedToDatabase=true;
+        pane.setStyle(styleWhenAppIsConnectedToDatabase);
+        connectPane.setVisible(false);
     }
 
 

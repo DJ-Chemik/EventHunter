@@ -17,15 +17,19 @@
             <Font name="System Bold Italic" size="30.0" />
          </font>
       </Button>
-      <Button layoutX="40.0" layoutY="630.0" mnemonicParsing="false" onAction="#connectWithDatabaseButtonClick" prefHeight="50.0" prefWidth="439.0" style="-fx-background-color: BLACK;" text="Connect with Database" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <TextField fx:id="passwordTextField" layoutX="40.0" layoutY="590.0" prefHeight="25.0" prefWidth="439.0" promptText="password" text="mcdj" />
-      <TextField fx:id="usernameTextField" layoutX="40.0" layoutY="550.0" prefHeight="25.0" prefWidth="439.0" promptText="user" text="root" />
-      <TextField fx:id="schemeTextField" layoutX="40.0" layoutY="510.0" prefHeight="25.0" prefWidth="439.0" promptText="database scheme name" text="projekt" />
-      <TextField fx:id="portTextField" layoutX="40.0" layoutY="470.0" prefHeight="25.0" prefWidth="439.0" promptText="port" text="3306" />
-      <TextField fx:id="hostTextField" layoutX="40.0" layoutY="430.0" prefHeight="25.0" prefWidth="439.0" promptText="server adress ip" text="localhost" />
+      <Pane fx:id="connectPane" layoutX="37.0" layoutY="433.0" prefHeight="247.0" prefWidth="460.0">
+         <children>
+            <Button layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#connectWithDatabaseButtonClick" prefHeight="50.0" prefWidth="440.0" style="-fx-background-color: BLACK;" text="Connect with Database" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="passwordTextField" layoutX="10.0" layoutY="130.0" prefHeight="25.0" prefWidth="440.0" promptText="password" text="mcdj" />
+            <TextField fx:id="usernameTextField" layoutX="10.0" layoutY="100.0" prefHeight="25.0" prefWidth="440.0" promptText="user" text="root" />
+            <TextField fx:id="schemeTextField" layoutX="10.0" layoutY="70.0" prefHeight="25.0" prefWidth="440.0" promptText="database scheme name" text="projekt" />
+            <TextField fx:id="portTextField" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="440.0" promptText="port" text="3306" />
+            <TextField fx:id="hostTextField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="440.0" promptText="server adress ip" text="localhost" />
+         </children>
+      </Pane>
    </children>
 </Pane>
