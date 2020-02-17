@@ -83,9 +83,9 @@ public class PrzedstawienieController {
 
     public static ArrayList<String> getListOfStrings() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
+        idList.clear();
         while (resultSet.next()) {
             Double id = resultSet.getDouble(1);
-            idList.clear();
             idList.add(id);
             String idPrzedstawienia = String.valueOf(resultSet.getInt(1));
             String tytul = resultSet.getString(2);

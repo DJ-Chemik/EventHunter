@@ -157,4 +157,27 @@ public class WydarzenieController {
         }
         return temp;
     }
+
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        idList.clear();
+        while (resultSet.next()) {
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idStr = String.valueOf(resultSet.getInt(1));
+            String nazwa = resultSet.getString(2);
+            String data = String.valueOf(resultSet.getDate(3));
+            String cena = String.valueOf(resultSet.getDouble(4));
+            String ilosc = String.valueOf(resultSet.getDouble(5));
+            String typ = resultSet.getString(6);
+            String idObiektu = String.valueOf(resultSet.getDouble(7));;
+            String allString = nazwa + " " + data + " (" + cena + "zł) (" +typ+") [id: " + id + "]" ;
+            temp.add(allString);
+        }
+        return temp;
+    }
+    private static ArrayList<Double> idList = new ArrayList<>();
+    public static ArrayList<Double> getListOfIDs(){
+        return idList;
+    }
 }

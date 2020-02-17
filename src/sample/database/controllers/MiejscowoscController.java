@@ -74,9 +74,9 @@ public class MiejscowoscController {
 
     public static ArrayList<String> getListOfStrings() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
+        idList.clear();
         while (resultSet.next()) {
             Double id = resultSet.getDouble(1);
-            idList.clear();
             idList.add(id);
             String idStr = String.valueOf(resultSet.getInt(1));
             String nazwa = resultSet.getString(2);

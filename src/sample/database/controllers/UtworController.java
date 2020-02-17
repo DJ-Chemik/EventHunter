@@ -130,6 +130,7 @@ public class UtworController {
 
     public static ArrayList<String> getListOfStrings() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
+        idList.clear();
         while (resultSet.next()) {
             Double id = resultSet.getDouble(1);
             idList.add(id);
