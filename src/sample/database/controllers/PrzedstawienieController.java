@@ -62,7 +62,7 @@ public class PrzedstawienieController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeletePrzedstawienie(double id) throws SQLException {
+    public static void deletePrzedstawienie(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM przedstawienie WHERE id_przedstawienia = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();
