@@ -141,8 +141,8 @@ public class AdminAddScreenController extends Screen {
                 addMusicDiscsToComboBox();
                 idListOfElementsToComboBoxes1.clear();
                 idListOfElementsToComboBoxes1 = MuzykController.getListOfIDs();
-                idInListView2.clear();
-                idInListView2 = PlytaController.getListOfIDs();
+                idListOfElementsToComboBoxes2.clear();
+                idListOfElementsToComboBoxes2 = PlytaController.getListOfIDs();
             }
             if (StaticData.getElementOfIngerention()=="Performance"){
                 comboBox6.setEditable(false);
