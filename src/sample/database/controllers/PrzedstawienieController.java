@@ -37,7 +37,7 @@ public class PrzedstawienieController {
         // TODO: 16.02.2020 We must use a type of Performance (CABARET / THEATHRE SPECTACLE)
     }
 
-    public static void GetAllFromPrzedstawienie() throws SQLException{
+    public static void getAllFromPrzedstawienie() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from przedstawienie");
     }
@@ -84,7 +84,9 @@ public class PrzedstawienieController {
     public static ArrayList<String> getListOfStrings() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
-            String idPrzedstawienia = String.valueOf(resultSet.getDouble(1));
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idPrzedstawienia = String.valueOf(resultSet.getInt(1));
             String tytul = resultSet.getString(2);
             String dlugosc = String.valueOf(resultSet.getDouble(3));
             String allString = tytul + " (time: " + dlugosc  + ") " + " (id: " + idPrzedstawienia + ")";

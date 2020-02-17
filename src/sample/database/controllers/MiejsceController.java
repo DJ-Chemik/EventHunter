@@ -49,7 +49,7 @@ public class MiejsceController {
         result = prepStat.executeUpdate();
     }
 
-    public static void GetAllFromMiejsce() throws SQLException{
+    public static void getAllFromMiejsce() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from miejsce");
     }
@@ -89,4 +89,24 @@ public class MiejsceController {
         }
         return temp;
     }
+
+    public static ArrayList<String> getListOfStrings() throws SQLException {
+        ArrayList<String> temp = new ArrayList<>();
+        while (resultSet.next()) {
+            Double id = resultSet.getDouble(1);
+            idList.add(id);
+            String idMiejscaStr = String.valueOf(resultSet.getInt(1));
+            String nazwa = resultSet.getString(2);
+            String typ = resultSet.getString(3);
+            String idMiasta = String.valueOf(resultSet.getDouble(4));
+            String allString = nazwa + " (" + typ  + ") (id: " + idMiejscaStr + ")";
+            temp.add(allString);
+        }
+        return temp;
+    }
+    private static ArrayList<Double> idList = new ArrayList<>();
+    public static ArrayList<Double> getListOfIDs(){
+        return idList;
+    }
 }
+

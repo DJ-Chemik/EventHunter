@@ -29,11 +29,10 @@ public class Adding {
             String ticketCostString = getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
             double ticketCost = Double.valueOf(ticketCostString);
             String type = getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
-            String placeName = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
-            String placeType = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(1);
-            ArrayList<String> musicians = getElementFromTupleParameters(DatabaseEnum.eventFields.MUSICIANS); // TODO: 11.02.2020
+            String placeID = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> musiciansIDs = getElementFromTupleParameters(DatabaseEnum.eventFields.MUSICIANS);
             try {
-                WydarzenieController.AddWydarzenie(name,date, ticketCost, numberOfSeats, type, placeName, placeType);
+                WydarzenieController.addWydarzenie(name,date, ticketCost, numberOfSeats, type, placeID, musiciansIDs);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -47,11 +46,10 @@ public class Adding {
             String ticketCostString = getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
             double ticketCost = Double.valueOf(ticketCostString);
             String type = getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
-            String placeName = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
-            String placeType = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(1);
-            ArrayList<String> performances = getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES); // TODO: 11.02.2020  
+            String placeID = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> performancesIDs = getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES);
             try {
-                WydarzenieController.AddWydarzenie(name,date, ticketCost, numberOfSeats, type, placeName, placeType);
+                WydarzenieController.addWydarzenie(name,date, ticketCost, numberOfSeats, type, placeID, performancesIDs);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -63,11 +61,10 @@ public class Adding {
             String ticketCostString = getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
             double ticketCost = Double.parseDouble(ticketCostString);
             String type = getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
-            String placeName = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
-            String placeType = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(1);
-            ArrayList<String> performances = getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES); // TODO: 11.02.2020
+            String placeID = getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> performancesIDs = getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES);
             try {
-                WydarzenieController.AddWydarzenie(name,date, ticketCost, numberOfSeats, type, placeName, placeType);
+                WydarzenieController.addWydarzenie(name,date, ticketCost, numberOfSeats, type, placeID, performancesIDs);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
