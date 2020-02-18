@@ -24,7 +24,7 @@ public class UserMenuScreenController extends Screen {
     private static Map<String, Double> eventsIdMap = new HashMap<>();
     private static Map<String, Double> townsIdMap = new HashMap<>();
 
-    public void initialize(){
+    public void initialize() {
         downloadAllEventsFromDatabase();
         addStatesToComboBox();
         addEventTypesToComboBox();
@@ -32,14 +32,14 @@ public class UserMenuScreenController extends Screen {
         showMoreInfoButton.setDisable(true);
     }
 
-    private void downloadAllEventsFromDatabase(){
+    private void downloadAllEventsFromDatabase() {
         try {
             WydarzenieController.getAllFromWydarzenie();
             ArrayList<String> objectNames = WydarzenieController.getListOfStrings();
             ArrayList<Double> objectIDs = WydarzenieController.getListOfIDs();
-            if (objectIDs!=null && objectNames!=null){
-                for (int i=0;i<objectIDs.size();i++){
-                    eventsIdMap.put(objectNames.get(i),objectIDs.get(i));
+            if (objectIDs != null && objectNames != null) {
+                for (int i = 0; i < objectIDs.size(); i++) {
+                    eventsIdMap.put(objectNames.get(i), objectIDs.get(i));
                 }
                 listView.getItems().setAll(objectNames);
             }
@@ -48,7 +48,7 @@ public class UserMenuScreenController extends Screen {
         }
     }
 
-    private void addStatesToComboBox(){
+    private void addStatesToComboBox() {
         comboBoxStateSelect.getItems().add("Dolnośląskie");
         comboBoxStateSelect.getItems().add("Kujawsko-Pomorskie");
         comboBoxStateSelect.getItems().add("Lubelskie");
@@ -67,20 +67,20 @@ public class UserMenuScreenController extends Screen {
         comboBoxStateSelect.getItems().add("Zachodniopomorskie");
     }
 
-    private void addEventTypesToComboBox(){
+    private void addEventTypesToComboBox() {
         comboBoxTypeSelect.getItems().add("Koncert");
         comboBoxTypeSelect.getItems().add("Kabaret");
         comboBoxTypeSelect.getItems().add("Występ Teatralny");
     }
 
-    private void addTownsToComboBox(){
+    private void addTownsToComboBox() {
         try {
             MiejscowoscController.getAllFromMiejscowosc();
             ArrayList<String> objectNames = MiejscowoscController.getListOfStrings();
             ArrayList<Double> objectIDs = MiejscowoscController.getListOfIds();
-            if (objectIDs!=null && objectNames!=null){
-                for (int i=0;i<objectIDs.size();i++){
-                    townsIdMap.put(objectNames.get(i),objectIDs.get(i));
+            if (objectIDs != null && objectNames != null) {
+                for (int i = 0; i < objectIDs.size(); i++) {
+                    townsIdMap.put(objectNames.get(i), objectIDs.get(i));
                 }
                 comboBoxTownSelect.getItems().setAll(objectNames);
             }
@@ -90,43 +90,68 @@ public class UserMenuScreenController extends Screen {
     }
 
     @FXML
-    public void listViewChange(){
-        if (listView.getSelectionModel().getSelectedIndex()!=-1){
+    public void listViewChange() {
+        if (listView.getSelectionModel().getSelectedIndex() != -1) {
             showMoreInfoButton.setDisable(false);
         }
     }
 
     @FXML
-    public void comboBoxTypeSelectChange(){
-        try {
-            WydarzenieController.getSelectedWydarzenieByType(comboBoxTypeSelect.getSelectionModel().getSelectedItem());
-            ArrayList<String> objectNames = WydarzenieController.getListOfStrings();
-            ArrayList<Double> objectIDs = WydarzenieController.getListOfIDs();
-            if (objectIDs!=null && objectNames!=null){
-                for (int i=0;i<objectIDs.size();i++){
-                    eventsIdMap.put(objectNames.get(i),objectIDs.get(i));
-                }
-                listView.getItems().setAll(objectNames);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void comboBoxTypeSelectChange() {
+
     }
 
     @FXML
-    public void comboBoxStateSelectChange(){
+    public void comboBoxStateSelectChange() {
         // TODO: 18.02.2020 Filter listView
         // TODO: 18.02.2020 Filter towns in combobox
     }
 
     @FXML
-    public void comboBoxTownSelectChange(){
+    public void comboBoxTownSelectChange() {
         // TODO: 18.02.2020 Filter listView
         // TODO: 18.02.2020 Select Only One State in combobox
     }
 
+    private static String type = null;
+    private static String state = null;
+    private static Double townID = null;
+
+    private void restrictEventsRecords() throws SQLException {
+        ArrayList<Double> objectIDs;
+        ArrayList<String> objectNames;
+        if (type != null) {
+
+            if (townID!=null){
+                WydarzenieController.getSelectedWydarzenieByTypeAndTown(type,townID);
+            }else if (state!=null){
+                WydarzenieController.getSelectedWydarzenieByTypeAndState(type, state);
+            }else{ //only type
+                WydarzenieController.getSelectedWydarzenieByType(type);
+            }
+        }else{
+            if (townID!=null){
+                WydarzenieController.getSelectedWydarzeniebyTown(townID);
+            }else if (state!=null){ //only state
+                WydarzenieController.getSelectedWydarzenieByState(state);
+            }else{ //nothing selected
+
+            }
+        }
+
+        objectNames = WydarzenieController.getListOfStrings();
+        objectIDs = WydarzenieController.getListOfIDs();
+        if (objectIDs != null && objectNames != null) {
+            for (int i = 0; i < objectIDs.size(); i++) {
+                eventsIdMap.put(objectNames.get(i), objectIDs.get(i));
+            }
+            listView.getItems().setAll(objectNames);
+        }
+
+    }
+
     @FXML
-    public void showMoreInfoButtonClick(){
+    public void showMoreInfoButtonClick() {
         // TODO: 18.02.2020 Keep data about actual view in static field when user show more info
         // TODO: 18.02.2020 Open new panel with information about event
     }

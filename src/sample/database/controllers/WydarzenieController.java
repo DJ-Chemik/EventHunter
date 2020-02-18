@@ -126,7 +126,7 @@ public class WydarzenieController {
         // TODO: 18.02.2020
     }
 
-    public static void getSelectedWydarzenieByStateAndState(String state, double townID) throws SQLException {
+    public static void getSelectedWydarzenieByTypeAndState(String type, String state) throws SQLException {
         // TODO: 18.02.2020
     }
 
