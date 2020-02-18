@@ -115,24 +115,40 @@ public class WydarzenieController {
     }
 
     public static void getSelectedWydarzeniebyTown(double townID) throws SQLException {
-        // TODO: 18.02.2020
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie where id_obiektu " +
+                "IN (SELECT id_obiektu from miejsce where id_miasta = ?)");
+        prepStat.setDouble(1,townID);
+        resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByState(String state) throws SQLException {
-        // TODO: 18.02.2020
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie where id_obiektu " +
+                "IN(SELECT id_obiektu from miejsce z JOIN miejscowość m on z.id_miasta = m.id_miasta WHERE m.województwo = ?)");
+        prepStat.setString(1,state);
+        resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByTypeAndTown(String type, double townID) throws SQLException {
-        // TODO: 18.02.2020
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ? AND id_obiektu IN (SELECT id_obiektu FROM miejsce WHERE id_miasta = ?)");
+        prepStat.setString(1,type);
+        prepStat.setDouble(2,townID);
+        resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByTypeAndState(String type, String state) throws SQLException {
-        // TODO: 18.02.2020
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ? AND id_obiektu " +
+                "IN(SELECT id_obiektu from miejsce z JOIN miejscowość m on z.id_miasta = m.id_miasta WHERE m.województwo = ?)");
+        prepStat.setString(1,type);
+        prepStat.setString(2,state);
+        resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenie(ArrayList<Double> eventsIDs) throws SQLException {
-        statement = connection.createStatement();
+       // statement = connection.createStatement();
         // TODO: 18.02.2020 Download events which IDs is in eventsIDs parameter
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie WHERE id_wydarzenia IN ?");
+        prepStat.setObject(1,eventsIDs);
+        resultSet = prepStat.executeQuery();
         //resultSet = statement.executeQuery("SELECT * from wydarzenie where id_wydarzenia = ?");
         //prepStat.setString(1,eventsIDs);
     }
