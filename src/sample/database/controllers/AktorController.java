@@ -13,6 +13,7 @@ public class AktorController {
     private static Statement statement;
     private static ResultSet resultSet;
     private static PreparedStatement prepStat;
+    private static CallableStatement callStat;
     private static int result;
 
     public AktorController(Connection conn){
@@ -20,11 +21,12 @@ public class AktorController {
     }
 
     public static void AddAktor(String imie,String nazwisko,String grupa) throws SQLException {
-        prepStat = connection.prepareStatement("INSERT INTO aktor(imie, nazwisko, nazwa_grupy) VALUES(?,?,?)");
-        prepStat.setString(1,imie);
-        prepStat.setString(2,nazwisko);
-        prepStat.setString(3,grupa);
-        result = prepStat.executeUpdate();
+        String query = "{ call AddAktor(?,?,?) }";
+        callStat = connection.prepareCall(query);
+        callStat.setString(1, imie);
+        callStat.setString(2, nazwisko);
+        callStat.setString(3, grupa);
+        result = callStat.executeUpdate();
     }
 
     public static void getAllFromAktor() throws SQLException{
