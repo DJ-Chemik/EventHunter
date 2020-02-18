@@ -69,7 +69,7 @@ public class MiejsceController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeleteMiejsce(double id) throws SQLException {
+    public static void deleteMiejsce(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM miejsce WHERE id_obiektu = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();

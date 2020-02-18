@@ -47,7 +47,7 @@ public class AktorController {
         result = prepStat.executeUpdate();
     }
 
-    public static void DeleteAktor(double id) throws SQLException {
+    public static void deleteAktor(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM aktor WHERE id_aktora = ?");
         prepStat.setDouble(1,id);
         result = prepStat.executeUpdate();

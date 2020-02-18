@@ -6,6 +6,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import sample.database.controllers.*;
 import sample.gui.StaticData;
+import sample.guidata.admin.DatabaseEnum;
+import sample.guidata.admin.Deleting;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.Map;
 public class AdminDeleteScreenController extends Screen {
 
     @FXML
-    private ListView<Object> listView;
+    private ListView<String> listView;
     @FXML
     private ComboBox<String> comboBoxSpecificType;
     @FXML
@@ -93,7 +95,6 @@ public class AdminDeleteScreenController extends Screen {
             }
         }
     }
-
 
     @FXML
     public void comboBoxSpecificTypeChange() {
@@ -174,8 +175,49 @@ public class AdminDeleteScreenController extends Screen {
     }
 
     @FXML
-    public void deleteButtonClick() {
+    public void deleteButtonClick() throws SQLException {
+        if (listView.getSelectionModel().getSelectedIndex()==-1) {
+            return;
+        }
+        String string = listView.getSelectionModel().getSelectedItem();
+        double id = objectsIdMap.get(string);
+        if (StaticData.getElementOfIngerention() == "Event") {
+            if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.THEATRE_SPECTACLE,id);
+            }else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CABARET,id);
+            }else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CONCERT,id);
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Person") {
 
+            if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Aktor") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.ACTOR,id);
+            } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Muzyk") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSICIAN,id);
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Place") {
+            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PLACE,id);
+        }
+        if (StaticData.getElementOfIngerention() == "Town") {
+            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.TOWN,id);
+        }
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
+            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSIC_DISC,id);
+        }
+        if (StaticData.getElementOfIngerention() == "Song") {
+            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.SONG,id);
+        }
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PERFORMANCE,id);
+        }
+        refresh();
+    }
+
+    private void refresh(){
+        openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
     }
 
     @FXML
