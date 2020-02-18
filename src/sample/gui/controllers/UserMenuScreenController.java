@@ -98,24 +98,56 @@ public class UserMenuScreenController extends Screen {
 
     @FXML
     public void comboBoxTypeSelectChange() {
+        type=comboBoxTypeSelect.getSelectionModel().getSelectedItem();
+        try {
+            restrictEventsRecords();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @FXML
     public void comboBoxStateSelectChange() {
-        // TODO: 18.02.2020 Filter listView
-        // TODO: 18.02.2020 Filter towns in combobox
+        state=comboBoxStateSelect.getSelectionModel().getSelectedItem();
+        try {
+            //restrictEventsRecords();
+            MiejscowoscController.getAllSelectedFromMiejscowoscByState(state);
+            ArrayList<String> objectNames = MiejscowoscController.getListOfStrings();
+            ArrayList<Double> objectIDs = MiejscowoscController.getListOfIds();
+            //townsIdMap.clear();
+            if (objectIDs != null && objectNames != null) {
+                for (int i = 0; i < objectIDs.size(); i++) {
+                    townsIdMap.put(objectNames.get(i), objectIDs.get(i));
+                }
+                comboBoxTownSelect.getItems().setAll(objectNames);
+            }else{
+                comboBoxTownSelect.getItems().clear();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        comboBoxTownSelect.getSelectionModel().selectFirst();
+        //comboBoxTownSelect.getSelectionModel().clearSelection();
+
     }
 
     @FXML
     public void comboBoxTownSelectChange() {
-        // TODO: 18.02.2020 Filter listView
-        // TODO: 18.02.2020 Select Only One State in combobox
+        townID=townsIdMap.get(comboBoxTownSelect.getSelectionModel().getSelectedItem());
+        try {
+            if (comboBoxTownSelect.getItems().isEmpty()==false){
+                comboBoxStateSelect.getSelectionModel().select(MiejscowoscController.getStateFromMiejscowosc(townID));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static String type = null;
-    private static String state = null;
-    private static Double townID = null;
+    private String type = null;
+    private String state = null;
+    private Double townID = null;
 
     private void restrictEventsRecords() throws SQLException {
         ArrayList<Double> objectIDs;
