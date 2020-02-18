@@ -19,7 +19,7 @@ public class WydarzenieController {
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
     // example of string: String dateInString = "2013-07-06";
 
-    public WydarzenieController(Connection conn){
+    public WydarzenieController(Connection conn) {
         connection = conn;
     }
 
@@ -30,15 +30,16 @@ public class WydarzenieController {
 
     public static double getIdFromMiejsce(String nazwa, String typ) throws SQLException {
         prepStat = connection.prepareStatement("SELECT id_obiektu FROM miejsce WHERE nazwa = ? AND typ_obiektu = ?");
-        prepStat.setString(1,nazwa);
-        prepStat.setString(2,typ);
+        prepStat.setString(1, nazwa);
+        prepStat.setString(2, typ);
         resultSet = prepStat.executeQuery();
         double temp = 0;
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             temp = resultSet.getDouble(1);
         }
         return temp;
     }
+
 
    /* public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
         double idObiektu = getIdFromMiejsce(nazwaM,typM);
@@ -50,13 +51,13 @@ public class WydarzenieController {
         prepStat.setString(5,typ);
         prepStat.setDouble(6,idObiektu);
         result = prepStat.executeUpdate();
-        if(typ.toUpperCase().equals("KABARET")){
+        if (typ.toUpperCase().equals("KABARET")) {
             statement = connection.createStatement();
             result = statement.executeUpdate("INSERT INTO kabaret(id_wydarzenia) VALUES (LAST_INSERT_ID())");
-        } else if (typ.toUpperCase().equals("KONCERT")){
+        } else if (typ.toUpperCase().equals("KONCERT")) {
             statement = connection.createStatement();
             result = statement.executeUpdate("INSERT INTO koncert(id_wydarzenia) VALUES (LAST_INSERT_ID())");
-        } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")){
+        } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
             statement = connection.createStatement();
             result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
         }
@@ -90,52 +91,81 @@ public class WydarzenieController {
         while (resultSet.next()){
             eventID=resultSet.getDouble(1);
         }
-        for (String strID : showsIDs){
+        for (String strID : showsIDs) {
             double showId = Double.parseDouble(strID);
             if (typ.toUpperCase().equals("KABARET")) {
-                KabaretPrzedstawieniaController.addKabaretPrzedstawienia(eventID,showId);
+                KabaretPrzedstawieniaController.addKabaretPrzedstawienia(eventID, showId);
             } else if (typ.toUpperCase().equals("KONCERT")) {
-                KoncertMuzycyController.addKoncertMuzycy(eventID,showId);
+                KoncertMuzycyController.addKoncertMuzycy(eventID, showId);
             } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
-                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID,showId);
+                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);
             }
         }
     }
 
-    public static void getAllFromWydarzenie() throws SQLException{
+    public static void getAllFromWydarzenie() throws SQLException {
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from wydarzenie");
     }
 
+    public static void getSelectedWydarzenieByType(String type) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ?");
+        prepStat.setString(1, type);
+        resultSet = prepStat.executeQuery();
+    }
+
+    public static void getSelectedWydarzeniebyTown(double townID) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByState(String state) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByTypeAndTown(String type, double townID) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByTypeAndState(String type, String state) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenie(ArrayList<Double> eventsIDs) throws SQLException {
+        statement = connection.createStatement();
+        // TODO: 18.02.2020 Download events which IDs is in eventsIDs parameter
+        //resultSet = statement.executeQuery("SELECT * from wydarzenie where id_wydarzenia = ?");
+        //prepStat.setString(1,eventsIDs);
+    }
+
     public static void getOneWydarzenie(String nazwa, double cenaBiletu, double iloscMiejsc) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where nazwa = ? AND cena_biletu = ? AND ilosc_miejsc = ?");
-        prepStat.setString(1,nazwa);
-        prepStat.setDouble(2,cenaBiletu);
-        prepStat.setDouble(3,iloscMiejsc);
+        prepStat.setString(1, nazwa);
+        prepStat.setDouble(2, cenaBiletu);
+        prepStat.setDouble(3, iloscMiejsc);
         resultSet = prepStat.executeQuery();
     }
 
     public static void getOneWydarzenie(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where id_wydarzenia = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         resultSet = prepStat.executeQuery();
     }
 
     public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, double idObiektu) throws SQLException, ParseException {
         prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
-        prepStat.setString(1,nazwa);
-        prepStat.setDate(2,ConvertDate(data));
-        prepStat.setDouble(3,cenaBiletu);
-        prepStat.setDouble(4,iloscMiejsc);
-        prepStat.setString(5,typ);
-        prepStat.setDouble(6,idObiektu);
-        prepStat.setDouble(7,id);
+        prepStat.setString(1, nazwa);
+        prepStat.setDate(2, ConvertDate(data));
+        prepStat.setDouble(3, cenaBiletu);
+        prepStat.setDouble(4, iloscMiejsc);
+        prepStat.setString(5, typ);
+        prepStat.setDouble(6, idObiektu);
+        prepStat.setDouble(7, id);
         result = prepStat.executeUpdate();
     }
 
     public static void deleteWydarzenie(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM wydarzenie WHERE id_wydarzenia = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         result = prepStat.executeUpdate();
     }
 
@@ -164,7 +194,7 @@ public class WydarzenieController {
         ArrayList<String> temp = new ArrayList<>();
         idList.clear();
         while (resultSet.next()) {
-            if (resultSet.getString(6).toUpperCase().equals("KABARET")){
+            if (resultSet.getString(6).toUpperCase().equals("KABARET")) {
                 temp.add(makeStringFromObject());
             }
         }
@@ -175,7 +205,7 @@ public class WydarzenieController {
         ArrayList<String> temp = new ArrayList<>();
         idList.clear();
         while (resultSet.next()) {
-            if (resultSet.getString(6).toUpperCase().equals("KONCERT")){
+            if (resultSet.getString(6).toUpperCase().equals("KONCERT")) {
                 temp.add(makeStringFromObject());
             }
         }
@@ -186,7 +216,7 @@ public class WydarzenieController {
         ArrayList<String> temp = new ArrayList<>();
         idList.clear();
         while (resultSet.next()) {
-            if (resultSet.getString(6).toUpperCase().equals("WYSTĘP TEATRALNY")){
+            if (resultSet.getString(6).toUpperCase().equals("WYSTĘP TEATRALNY")) {
                 temp.add(makeStringFromObject());
             }
         }
@@ -202,8 +232,9 @@ public class WydarzenieController {
         String cena = String.valueOf(resultSet.getDouble(4));
         String ilosc = String.valueOf(resultSet.getDouble(5));
         String typ = resultSet.getString(6);
-        String idObiektu = String.valueOf(resultSet.getDouble(7));;
-        String allString = nazwa + " " + data + " (" + cena + "zł) (" +typ+") [id: " + id + "]" ;
+        String idObiektu = String.valueOf(resultSet.getDouble(7));
+        ;
+        String allString = nazwa + " " + data + " (" + cena + "zł) (" + typ + ") [id: " + id + "]";
         return allString;
     }
 
@@ -219,15 +250,17 @@ public class WydarzenieController {
             String cena = String.valueOf(resultSet.getDouble(4));
             String ilosc = String.valueOf(resultSet.getDouble(5));
             String typ = resultSet.getString(6);
-            String idObiektu = String.valueOf(resultSet.getDouble(7));;
-            String allString = nazwa + " " + data + " (" + cena + "zł) (" +typ+") [id: " + id + "]" ;
+            String idObiektu = String.valueOf(resultSet.getDouble(7));
+            ;
+            String allString = nazwa + " " + data + " (" + cena + "zł) (" + typ + ") [id: " + id + "]";
             temp.add(allString);
         }
         return temp;
     }
 
     private static ArrayList<Double> idList = new ArrayList<>();
-    public static ArrayList<Double> getListOfIDs(){
+
+    public static ArrayList<Double> getListOfIDs() {
         return idList;
     }
 }

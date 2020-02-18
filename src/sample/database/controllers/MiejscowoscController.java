@@ -36,13 +36,29 @@ public class MiejscowoscController {
         resultSet = statement.executeQuery("SELECT * from miejscowość");
     }
 
-    public static void GetOneMiejscowosc(double id) throws SQLException {
+    public static void getAllSelectedFromMiejscowoscByState(String state) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT * from miejscowość where województwo = ?");
+        prepStat.setString(1,state);
+        resultSet = prepStat.executeQuery();
+    }
+
+    public static void getOneMiejscowosc(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from miejscowość where id_miasta = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
     }
 
-    public static void EditMiejscowosc(double id,String nazwa,String wojewodztwo,String kodPocztowy) throws SQLException{
+    public static String getStateFromMiejscowosc(double id) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT województwo from miejscowość where id_miasta = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
+    public static void editMiejscowosc(double id, String nazwa, String wojewodztwo, String kodPocztowy) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE miejscowość SET nazwa = ? , województwo = ?, kod_pocztowy = ? WHERE id_miasta = ?");
         prepStat.setString(1,nazwa);
         prepStat.setString(2,wojewodztwo);

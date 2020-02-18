@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminDeleteScreenController extends Screen {
+public class AdminSelectingToDeleteOrEditScreenController extends Screen {
 
     @FXML
     private ListView<String> listView;
@@ -217,7 +217,7 @@ public class AdminDeleteScreenController extends Screen {
     }
 
     private void refresh(){
-        openScreenFromFXMLFilesPackage("AdminDeleteScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
     }
 
     @FXML
