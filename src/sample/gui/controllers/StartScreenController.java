@@ -15,7 +15,7 @@ public class StartScreenController extends Screen {
     @FXML
     private Button startButton;
     @FXML
-    private Pane pane, connectPane;
+    private Pane pane, connectPane,menuButtonPane;
     @FXML
     private TextField hostTextField, portTextField, schemeTextField, usernameTextField, passwordTextField;
 
@@ -30,6 +30,7 @@ public class StartScreenController extends Screen {
             connectPane.setVisible(false);
         }else{
             pane.setStyle(styleWhenAppIsNotConnectedToDatabase);
+            menuButtonPane.setVisible(false);
         }
     }
 
@@ -45,14 +46,20 @@ public class StartScreenController extends Screen {
 
     @FXML
     public void connectWithDatabaseButtonClick() {
-        connectWithDatabase();
-        isAppConnectedToDatabase=true;
-        pane.setStyle(styleWhenAppIsConnectedToDatabase);
-        connectPane.setVisible(false);
+        try {
+            connectWithDatabase();
+            isAppConnectedToDatabase=true;
+            pane.setStyle(styleWhenAppIsConnectedToDatabase);
+            connectPane.setVisible(false);
+            menuButtonPane.setVisible(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
-    private void connectWithDatabase(){
+    private void connectWithDatabase() throws SQLException {
         String host = hostTextField.getText();
         String port = portTextField.getText();
         String scheme = schemeTextField.getText();
