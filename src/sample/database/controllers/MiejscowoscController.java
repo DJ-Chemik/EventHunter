@@ -23,7 +23,7 @@ public class MiejscowoscController {
         MiejscowoscController.connection = connection;
     }
 
-    public static void AddMiejscowosc(String nazwa, String wojewodztwo, String kodPocztowy) throws SQLException {
+    public static void addMiejscowosc(String nazwa, String wojewodztwo, String kodPocztowy) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO miejscowość(nazwa, województwo, kod_pocztowy) VALUES(?,?,?)");
         prepStat.setString(1,nazwa);
         prepStat.setString(2,wojewodztwo);
@@ -49,7 +49,19 @@ public class MiejscowoscController {
     }
 
     public static String getStateFromMiejscowosc(double id) throws SQLException {
-        prepStat = connection.prepareStatement("SELECT województwo from miejscowość where id_miasta = ?");
+        return getOneParameterFromMiejscowosc(id, "województwo");
+    }
+
+    public static String getZipCodeFromMiejscowosc(double id) throws SQLException {
+        return getOneParameterFromMiejscowosc(id,"kod_pocztowy");
+    }
+
+    public static String getNazwaFromMiejscowosc(double id) throws SQLException {
+        return getOneParameterFromMiejscowosc(id,"nazwa");
+    }
+
+    private static String getOneParameterFromMiejscowosc(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from miejscowość where id_miasta = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {

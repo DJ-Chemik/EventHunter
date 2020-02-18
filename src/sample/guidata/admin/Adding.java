@@ -1,6 +1,5 @@
 package sample.guidata.admin;
 
-import sample.database.ConnectionWithDatabase;
 import sample.database.controllers.*;
 
 import java.sql.SQLException;
@@ -114,7 +113,7 @@ public class Adding {
             String name = getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
             String state = getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
             String zipCode = getElementFromTupleParameters(DatabaseEnum.townFields.ZIP_CODE).get(0);
-            MiejscowoscController.AddMiejscowosc(name, state, zipCode);
+            MiejscowoscController.addMiejscowosc(name, state, zipCode);
         }
     }
 
