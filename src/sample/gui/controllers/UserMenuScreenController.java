@@ -70,7 +70,7 @@ public class UserMenuScreenController extends Screen {
 
     private void addEventTypesToComboBox(){
         comboBoxTypeSelect.getItems().add("Koncert");
-        comboBoxTypeSelect.getItems().add("Kabaraet");
+        comboBoxTypeSelect.getItems().add("Kabaret");
         comboBoxTypeSelect.getItems().add("Występ Teatralny");
     }
 
@@ -91,23 +91,45 @@ public class UserMenuScreenController extends Screen {
     }
 
     @FXML
-    public void comboBoxTypeSelectChange(){
+    public void listViewChange(){
+        if (listView.getSelectionModel().getSelectedIndex()!=-1){
+            showMoreInfoButton.setDisable(false);
+        }
+    }
 
+    @FXML
+    public void comboBoxTypeSelectChange(){
+        try {
+            WydarzenieController.getSelectedWydarzenie(comboBoxTypeSelect.getSelectionModel().getSelectedItem());
+            ArrayList<String> objectNames = WydarzenieController.getListOfStrings();
+            ArrayList<Double> objectIDs = WydarzenieController.getListOfIDs();
+            if (objectIDs!=null && objectNames!=null){
+                for (int i=0;i<objectIDs.size();i++){
+                    eventsIdMap.put(objectNames.get(i),objectIDs.get(i));
+                }
+                listView.getItems().setAll(objectNames);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void comboBoxStateSelectChange(){
-
+        // TODO: 18.02.2020 Filter listView
+        // TODO: 18.02.2020 Filter towns in combobox
     }
 
     @FXML
     public void comboBoxTownSelectChange(){
-
+        // TODO: 18.02.2020 Filter listView
+        // TODO: 18.02.2020 Select Only One State in combobox
     }
 
     @FXML
     public void showMoreInfoButtonClick(){
-
+        // TODO: 18.02.2020 Keep data about actual view in static field when user show more info
+        // TODO: 18.02.2020 Open new panel with information about event
     }
 
     @FXML
