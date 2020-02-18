@@ -79,30 +79,65 @@ public class AdminMenuScreenController extends Screen {
 
     @FXML
     public void editEventClick(){
+        Integer[] numbers = {1,2,3,4,6,7};
+        String[] names = {"Nazwa", "Data", "Cena biletu","Ilość miejsc", "Rodzaj imprezy", "Miejsce Imprezy"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Event");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editPersonClick(){
+        Integer[] numbers = {1,2,6};
+        String[] names = {"Imię", "Nazwisko", "Zawód"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Person");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editPlaceClick(){
+        Integer[] numbers = {1,2,6};
+        String[] names = {"Nazwa", "Typ Obiektu", "Miejscowość"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Place");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editTownClick(){
+        Integer[] numbers = {1,2,6};
+        String[] names = {"Nazwa", "Kod pocztowy", "Województwo"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Town");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editSongClick(){
+        Integer[] numbers = {1,2,3,4,6,7};
+        String[] names = {"Tytuł", "Rok wydania", "Gatunek", "Ilość wyświetleń na YouTube", "Muzyk", "Płyta"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Song");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editMusicDiscClick(){
+        Integer[] numbers = {1,2,6,7};
+        String[] names = {"Tytuł", "Rok wydania", "Muzycy", "Utwory"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "MusicDisc");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
     @FXML
     public void editPerformanceClick(){
+        Integer[] numbers = {1,2,6,7};
+        String[] names = {"Tytuł", "Długość", "Rodzaj występu","Aktorzy"};
+        StaticData.setActiveFieldsNumbers(numbers);
+        StaticData.setActiveLabelsNames(names);
+        StaticData.setTypeAndElementOfIngeretion("Edit", "Performance");
         openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
     }
 
