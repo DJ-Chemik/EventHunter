@@ -1,6 +1,7 @@
 package sample.gui.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -8,6 +9,7 @@ import sample.database.controllers.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.DatabaseEnum;
 import sample.guidata.admin.Deleting;
+import sample.guidata.admin.Editing;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
     private ComboBox<String> comboBoxSpecificType;
     @FXML
     private TextField searchTextField;
+    @FXML
+    private Button mainButton;
 
 
     /**
@@ -40,7 +44,7 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
     }
 
     private void setSpecificTypeData() throws SQLException {
-        if (StaticData.getTypeOfIngerention() == "Delete") {
+        if (StaticData.getTypeOfIngerention() == "Delete" || StaticData.getTypeOfIngerention() == "Edit") {
             ArrayList<String> objectNames = null;
             ArrayList<Double> objectsIDs = null;
             if (StaticData.getElementOfIngerention() == "Event") {
@@ -93,6 +97,10 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
                     objectsIdMap.put(objectNames.get(i), objectsIDs.get(i));
                 }
             }
+
+            if (StaticData.getTypeOfIngerention() == "Edit") {
+                mainButton.setText("EDIT");
+            }
         }
     }
 
@@ -113,16 +121,16 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
             } else if (comboBoxSpecificType.getItems().get(index) == "Muzyk") {
                 try {
                     MuzykController.getAllFromMuzyk();
-                    objectsNames=MuzykController.getListOfStrings();
-                    objectsIDs=MuzykController.getListOfIDs();
+                    objectsNames = MuzykController.getListOfStrings();
+                    objectsIDs = MuzykController.getListOfIDs();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
             }
-            if (objectsIDs!=null && objectsNames!=null){
-                for (int i=0;i<objectsIDs.size();i++){
-                    objectsIdMap.put(objectsNames.get(i),objectsIDs.get(i));
+            if (objectsIDs != null && objectsNames != null) {
+                for (int i = 0; i < objectsIDs.size(); i++) {
+                    objectsIdMap.put(objectsNames.get(i), objectsIDs.get(i));
                 }
                 listView.setVisible(true);
                 listView.getItems().setAll(objectsNames);
@@ -137,30 +145,30 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
             }
             if (comboBoxSpecificType.getItems().get(index) == "Występ Teatralny") {
                 try {
-                    objectsNames=WydarzenieController.getListOfTheathreSpectaclStrings();
-                    objectsIDs=WydarzenieController.getListOfIDs();
+                    objectsNames = WydarzenieController.getListOfTheathreSpectaclStrings();
+                    objectsIDs = WydarzenieController.getListOfIDs();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }else if (comboBoxSpecificType.getItems().get(index) == "Kabaret") {
+            } else if (comboBoxSpecificType.getItems().get(index) == "Kabaret") {
                 try {
-                    objectsNames=WydarzenieController.getListOfCabaretsStrings();
-                    objectsIDs=WydarzenieController.getListOfIDs();
+                    objectsNames = WydarzenieController.getListOfCabaretsStrings();
+                    objectsIDs = WydarzenieController.getListOfIDs();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }else if (comboBoxSpecificType.getItems().get(index).equals("Koncert")) {
+            } else if (comboBoxSpecificType.getItems().get(index).equals("Koncert")) {
                 try {
-                    objectsNames=WydarzenieController.getListOfConcertStrings();
-                    objectsIDs=WydarzenieController.getListOfIDs();
+                    objectsNames = WydarzenieController.getListOfConcertStrings();
+                    objectsIDs = WydarzenieController.getListOfIDs();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
-            if (objectsIDs!=null && objectsNames!=null){
+            if (objectsIDs != null && objectsNames != null) {
                 objectsIdMap.clear();
-                for (int i=0;i<objectsIDs.size();i++){
-                    objectsIdMap.put(objectsNames.get(i),objectsIDs.get(i));
+                for (int i = 0; i < objectsIDs.size(); i++) {
+                    objectsIdMap.put(objectsNames.get(i), objectsIDs.get(i));
                 }
                 listView.setVisible(true);
                 listView.getItems().setAll(objectsNames);
@@ -175,48 +183,89 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
     }
 
     @FXML
-    public void deleteButtonClick() throws SQLException {
-        if (listView.getSelectionModel().getSelectedIndex()==-1) {
+    public void mainButtonClick() throws SQLException {
+
+        if (listView.getSelectionModel().getSelectedIndex() == -1) {
             return;
         }
         String string = listView.getSelectionModel().getSelectedItem();
         double id = objectsIdMap.get(string);
-        if (StaticData.getElementOfIngerention() == "Event") {
-            if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
-                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.THEATRE_SPECTACLE,id);
-            }else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
-                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CABARET,id);
-            }else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
-                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CONCERT,id);
-            }
-        }
-        if (StaticData.getElementOfIngerention() == "Person") {
 
-            if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Aktor") {
-                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.ACTOR,id);
-            } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Muzyk") {
-                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSICIAN,id);
+        if (StaticData.getTypeOfIngerention() == "Delete") {
+            if (StaticData.getElementOfIngerention() == "Event") {
+                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
+                    Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.THEATRE_SPECTACLE, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
+                    Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CABARET, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
+                    Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.CONCERT, id);
+                }
             }
+            if (StaticData.getElementOfIngerention() == "Person") {
+
+                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Aktor") {
+                    Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.ACTOR, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Muzyk") {
+                    Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSICIAN, id);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Place") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PLACE, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Town") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.TOWN, id);
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSIC_DISC, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.SONG, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Performance") {
+                Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PERFORMANCE, id);
+            }
+            refresh();
+
+        } else if (StaticData.getTypeOfIngerention() == "Edit") {
+            if (StaticData.getElementOfIngerention() == "Event") {
+                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
+                    Editing.directToEditScreen(DatabaseEnum.objectTypes.THEATRE_SPECTACLE, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
+                    Editing.directToEditScreen(DatabaseEnum.objectTypes.CABARET, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
+                    Editing.directToEditScreen(DatabaseEnum.objectTypes.CONCERT, id);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Person") {
+
+                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Aktor") {
+                    Editing.directToEditScreen(DatabaseEnum.objectTypes.ACTOR, id);
+                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Muzyk") {
+                    Editing.directToEditScreen(DatabaseEnum.objectTypes.MUSICIAN, id);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Place") {
+                Editing.directToEditScreen(DatabaseEnum.objectTypes.PLACE, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Town") {
+                Editing.directToEditScreen(DatabaseEnum.objectTypes.TOWN, id);
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                Editing.directToEditScreen(DatabaseEnum.objectTypes.MUSIC_DISC, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                Editing.directToEditScreen(DatabaseEnum.objectTypes.SONG, id);
+            }
+            if (StaticData.getElementOfIngerention() == "Performance") {
+                Editing.directToEditScreen(DatabaseEnum.objectTypes.PERFORMANCE, id);
+            }
+            openScreenFromFXMLFilesPackage("AdminEditScreen.fxml");
         }
-        if (StaticData.getElementOfIngerention() == "Place") {
-            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PLACE,id);
-        }
-        if (StaticData.getElementOfIngerention() == "Town") {
-            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.TOWN,id);
-        }
-        if (StaticData.getElementOfIngerention() == "MusicDisc") {
-            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.MUSIC_DISC,id);
-        }
-        if (StaticData.getElementOfIngerention() == "Song") {
-            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.SONG,id);
-        }
-        if (StaticData.getElementOfIngerention() == "Performance") {
-            Deleting.deleteFromDatabase(DatabaseEnum.objectTypes.PERFORMANCE,id);
-        }
-        refresh();
+
+
     }
 
-    private void refresh(){
+    private void refresh() {
         openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
     }
 
