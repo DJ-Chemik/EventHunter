@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import sample.database.controllers.MiejsceController;
 import sample.database.controllers.MiejscowoscController;
 import sample.database.controllers.WydarzenieController;
 
@@ -100,7 +99,7 @@ public class UserMenuScreenController extends Screen {
     @FXML
     public void comboBoxTypeSelectChange(){
         try {
-            WydarzenieController.getSelectedWydarzenie(comboBoxTypeSelect.getSelectionModel().getSelectedItem());
+            WydarzenieController.getSelectedWydarzenieByType(comboBoxTypeSelect.getSelectionModel().getSelectedItem());
             ArrayList<String> objectNames = WydarzenieController.getListOfStrings();
             ArrayList<Double> objectIDs = WydarzenieController.getListOfIDs();
             if (objectIDs!=null && objectNames!=null){

@@ -108,11 +108,26 @@ public class WydarzenieController {
         resultSet = statement.executeQuery("SELECT * from wydarzenie");
     }
 
-    public static void getSelectedWydarzenie(String type) throws SQLException {
+    public static void getSelectedWydarzenieByType(String type) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ?");
         prepStat.setString(1, type);
         resultSet = prepStat.executeQuery();
+    }
 
+    public static void getSelectedWydarzeniebyTown(double townID) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByState(String state) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByTypeAndTown(String type, double townID) throws SQLException {
+        // TODO: 18.02.2020
+    }
+
+    public static void getSelectedWydarzenieByStateAndState(String state, double townID) throws SQLException {
+        // TODO: 18.02.2020
     }
 
     public static void getSelectedWydarzenie(ArrayList<Double> eventsIDs) throws SQLException {
