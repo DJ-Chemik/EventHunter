@@ -21,7 +21,7 @@ public class ConnectionWithDatabase {
     public ConnectionWithDatabase(String host, String port, String schemeName, String user, String password) {
         DATABASE_USER=user;
         DATABASE_PASSWORD=password;
-        DATABASE_URL="jdbc:mysql://" + host + ":" + port + "/" + schemeName + "?useTimezone=true&serverTimezone=UTC";
+        DATABASE_URL="jdbc:mysql://" + host + ":" + port + "/" + schemeName + "?useTimezone=true&serverTimezone=CET";
     }
 
     public static Connection getConnection(){

@@ -40,10 +40,12 @@ public class PlytaController {
         prepStat.setString(1,tytul);
         prepStat.setInt(2,rok);
         result = prepStat.executeUpdate();
-        getOnePlyta(tytul,rok);
+        //getOnePlyta(tytul,rok);
         double discID = -1;
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
         while (resultSet.next()){
-            discID = resultSet.getDouble(1);
+            discID=resultSet.getDouble(1);
         }
         for (String strID : musicians){
             double musicianID = Double.parseDouble(strID);

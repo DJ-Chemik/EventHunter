@@ -16,8 +16,8 @@ public class WydarzenieController {
     private static ResultSet resultSet;
     private static PreparedStatement prepStat;
     private static int result;
-    private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    // example of string: String dateInString = "07/06/2013";
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+    // example of string: String dateInString = "2013-07-06";
 
     public WydarzenieController(Connection conn){
         connection = conn;
@@ -40,11 +40,11 @@ public class WydarzenieController {
         return temp;
     }
 
-    public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
+   /* public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
         double idObiektu = getIdFromMiejsce(nazwaM,typM);
         prepStat = connection.prepareStatement("INSERT INTO wydarzenie(nazwa, data, cena_biletu, ilosc_miejsc, typ, id_obiektu) VALUES(?,?,?,?,?,?)");
         prepStat.setString(1,nazwa);
-        prepStat.setObject(2, ConvertDate(data));
+        prepStat.setDate(2, ConvertDate(data));
         prepStat.setDouble(3,cenaBiletu);
         prepStat.setDouble(4,iloscMiejsc);
         prepStat.setString(5,typ);
@@ -60,13 +60,13 @@ public class WydarzenieController {
             statement = connection.createStatement();
             result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
         }
-    }
+    }*/
 
     public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String placeID, ArrayList<String> showsIDs) throws SQLException, ParseException {
         double placeIdDouble = Double.parseDouble(placeID);
         prepStat = connection.prepareStatement("INSERT INTO wydarzenie(nazwa, data, cena_biletu, ilosc_miejsc, typ, id_obiektu) VALUES(?,?,?,?,?,?)");
         prepStat.setString(1, nazwa);
-        prepStat.setObject(2, ConvertDate(data));
+        prepStat.setDate(2, ConvertDate(data));
         prepStat.setDouble(3, cenaBiletu);
         prepStat.setDouble(4, iloscMiejsc);
         prepStat.setString(5, typ);
@@ -83,8 +83,10 @@ public class WydarzenieController {
             result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
         }
 
-        getOneWydarzenie(nazwa,cenaBiletu,iloscMiejsc);
+       // getOneWydarzenie(nazwa,cenaBiletu,iloscMiejsc);
         double eventID = -1;
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
         while (resultSet.next()){
             eventID=resultSet.getDouble(1);
         }
