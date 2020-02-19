@@ -40,7 +40,7 @@ public class AdminEditScreenController extends Screen{
         addElementsofViewToArrays();
         specificTypeDataInitialize();
         displayOnlyNeededFieldsAndLabels();
-        fillFields();
+        fillListsInView();
     }
 
     private void addElementsofViewToArrays(){
@@ -100,8 +100,14 @@ public class AdminEditScreenController extends Screen{
                 });
     }
 
-    private void fillFields(){
-
+    private void fillListsInView(){
+        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            idInListView1.addAll(Editing.getListOfIDsOne());
+            mainListView.getItems().setAll(Editing.getListOfStringsOne());
+            idInListView2.addAll(Editing.getListOfIDsTwo());
+            additionalListViewData.addAll(Editing.getListOfStringsTwo());
+            actualListViewInView=1;
+        }
     }
 
     private void specificTypeDataInitialize(){

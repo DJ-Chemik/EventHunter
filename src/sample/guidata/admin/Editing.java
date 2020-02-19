@@ -9,7 +9,10 @@ import java.util.ArrayList;
 public class Editing {
 
     private static ArrayList<String> filledFields = new ArrayList<>();
-
+    private static ArrayList<String> listOfStringsOne = new ArrayList<>();
+    private static ArrayList<String> listOfStringsTwo = new ArrayList<>();
+    private static ArrayList<Double> listOfIDsOne = new ArrayList<>();
+    private static ArrayList<Double> listOfIDsTwo = new ArrayList<>();
 
     public static void directToEditScreen(DatabaseEnum.objectTypes type, double objectID ){
         ArrayList<Integer> numberOfFileds = StaticData.getActiveFieldsNumbers();
@@ -21,6 +24,25 @@ public class Editing {
             } else if (type == DatabaseEnum.objectTypes.MUSICIAN) {
 
             } else if (type == DatabaseEnum.objectTypes.MUSIC_DISC) {
+                String title = PlytaController.getTitleFromPlyta(objectID);
+                String year = PlytaController.getReleaseYearFromPlyta(objectID);
+                ArrayList<Double> musiciansIDs = PlytaController.getListOfMusiciansIDsFromPlyta(objectID);
+                ArrayList<Double> songsIDs = PlytaController.getListOfSongsIDsFromPlyta(objectID);
+                filledFields.clear();
+                filledFields.add(title);
+                filledFields.add(year);
+                listOfStringsOne.clear();
+                for (double d : musiciansIDs){
+                    MuzykController.getOneMuzyk(d);
+                    listOfStringsOne.add(MuzykController.getListOfStrings().get(0));
+                }
+                listOfStringsTwo.clear();
+                for (double d : songsIDs){
+                    UtworController.getOneUtwor(d);
+                    listOfStringsTwo.add(UtworController.getListOfStrings().get(0));
+                }
+                listOfIDsOne=musiciansIDs;
+                listOfIDsTwo=songsIDs;
 
             } else if (type == DatabaseEnum.objectTypes.SONG) {
                 String title = UtworController.getTitleFromUtwor(objectID);
@@ -79,5 +101,21 @@ public class Editing {
 
     public static ArrayList<String> getFilledFields() {
         return filledFields;
+    }
+
+    public static ArrayList<String> getListOfStringsOne() {
+        return listOfStringsOne;
+    }
+
+    public static ArrayList<String> getListOfStringsTwo() {
+        return listOfStringsTwo;
+    }
+
+    public static ArrayList<Double> getListOfIDsOne() {
+        return listOfIDsOne;
+    }
+
+    public static ArrayList<Double> getListOfIDsTwo() {
+        return listOfIDsTwo;
     }
 }

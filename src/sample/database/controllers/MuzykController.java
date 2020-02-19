@@ -53,7 +53,7 @@ public class MuzykController {
         result = prepStat.executeUpdate();
     }
 
-    public static ArrayList<String> GetResult() throws SQLException {
+    public static ArrayList<String> getResult() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             String idMuzyka = String.valueOf(resultSet.getDouble(1));

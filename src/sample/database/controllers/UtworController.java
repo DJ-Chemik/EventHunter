@@ -76,6 +76,17 @@ public class UtworController {
         resultSet = statement.executeQuery("SELECT * from utwór");
     }
 
+    public static ArrayList<Double> getAllIDsFromUtworByMusicDiscId(double musicDiscID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_utworu from utwór where id_plyty = ?");
+        prepStat.setDouble(1,musicDiscID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
     public static void getOneUtwor(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from utwór where id_utworu = ?");
         prepStat.setDouble(1,id);
