@@ -6,6 +6,7 @@ import sample.database.controllers.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.Adding;
 import sample.guidata.admin.DatabaseEnum;
+import sample.guidata.admin.Editing;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,9 +38,9 @@ public class AdminEditScreenController extends Screen{
 
     public void initialize() {
         addElementsofViewToArrays();
-        displayOnlyNeededFieldsAndLabels();
         specificTypeDataInitialize();
-
+        displayOnlyNeededFieldsAndLabels();
+        fillFields();
     }
 
     private void addElementsofViewToArrays(){
@@ -83,9 +84,20 @@ public class AdminEditScreenController extends Screen{
                 (i) -> {
                     labels.get(i).setVisible(true);
                     labels.get(i).setText(StaticData.getActiveLabelsNames().get(j[0]));
-                    j[0]++;
                     fields.get(i).setVisible(true);
+                    if (i <= 5) { //indexes of text fields
+                        textFields.get(i).setText(Editing.getFilledFields().get(j[0]));
+                    }
+                    if (i>=6){ //indexes of comboBoxes
+                        String s= Editing.getFilledFields().get(j[0]);
+                        comboBoxes.get(i-6).getSelectionModel().select(s);
+                    }
+                    j[0]++;
                 });
+    }
+
+    private void fillFields(){
+
     }
 
     private void specificTypeDataInitialize(){
