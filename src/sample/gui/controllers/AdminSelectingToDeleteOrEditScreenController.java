@@ -266,7 +266,7 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
     }
 
     private void refresh() {
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
 
     @FXML

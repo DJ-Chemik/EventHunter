@@ -146,7 +146,7 @@ public class UserMenuScreenController extends Screen {
         }
     }
 
-    // TODO: 19.02.2020 Add button(s) to cancel a restrict type/state/town 
+    // TODO: 19.02.2020 Add button(s) to cancel a restrict type/state/town
     
     private String type = null;
     private String state = null;
