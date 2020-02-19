@@ -34,13 +34,13 @@ public class AktorController {
         resultSet = statement.executeQuery("SELECT * from aktor");
     }
 
-    public static void GetOneAktor(double id) throws SQLException {
+    public static void getOneAktor(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from aktor where id_aktora = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
     }
 
-    public static void EditAktor(double id,String imie,String nazwisko,String grupa) throws SQLException{
+    public static void editAktor(double id, String imie, String nazwisko, String grupa) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE aktor SET imie = ? , nazwisko = ?, grupa = ? WHERE id_aktora = ?");
         prepStat.setString(1,imie);
         prepStat.setString(2,nazwisko);
@@ -55,7 +55,7 @@ public class AktorController {
         result = prepStat.executeUpdate();
     }
 
-    public static ArrayList<String> GetResult() throws SQLException {
+    public static ArrayList<String> getResult() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             String id = String.valueOf(resultSet.getDouble(1));

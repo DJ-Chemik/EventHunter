@@ -54,6 +54,9 @@ public class PrzedstawienieController {
         resultSet = prepStat.executeQuery();
     }
 
+    public static ArrayList<Double> getListOfActorsIDsFromPrzedstawienie(double performanceId) throws SQLException {
+        return AktorzyPrzedstawieniaController.getAllIDsFromAktorByPerforenceID(performanceId);
+    }
 
     public static String getTitleFromPrzedstawienie(double id) throws SQLException {
         return getOneParameterFromPrzedstawienie(id,"tytul");

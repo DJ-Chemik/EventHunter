@@ -86,7 +86,8 @@ public class AdminEditScreenController extends Screen{
                     labels.get(i).setText(StaticData.getActiveLabelsNames().get(j[0]));
                     fields.get(i).setVisible(true);
                     if (i <= 5) { //indexes of text fields
-                        textFields.get(i).setText(Editing.getFilledFields().get(j[0]));
+                        String s = Editing.getFilledFields().get(j[0]);
+                        textFields.get(i).setText(s);
                     }
                     if (i>=6){ //indexes of comboBoxes
                         if (Editing.getFilledFields().size()>j[0]){
@@ -106,8 +107,12 @@ public class AdminEditScreenController extends Screen{
             mainListView.getItems().setAll(Editing.getListOfStringsOne());
             idInListView2.addAll(Editing.getListOfIDsTwo());
             additionalListViewData.addAll(Editing.getListOfStringsTwo());
-            actualListViewInView=1;
         }
+        if (StaticData.getElementOfIngerention()=="Performance"){
+            idInListView1.addAll(Editing.getListOfIDsOne());
+            mainListView.getItems().setAll(Editing.getListOfStringsOne());
+        }
+        actualListViewInView=1;
     }
 
     private void specificTypeDataInitialize(){

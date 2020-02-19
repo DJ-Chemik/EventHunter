@@ -71,9 +71,19 @@ public class Editing {
             } else if (type == DatabaseEnum.objectTypes.PERFORMANCE) {
                 String title = PrzedstawienieController.getTitleFromPrzedstawienie(objectID);
                 String length = PrzedstawienieController.getLenghtFromPrzedstawienie(objectID);
+                ArrayList<Double> actorsIDs = new ArrayList<>();
+                if (PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID).size()>0){
+                    actorsIDs = PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID);
+                }
                 filledFields.clear();
                 filledFields.add(title);
                 filledFields.add(length);
+                for (double d : actorsIDs){
+                    UtworController.getOneUtwor(d);
+                    listOfStringsTwo.add(UtworController.getListOfStrings().get(0));
+                }
+                listOfIDsOne=actorsIDs;
+
             } else if (type == DatabaseEnum.objectTypes.PLACE) {
                 String name = MiejsceController.getNameFromMiejsce(objectID);
                 String placeType = MiejsceController.getTypeFromMiejsce(objectID);
