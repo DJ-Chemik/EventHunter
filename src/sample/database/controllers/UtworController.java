@@ -82,6 +82,50 @@ public class UtworController {
         resultSet = prepStat.executeQuery();
     }
 
+    public static String getTitleFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "tytuł");
+    }
+
+    public static String getReleaseYearFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "rok_wydania");
+    }
+
+    public static String getGenreFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "gatunek");
+    }
+
+    public static String getYouTubeViewsFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "ilość_wyświetleń_na_yt");
+    }
+
+    public static double getMusicianIdFromUtwor(double id) throws SQLException {
+        return getOneIDFromUtwor(id,"id_muzyka");
+    }
+
+    public static double getMusicDiscIdFromUtwor(double id) throws SQLException {
+        return getOneIDFromUtwor(id, "id_plyty");
+    }
+
+    private static double getOneIDFromUtwor(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from utwór where id_utworu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+        return -1;
+    }
+
+    private static String getOneParameterFromUtwor(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from utwór where id_utworu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
     public static void editUtwor(double id, String tytul, int rok, String gatunek, double wyswietlenia, double idMuzyka, double idPlyty) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE utwór SET tytuł = ? , rok_wydania = ?,gatunek = ?,ilość_wyświetleń_na_yt = ?,id_muzyka =?, id_plyty = ? WHERE id_utworu = ?");
         prepStat.setString(1,tytul);

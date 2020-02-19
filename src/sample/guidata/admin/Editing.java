@@ -1,8 +1,6 @@
 package sample.guidata.admin;
 
-import sample.database.controllers.MiejsceController;
-import sample.database.controllers.MiejscowoscController;
-import sample.database.controllers.PrzedstawienieController;
+import sample.database.controllers.*;
 import sample.gui.StaticData;
 
 import java.sql.SQLException;
@@ -25,13 +23,35 @@ public class Editing {
             } else if (type == DatabaseEnum.objectTypes.MUSIC_DISC) {
 
             } else if (type == DatabaseEnum.objectTypes.SONG) {
+                String title = UtworController.getTitleFromUtwor(objectID);
+                String year = UtworController.getReleaseYearFromUtwor(objectID);
+                String genre = UtworController.getGenreFromUtwor(objectID);
+                String ytViews = UtworController.getYouTubeViewsFromUtwor(objectID);
+                double musicianId = UtworController.getMusicianIdFromUtwor(objectID);
+                double musicDiscId = UtworController.getMusicDiscIdFromUtwor(objectID);
+                MuzykController.getOneMuzyk(musicianId);
+                PlytaController.getOnePlyta(musicDiscId);
+                String musicianStr = MuzykController.getListOfStrings().get(0);
+                String musicDiscStr;
+                if (PlytaController.getListOfStrings().size()!=0){
+                    musicDiscStr = PlytaController.getListOfStrings().get(0);
+                }else{
+                    musicDiscStr = null;
+                }
+                filledFields.clear();
+                filledFields.add(title);
+                filledFields.add(year);
+                filledFields.add(genre);
+                filledFields.add(ytViews);
+                filledFields.add(musicianStr);
+                filledFields.add(musicDiscStr);
 
             } else if (type == DatabaseEnum.objectTypes.PERFORMANCE) {
                 String title = PrzedstawienieController.getTitleFromPrzedstawienie(objectID);
-                String dlugosc = PrzedstawienieController.getLenghtFromPrzedstawienie(objectID);
+                String length = PrzedstawienieController.getLenghtFromPrzedstawienie(objectID);
                 filledFields.clear();
                 filledFields.add(title);
-                filledFields.add(dlugosc);
+                filledFields.add(length);
             } else if (type == DatabaseEnum.objectTypes.PLACE) {
                 String name = MiejsceController.getNameFromMiejsce(objectID);
                 String placeType = MiejsceController.getTypeFromMiejsce(objectID);
