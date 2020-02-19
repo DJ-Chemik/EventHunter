@@ -1,9 +1,9 @@
 package sample.guidata.admin;
 
-import org.omg.PortableInterceptor.INACTIVE;
+import sample.database.controllers.MiejsceController;
 import sample.database.controllers.MiejscowoscController;
+import sample.database.controllers.PrzedstawienieController;
 import sample.gui.StaticData;
-import sample.gui.controllers.Screen;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,15 +27,28 @@ public class Editing {
             } else if (type == DatabaseEnum.objectTypes.SONG) {
 
             } else if (type == DatabaseEnum.objectTypes.PERFORMANCE) {
-
+                String title = PrzedstawienieController.getTitleFromPrzedstawienie(objectID);
+                String dlugosc = PrzedstawienieController.getLenghtFromPrzedstawienie(objectID);
+                filledFields.clear();
+                filledFields.add(title);
+                filledFields.add(dlugosc);
             } else if (type == DatabaseEnum.objectTypes.PLACE) {
+                String name = MiejsceController.getNameFromMiejsce(objectID);
+                String placeType = MiejsceController.getTypeFromMiejsce(objectID);
+                double townID = MiejsceController.getTownIdFromMiejsce(objectID);
+                MiejscowoscController.getOneMiejscowosc(townID);
+                String townStr = MiejscowoscController.getListOfStrings().get(0);
+                filledFields.clear();
+                filledFields.add(name);
+                filledFields.add(placeType);
+                filledFields.add(townStr);
 
             } else if (type == DatabaseEnum.objectTypes.TOWN) {
-                String nazwa = MiejscowoscController.getNazwaFromMiejscowosc(objectID);
+                String name = MiejscowoscController.getNameFromMiejscowosc(objectID);
                 String zipCode = MiejscowoscController.getZipCodeFromMiejscowosc(objectID);
                 String state = MiejscowoscController.getStateFromMiejscowosc(objectID);
                 filledFields.clear();
-                filledFields.add(nazwa);
+                filledFields.add(name);
                 filledFields.add(zipCode);
                 filledFields.add(state);
             }

@@ -54,6 +54,25 @@ public class PrzedstawienieController {
         resultSet = prepStat.executeQuery();
     }
 
+
+    public static String getTitleFromPrzedstawienie(double id) throws SQLException {
+        return getOneParameterFromPrzedstawienie(id,"tytul");
+    }
+
+    public static String getLenghtFromPrzedstawienie(double id) throws SQLException {
+        return getOneParameterFromPrzedstawienie(id,"dlugosc");
+    }
+
+    private static String getOneParameterFromPrzedstawienie(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from przedstawienie where id_przedstawienia = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
     public static void EditPrzedstawienie(double id,String tytul,double dlugosc) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE przedstawienie SET tytul = ? , dlugosc = ? WHERE id_przedstawienia = ?");
         prepStat.setString(1,tytul);

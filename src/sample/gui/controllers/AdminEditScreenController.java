@@ -89,8 +89,12 @@ public class AdminEditScreenController extends Screen{
                         textFields.get(i).setText(Editing.getFilledFields().get(j[0]));
                     }
                     if (i>=6){ //indexes of comboBoxes
-                        String s= Editing.getFilledFields().get(j[0]);
-                        comboBoxes.get(i-6).getSelectionModel().select(s);
+                        if (Editing.getFilledFields().size()>j[0]){
+                            String s= Editing.getFilledFields().get(j[0]);
+                            comboBoxes.get(i-6).getSelectionModel().select(s);
+                        }else{
+                            //comboBoxes.get(i-6).getSelectionModel().selectFirst();
+                        }
                     }
                     j[0]++;
                 });

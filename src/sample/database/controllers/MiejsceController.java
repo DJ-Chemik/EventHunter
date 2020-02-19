@@ -54,10 +54,42 @@ public class MiejsceController {
         resultSet = statement.executeQuery("SELECT * from miejsce");
     }
 
-    public static void GetOneMiejsce(double id) throws SQLException {
+    public static void getOneMiejsce(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from miejsce where id_obiektu = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
+    }
+
+    public static String getNameFromMiejsce(double id) throws SQLException {
+        return getOneParameterFromMiejsce(id,"nazwa");
+    }
+
+    public static String getTypeFromMiejsce(double id) throws SQLException {
+        return getOneParameterFromMiejsce(id, "typ_obiektu");
+    }
+
+    public static double getTownIdFromMiejsce(double id) throws SQLException {
+        return getOneIDFromMiejsce(id, "id_miasta");
+    }
+
+    private static double getOneIDFromMiejsce(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from miejsce where id_obiektu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+        return -1;
+    }
+
+    private static String getOneParameterFromMiejsce(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from miejsce where id_obiektu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+                return resultSet.getString(1);
+        }
+        return null;
     }
 
     public static void EditMiejsce(double id,String nazwa,String typ,String idMiasta) throws SQLException{
