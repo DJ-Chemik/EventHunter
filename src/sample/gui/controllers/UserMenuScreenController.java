@@ -151,6 +151,9 @@ public class UserMenuScreenController extends Screen {
 
     @FXML
     public void searchTextFieldChange() {
+        comboBoxTypeSelect.getSelectionModel().clearSelection();
+        comboBoxStateSelect.getSelectionModel().clearSelection();
+        comboBoxTownSelect.getSelectionModel().clearSelection();
         String filterText = searchTextField.getText().toLowerCase();
         ArrayList<String> allRecords = new ArrayList<>();
         allRecords.clear();
