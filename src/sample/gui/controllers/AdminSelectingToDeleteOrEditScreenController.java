@@ -179,7 +179,21 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
 
     @FXML
     public void searchTextFieldChange() {
-
+        String filterText = searchTextField.getText().toLowerCase();
+        ArrayList<String> allRecords = new ArrayList<>();
+        allRecords.clear();
+        for (String key : objectsIdMap.keySet()){
+            allRecords.add(key);
+        }
+        boolean found = false;
+        ArrayList<String> newRecordsToListView = new ArrayList<>();
+        for (String record : allRecords){
+             found = record.toLowerCase().contains(filterText);
+             if (found){
+                 newRecordsToListView.add(record);
+             }
+        }
+        listView.getItems().setAll(newRecordsToListView);
     }
 
     @FXML

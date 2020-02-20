@@ -138,7 +138,7 @@ public class WydarzenieController {
             } else if (typ.toUpperCase().equals("KONCERT")) {
                 KoncertMuzycyController.addKoncertMuzycy(eventID, showId);
             } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
-                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);s
+                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);
             }
         }
     }
