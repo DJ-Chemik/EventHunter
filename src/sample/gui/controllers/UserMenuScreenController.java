@@ -214,6 +214,7 @@ public class UserMenuScreenController extends Screen {
     public void showMoreInfoButtonClick() {
         // TODO: 18.02.2020 Keep data about actual view in static field when user show more info
         // TODO: 18.02.2020 Open new panel with information about event
+        openScreenFromFXMLFilesPackage("UserInformationScreen.fxml");
     }
 
     @FXML
