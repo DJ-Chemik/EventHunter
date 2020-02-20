@@ -100,7 +100,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="eventLabel42" layoutX="20.0" layoutY="20.0" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0">
+            <Label fx:id="townLabel2" layoutX="20.0" layoutY="20.0" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -115,11 +115,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="townLabel2" layoutX="20.0" layoutY="20.0" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
             <Label fx:id="townLabel4" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="280.0">
                <font>
                   <Font size="18.0" />
@@ -128,7 +123,7 @@
          </children>
       </AnchorPane>
       <ListView fx:id="listView1" layoutX="708.0" layoutY="106.0" onMouseClicked="#listView1Change" prefHeight="271.0" prefWidth="540.0" />
-      <Label fx:id="listLabel11" alignment="CENTER" layoutX="708.0" layoutY="64.0" prefHeight="17.0" prefWidth="540.0" text="Lista Muzyków / Przedstawień na Wydarzeniu">
+      <Label fx:id="listLabel1" alignment="CENTER" layoutX="708.0" layoutY="64.0" prefHeight="17.0" prefWidth="540.0" text="Lista Muzyków / Przedstawień na Wydarzeniu">
          <font>
             <Font size="20.0" />
          </font>
@@ -139,7 +134,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="17.0" layoutY="587.0" text="Ilość piosenek  danego muzyka:">
+      <Label fx:id="musicianSongsAmountLabelText" layoutX="17.0" layoutY="587.0" text="Ilość piosenek  danego muzyka:">
          <font>
             <Font size="21.0" />
          </font>

@@ -87,6 +87,17 @@ public class UtworController {
         return tmp;
     }
 
+    public static ArrayList<Double> getAllIDsFromUtworByMusician(double musicianID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_utworu from utwór where id_muzyka = ?");
+        prepStat.setDouble(1,musicianID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
     public static void getOneUtwor(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from utwór where id_utworu = ?");
         prepStat.setDouble(1,id);
@@ -195,8 +206,15 @@ public class UtworController {
             String gatunek = resultSet.getString(4);
             String wyswietlenia = String.valueOf(resultSet.getDouble(5));
             String idMuzyka = String.valueOf(resultSet.getDouble(6));
-            String idPlyty = String.valueOf(resultSet.getDouble(7));
-            String allString = tytul + " " + rokWydania + " (" + gatunek + ")";
+            double idPlyty =  resultSet.getDouble(7);
+            String idPlytyStr = String.valueOf(idPlyty);
+            String nazwaPlyty = PlytaController.getTitleFromPlyta(idPlyty);
+            String allString;
+            if (nazwaPlyty==null){
+                allString = tytul + " " + rokWydania + " (" + gatunek + ") (disc: ---)";
+            }else{
+                allString = tytul + " " + rokWydania + " (" + gatunek + ") (disc: " + nazwaPlyty + ")";
+            }
             temp.add(allString);
         }
         return temp;
