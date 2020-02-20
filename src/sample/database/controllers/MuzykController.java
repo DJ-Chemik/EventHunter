@@ -13,6 +13,7 @@ public class MuzykController {
     private static Statement statement;
     private static ResultSet resultSet;
     private static PreparedStatement prepStat;
+    private static CallableStatement callStat;
     private static int result;
 
     public MuzykController(Connection conn){
@@ -30,6 +31,17 @@ public class MuzykController {
     public static void getAllFromMuzyk() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from muzyk");
+    }
+
+    public static int PoliczUtworyMuzyka(double idMuzyka) throws SQLException {
+        int count = -1;
+        String query = "{? = call LiczbaUtworowMuzyka(?)}";
+        callStat = connection.prepareCall(query);
+        callStat.registerOutParameter(1,Types.INTEGER);
+        callStat.setInt(1,count);
+        callStat.setDouble(2, idMuzyka);
+        callStat.execute();
+        return count;
     }
 
     public static void getOneMuzyk(double id) throws SQLException {
