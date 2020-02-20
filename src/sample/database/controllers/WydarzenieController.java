@@ -104,6 +104,7 @@ public class WydarzenieController {
 
     public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String placeID, ArrayList<String> showsIDs) throws SQLException, ParseException {
         double placeIdDouble = Double.parseDouble(placeID);
+        String oldType = getTypeFromWydarzenie(id);
         prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
         prepStat.setString(1, nazwa);
         prepStat.setDate(2, convertDate(data));
@@ -111,34 +112,54 @@ public class WydarzenieController {
         prepStat.setDouble(4, iloscMiejsc);
         prepStat.setString(5, typ);
         prepStat.setDouble(6, placeIdDouble);
+        prepStat.setDouble(7,id);
         result = prepStat.executeUpdate();
-        result = prepStat.executeUpdate();
-        // TODO: 20.02.2020 Jeśli zmienimy typ wydarzenia to niech to zaktualizuje w tych podtabelach!!! IMPORTANT!!!
-//        if (typ.toUpperCase().equals("KABARET")) {
-//            statement = connection.createStatement();
-//            result = statement.executeUpdate("INSERT INTO kabaret(id_wydarzenia) VALUES (LAST_INSERT_ID())");
-//        } else if (typ.toUpperCase().equals("KONCERT")) {
-//            statement = connection.createStatement();
-//            result = statement.executeUpdate("INSERT INTO koncert(id_wydarzenia) VALUES (LAST_INSERT_ID())");
-//        } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
-//            statement = connection.createStatement();
-//            result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
-//        }
-        double eventID = -1;
-        statement = connection.createStatement();
+       //  TODO: 20.02.2020 Jeśli zmienimy typ wydarzenia to niech to zaktualizuje w tych podtabelach!!! IMPORTANT!!!
+        if(!oldType.toUpperCase().equals(typ.toUpperCase())){
+            //  Usuwanie starego wpisu
+            if (oldType.toUpperCase().equals("KABARET")) {
+                prepStat = connection.prepareStatement("DELETE FROM kabaret WHERE id_wydarzenia = ?");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            } else if (typ.toUpperCase().equals("KONCERT")) {
+                prepStat = connection.prepareStatement("DELETE FROM koncert WHERE id_wydarzenia = ?");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
+                prepStat = connection.prepareStatement("DELETE FROM wystep_teatralny WHERE id_wydarzenia = ?");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            }
+            //Dodanie nowego wpisu
+            if (typ.toUpperCase().equals("KABARET")) {
+                prepStat = connection.prepareStatement("INSERT INTO kabaret(id_wydarzenia) VALUES (?)");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            } else if (typ.toUpperCase().equals("KONCERT")) {
+                prepStat = connection.prepareStatement("INSERT INTO koncert(id_wydarzenia) VALUES (?)");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
+                prepStat = connection.prepareStatement("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (?)");
+                prepStat.setDouble(1,id);
+                result = prepStat.executeUpdate();
+            }
+        }
+        /*statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
         while (resultSet.next()){
             eventID=resultSet.getDouble(1);
-        }
+        }*/
         // TODO: 20.02.2020 Mamy listę nowych muzyków/przesdstawień w edytowanymwydarzeniu. Trzeba to uaktualnić (mogły pojawić się nowe, albo nikeóre zniknąć).
+        deleteMusicianOrShowByEventId(id,oldType);
         for (String strID : showsIDs) {
             double showId = Double.parseDouble(strID);
             if (typ.toUpperCase().equals("KABARET")) {
-                KabaretPrzedstawieniaController.addKabaretPrzedstawienia(eventID, showId);
+                KabaretPrzedstawieniaController.addKabaretPrzedstawienia(id, showId);
             } else if (typ.toUpperCase().equals("KONCERT")) {
-                KoncertMuzycyController.addKoncertMuzycy(eventID, showId);
+                KoncertMuzycyController.addKoncertMuzycy(id, showId);
             } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
-                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);s
+                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(id, showId);
             }
         }
     }
@@ -294,6 +315,22 @@ public class WydarzenieController {
             return resultSet.getString(1);
         }
         return null;
+    }
+
+    public static void deleteMusicianOrShowByEventId(double id,String oldType) throws SQLException{
+        if(oldType.toUpperCase().equals("KONCERT")){
+            prepStat = connection.prepareStatement("DELETE FROM koncert_muzycy WHERE id_wydarzenia = ?");
+            prepStat.setDouble(1,id);
+            result = prepStat.executeUpdate();
+        }else if(oldType.toUpperCase().equals("KABARET")){
+            prepStat = connection.prepareStatement("DELETE FROM kabaret_przedstawienia WHERE id_wydarzenia = ?");
+            prepStat.setDouble(1,id);
+            result = prepStat.executeUpdate();
+        }else if(oldType.toUpperCase().equals("WYSTĘP TEATRALNY")){
+            prepStat = connection.prepareStatement("DELETE FROM teatr_przedstawienia WHERE id_wydarzenia = ?");
+            prepStat.setDouble(1,id);
+            result = prepStat.executeUpdate();
+        }
     }
 
     public static void deleteWydarzenie(double id) throws SQLException {
