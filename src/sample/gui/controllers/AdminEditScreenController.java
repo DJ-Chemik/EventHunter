@@ -112,18 +112,39 @@ public class AdminEditScreenController extends Screen{
             idInListView1.addAll(Editing.getListOfIDsOne());
             mainListView.getItems().setAll(Editing.getListOfStringsOne());
         }
-        if (StaticData.getElementOfIngerention()=="Person"){
+        if (StaticData.getElementOfIngerention()=="Person") {
             comboBox6.getSelectionModel().select(Editing.getFilledFields().get(3));
             textField3.setText(Editing.getFilledFields().get(2));
             label3.setVisible(true);
             textField3.setVisible(true);
-            if (comboBox6.getValue()=="Muzyk"){
+            if (comboBox6.getValue() == "Muzyk") {
                 label0.setText("ID Muzyka");
                 label3.setText("Pseudonim");
-            }else if (comboBox6.getValue()=="Aktor"){
+            } else if (comboBox6.getValue() == "Aktor") {
                 label0.setText("ID Aktora");
                 label3.setText("Nazwa Grupy");
             }
+        }
+        if (StaticData.getElementOfIngerention()=="Event"){
+            idInListView1.addAll(Editing.getListOfIDsOne());
+            mainListView.getItems().setAll(Editing.getListOfStringsOne());
+            label8.setVisible(true);
+            comboBox8.setVisible(true);
+            addButton8.setVisible(true);
+            addButton8.setDisable(true);
+            comboBox8.setEditable(false);
+            if (comboBox6.getValue()=="Koncert"){
+                label8.setText("Muzycy");
+                comboBox8.getItems().clear();
+                addMusiciansToComboBox8();
+                cabaretOrPerformanceInComboBox6=0;
+            }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
+                label8.setText("Przedstawienia");
+                comboBox8.getItems().clear();
+                addPerformancesToComboBox();
+                cabaretOrPerformanceInComboBox6=1;
+            }
+
         }
         actualListViewInView=1;
     }
@@ -506,7 +527,7 @@ public class AdminEditScreenController extends Screen{
         }
     }
 
-    private int concertOrPerformanceInComboBox6 = -1;
+    private int cabaretOrPerformanceInComboBox6 = -1;
     @FXML
     public void changeComboBox6(){
         if (StaticData.getElementOfIngerention()=="Event"){
@@ -519,23 +540,23 @@ public class AdminEditScreenController extends Screen{
                 label8.setText("Muzycy");
                 comboBox8.getItems().clear();
                 addMusiciansToComboBox8();
-                if (concertOrPerformanceInComboBox6!=0){
+                if (cabaretOrPerformanceInComboBox6 !=0){
                     mainListView.getItems().clear();
                     idInListView1.clear();
                     idListOfElementsToComboBoxes2.clear();
                     idListOfElementsToComboBoxes2=MuzykController.getListOfIDs();
-                    concertOrPerformanceInComboBox6=0;
+                    cabaretOrPerformanceInComboBox6 =0;
                 }
             }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
                 label8.setText("Przedstawienia");
                 comboBox8.getItems().clear();
                 addPerformancesToComboBox();
-                if (concertOrPerformanceInComboBox6!=1){
+                if (cabaretOrPerformanceInComboBox6 !=1){
                     mainListView.getItems().clear();
                     idInListView1.clear();
                     idListOfElementsToComboBoxes2.clear();
                     idListOfElementsToComboBoxes2=PrzedstawienieController.getListOfIDs();
-                    concertOrPerformanceInComboBox6=1;
+                    cabaretOrPerformanceInComboBox6 =1;
                 }
 
             }

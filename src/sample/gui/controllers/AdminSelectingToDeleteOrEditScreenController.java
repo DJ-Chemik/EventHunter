@@ -228,13 +228,23 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
 
         } else if (StaticData.getTypeOfIngerention() == "Edit") {
             if (StaticData.getElementOfIngerention() == "Event") {
-                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
+//                if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Występ Teatralny") {
+//                    Editing.directToEditScreen(DatabaseEnum.objectTypes.THEATRE_SPECTACLE, id);
+//                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
+//                    Editing.directToEditScreen(DatabaseEnum.objectTypes.CABARET, id);
+//                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
+//                    Editing.directToEditScreen(DatabaseEnum.objectTypes.CONCERT, id);
+//                }
+
+                String eventType = WydarzenieController.getTypeFromWydarzenie(id);
+                if (eventType.equals("Występ Teatralny")) {
                     Editing.directToEditScreen(DatabaseEnum.objectTypes.THEATRE_SPECTACLE, id);
-                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Kabaret") {
+                } else if (eventType.equals("Kabaret")) {
                     Editing.directToEditScreen(DatabaseEnum.objectTypes.CABARET, id);
-                } else if (comboBoxSpecificType.getSelectionModel().getSelectedItem() == "Koncert") {
+                } else if (eventType.equals("Koncert")) {
                     Editing.directToEditScreen(DatabaseEnum.objectTypes.CONCERT, id);
                 }
+
             }
             if (StaticData.getElementOfIngerention() == "Person") {
 

@@ -60,7 +60,7 @@ public class MuzykController {
         return null;
     }
 
-    public static void EditMuzyk(double id,String imie,String nazwisko,String pseudonim) throws SQLException{
+    public static void editMuzyk(double id, String imie, String nazwisko, String pseudonim) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE muzyk SET imie = ? , nazwisko = ?, pseudonim = ? WHERE id_muzyka = ?");
         prepStat.setString(1,imie);
         prepStat.setString(2,nazwisko);

@@ -14,11 +14,46 @@ public class Editing {
     private static ArrayList<Double> listOfIDsOne = new ArrayList<>();
     private static ArrayList<Double> listOfIDsTwo = new ArrayList<>();
 
-    public static void directToEditScreen(DatabaseEnum.objectTypes type, double objectID ){
+    public static void directToEditScreen(DatabaseEnum.objectTypes type, double objectID) {
         ArrayList<Integer> numberOfFileds = StaticData.getActiveFieldsNumbers();
         try {
             if (type == DatabaseEnum.objectTypes.CONCERT || type == DatabaseEnum.objectTypes.CABARET || type == DatabaseEnum.objectTypes.THEATRE_SPECTACLE) {
-
+                String name = WydarzenieController.getNameFromWydarzenie(objectID);
+                String date = WydarzenieController.getDateFromWydarzenie(objectID);
+                String cost = WydarzenieController.getCostFromWydarzenie(objectID);
+                String seats = WydarzenieController.getSeatsFromWydarzenie(objectID);
+                String eventType = WydarzenieController.getTypeFromWydarzenie(objectID);
+                double placeID = WydarzenieController.getPlaceIDFromWydarzenie(objectID);
+                MiejsceController.getOneMiejsce(placeID);
+                String placeStr = MiejsceController.getListOfStrings().get(0);
+                filledFields.clear();
+                filledFields.add(name);
+                filledFields.add(date);
+                filledFields.add(cost);
+                filledFields.add(seats);
+                filledFields.add(eventType);
+                filledFields.add(placeStr);
+                ArrayList<Double> ids = new ArrayList<>();
+                if (eventType.equals("Koncert")) {
+                    ids = WydarzenieController.getMusiciansIDsFromWydarzenie(objectID);
+                    for (double d : ids){
+                        MuzykController.getOneMuzyk(d);
+                        listOfStringsOne.add(MuzykController.getListOfStrings().get(0));
+                    }
+                } else if (eventType.equals("Kabaret")){
+                    ids = WydarzenieController.getPerformancesIDsFromKabaret(objectID);
+                    for (double d : ids){
+                        PrzedstawienieController.getOnePrzedstawienie(d);
+                        listOfStringsOne.add(PrzedstawienieController.getListOfStrings().get(0));
+                    }
+                }else{
+                    ids = WydarzenieController.getPerformancesIDsFromTeatr(objectID);
+                    for (double d : ids){
+                        PrzedstawienieController.getOnePrzedstawienie(d);
+                        listOfStringsOne.add(PrzedstawienieController.getListOfStrings().get(0));
+                    }
+                }
+                listOfIDsOne = ids;
             } else if (type == DatabaseEnum.objectTypes.ACTOR) {
                 String name = AktorController.getBandNameFromAktor(objectID);
                 String surname = AktorController.getSurameFromAktor(objectID);
@@ -50,17 +85,17 @@ public class Editing {
                 filledFields.add(title);
                 filledFields.add(year);
                 listOfStringsOne.clear();
-                for (double d : musiciansIDs){
+                for (double d : musiciansIDs) {
                     MuzykController.getOneMuzyk(d);
                     listOfStringsOne.add(MuzykController.getListOfStrings().get(0));
                 }
                 listOfStringsTwo.clear();
-                for (double d : songsIDs){
+                for (double d : songsIDs) {
                     UtworController.getOneUtwor(d);
                     listOfStringsTwo.add(UtworController.getListOfStrings().get(0));
                 }
-                listOfIDsOne=musiciansIDs;
-                listOfIDsTwo=songsIDs;
+                listOfIDsOne = musiciansIDs;
+                listOfIDsTwo = songsIDs;
 
             } else if (type == DatabaseEnum.objectTypes.SONG) {
                 String title = UtworController.getTitleFromUtwor(objectID);
@@ -73,9 +108,9 @@ public class Editing {
                 PlytaController.getOnePlyta(musicDiscId);
                 String musicianStr = MuzykController.getListOfStrings().get(0);
                 String musicDiscStr;
-                if (PlytaController.getListOfStrings().size()!=0){
+                if (PlytaController.getListOfStrings().size() != 0) {
                     musicDiscStr = PlytaController.getListOfStrings().get(0);
-                }else{
+                } else {
                     musicDiscStr = null;
                 }
                 filledFields.clear();
@@ -90,17 +125,17 @@ public class Editing {
                 String title = PrzedstawienieController.getTitleFromPrzedstawienie(objectID);
                 String length = PrzedstawienieController.getLenghtFromPrzedstawienie(objectID);
                 ArrayList<Double> actorsIDs = new ArrayList<>();
-                if (PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID).size()>0){
+                if (PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID).size() > 0) {
                     actorsIDs = PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID);
                 }
                 filledFields.clear();
                 filledFields.add(title);
                 filledFields.add(length);
-                for (double d : actorsIDs){
+                for (double d : actorsIDs) {
                     UtworController.getOneUtwor(d);
                     listOfStringsTwo.add(UtworController.getListOfStrings().get(0));
                 }
-                listOfIDsOne=actorsIDs;
+                listOfIDsOne = actorsIDs;
 
             } else if (type == DatabaseEnum.objectTypes.PLACE) {
                 String name = MiejsceController.getNameFromMiejsce(objectID);
@@ -122,7 +157,7 @@ public class Editing {
                 filledFields.add(zipCode);
                 filledFields.add(state);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
