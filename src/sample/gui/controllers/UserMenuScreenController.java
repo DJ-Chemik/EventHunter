@@ -111,7 +111,7 @@ public class UserMenuScreenController extends Screen {
     public void comboBoxStateSelectChange() {
         state=comboBoxStateSelect.getSelectionModel().getSelectedItem();
         try {
-            //restrictEventsRecords();
+            restrictEventsRecords();
             MiejscowoscController.getAllSelectedFromMiejscowoscByState(state);
             ArrayList<String> objectNames = MiejscowoscController.getListOfStrings();
             ArrayList<Double> objectIDs = MiejscowoscController.getListOfIds();
@@ -136,6 +136,7 @@ public class UserMenuScreenController extends Screen {
     public void comboBoxTownSelectChange() {
         townID=townsIdMap.get(comboBoxTownSelect.getSelectionModel().getSelectedItem());
         try {
+            restrictEventsRecords();
             if (comboBoxTownSelect.getItems().isEmpty()==false){
                 comboBoxStateSelect.getSelectionModel().select(MiejscowoscController.getStateFromMiejscowosc(townID));
             }
@@ -145,6 +146,8 @@ public class UserMenuScreenController extends Screen {
         }
     }
 
+    // TODO: 19.02.2020 Add button(s) to cancel a restrict type/state/town
+    
     private String type = null;
     private String state = null;
     private Double townID = null;

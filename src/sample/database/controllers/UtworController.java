@@ -76,10 +76,65 @@ public class UtworController {
         resultSet = statement.executeQuery("SELECT * from utwór");
     }
 
+    public static ArrayList<Double> getAllIDsFromUtworByMusicDiscId(double musicDiscID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_utworu from utwór where id_plyty = ?");
+        prepStat.setDouble(1,musicDiscID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
     public static void getOneUtwor(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from utwór where id_utworu = ?");
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
+    }
+
+    public static String getTitleFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "tytuł");
+    }
+
+    public static String getReleaseYearFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "rok_wydania");
+    }
+
+    public static String getGenreFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "gatunek");
+    }
+
+    public static String getYouTubeViewsFromUtwor(double id) throws SQLException {
+        return getOneParameterFromUtwor(id, "ilość_wyświetleń_na_yt");
+    }
+
+    public static double getMusicianIdFromUtwor(double id) throws SQLException {
+        return getOneIDFromUtwor(id,"id_muzyka");
+    }
+
+    public static double getMusicDiscIdFromUtwor(double id) throws SQLException {
+        return getOneIDFromUtwor(id, "id_plyty");
+    }
+
+    private static double getOneIDFromUtwor(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from utwór where id_utworu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+        return -1;
+    }
+
+    private static String getOneParameterFromUtwor(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from utwór where id_utworu = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
     }
 
     public static void editUtwor(double id, String tytul, int rok, String gatunek, double wyswietlenia, double idMuzyka, double idPlyty) throws SQLException{

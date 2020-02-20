@@ -23,7 +23,7 @@ public class WydarzenieController {
         connection = conn;
     }
 
-    private static java.sql.Date ConvertDate(String date) throws ParseException {
+    private static java.sql.Date convertDate(String date) throws ParseException {
         java.util.Date today = formatter.parse(date);
         return new java.sql.Date(today.getTime());
     }
@@ -40,12 +40,11 @@ public class WydarzenieController {
         return temp;
     }
 
-
-   /* public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
+    public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
         double idObiektu = getIdFromMiejsce(nazwaM,typM);
         prepStat = connection.prepareStatement("INSERT INTO wydarzenie(nazwa, data, cena_biletu, ilosc_miejsc, typ, id_obiektu) VALUES(?,?,?,?,?,?)");
         prepStat.setString(1,nazwa);
-        prepStat.setDate(2, ConvertDate(data));
+        prepStat.setDate(2, convertDate(data));
         prepStat.setDouble(3,cenaBiletu);
         prepStat.setDouble(4,iloscMiejsc);
         prepStat.setString(5,typ);
@@ -61,13 +60,13 @@ public class WydarzenieController {
             statement = connection.createStatement();
             result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
         }
-    }*/
+    }
 
     public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String placeID, ArrayList<String> showsIDs) throws SQLException, ParseException {
         double placeIdDouble = Double.parseDouble(placeID);
         prepStat = connection.prepareStatement("INSERT INTO wydarzenie(nazwa, data, cena_biletu, ilosc_miejsc, typ, id_obiektu) VALUES(?,?,?,?,?,?)");
         prepStat.setString(1, nazwa);
-        prepStat.setDate(2, ConvertDate(data));
+        prepStat.setDate(2, convertDate(data));
         prepStat.setDouble(3, cenaBiletu);
         prepStat.setDouble(4, iloscMiejsc);
         prepStat.setString(5, typ);
@@ -167,10 +166,87 @@ public class WydarzenieController {
         resultSet = prepStat.executeQuery();
     }
 
+    public static String getNameFromWydarzenie(double id) throws SQLException {
+        return getOneParameterFromWydarzenie(id,"nazwa");
+    }
+
+    public static String getDateFromWydarzenie(double id) throws SQLException {
+        return getOneParameterFromWydarzenie(id,"data");
+    }
+
+    public static String getCostFromWydarzenie(double id) throws SQLException {
+        return getOneParameterFromWydarzenie(id,"cena_biletu");
+    }
+
+    public static String getSeatsFromWydarzenie(double id) throws SQLException {
+        return getOneParameterFromWydarzenie(id,"ilosc_miejsc");
+    }
+
+    public static String getTypeFromWydarzenie(double id) throws SQLException {
+        return getOneParameterFromWydarzenie(id,"typ");
+    }
+
+    public static double getPlaceIDFromWydarzenie(double id) throws SQLException {
+        return getOneIDFromWydarzenie(id,"id_obiektu");
+    }
+
+    public static ArrayList<Double> getMusiciansIDsFromWydarzenie(double concertID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_muzyka from koncert_muzycy where id_wydarzenia = ?");
+        prepStat.setDouble(1,concertID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
+    public static ArrayList<Double> getPerformancesIDsFromTeatr(double theathreID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_przedstawienia from teatr_przedstawienia where id_wydarzenia = ?");
+        prepStat.setDouble(1,theathreID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
+    public static ArrayList<Double> getPerformancesIDsFromKabaret(double cabaretID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_przedstawienia from kabaret_przedstawienia where id_wydarzenia = ?");
+        prepStat.setDouble(1,cabaretID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
+    private static double getOneIDFromWydarzenie(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from wydarzenie where id_wydarzenia = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+        return -1;
+    }
+
+    private static String getOneParameterFromWydarzenie(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from wydarzenie where id_wydarzenia = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
     public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, double idObiektu) throws SQLException, ParseException {
         prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
         prepStat.setString(1, nazwa);
-        prepStat.setDate(2, ConvertDate(data));
+        prepStat.setDate(2, convertDate(data));
         prepStat.setDouble(3, cenaBiletu);
         prepStat.setDouble(4, iloscMiejsc);
         prepStat.setString(5, typ);

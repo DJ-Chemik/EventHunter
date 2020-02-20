@@ -50,7 +50,29 @@ public class MuzykController {
         resultSet = prepStat.executeQuery();
     }
 
-    public static void EditMuzyk(double id,String imie,String nazwisko,String pseudonim) throws SQLException{
+    public static String getNameFromMuzyk(double id) throws SQLException {
+        return getOneParameterFromMuzyk(id,"imie");
+    }
+
+    public static String getSurameFromMuzyk(double id) throws SQLException {
+        return getOneParameterFromMuzyk(id,"nazwisko");
+    }
+
+    public static String getNicknameFromMuzyk(double id) throws SQLException {
+        return getOneParameterFromMuzyk(id,"pseudonim");
+    }
+
+    private static String getOneParameterFromMuzyk(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from muzyk where id_muzyka = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
+    public static void editMuzyk(double id, String imie, String nazwisko, String pseudonim) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE muzyk SET imie = ? , nazwisko = ?, pseudonim = ? WHERE id_muzyka = ?");
         prepStat.setString(1,imie);
         prepStat.setString(2,nazwisko);
@@ -65,7 +87,7 @@ public class MuzykController {
         result = prepStat.executeUpdate();
     }
 
-    public static ArrayList<String> GetResult() throws SQLException {
+    public static ArrayList<String> getResult() throws SQLException {
         ArrayList<String> temp = new ArrayList<>();
         while (resultSet.next()) {
             String idMuzyka = String.valueOf(resultSet.getDouble(1));

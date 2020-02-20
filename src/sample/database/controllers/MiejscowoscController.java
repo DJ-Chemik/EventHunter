@@ -56,7 +56,7 @@ public class MiejscowoscController {
         return getOneParameterFromMiejscowosc(id,"kod_pocztowy");
     }
 
-    public static String getNazwaFromMiejscowosc(double id) throws SQLException {
+    public static String getNameFromMiejscowosc(double id) throws SQLException {
         return getOneParameterFromMiejscowosc(id,"nazwa");
     }
 

@@ -84,7 +84,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Event");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editPersonClick(){
@@ -93,7 +93,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Person");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editPlaceClick(){
@@ -102,7 +102,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Place");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editTownClick(){
@@ -111,7 +111,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Town");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editSongClick(){
@@ -120,7 +120,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Song");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editMusicDiscClick(){
@@ -129,7 +129,7 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "MusicDisc");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void editPerformanceClick(){
@@ -138,43 +138,43 @@ public class AdminMenuScreenController extends Screen {
         StaticData.setActiveFieldsNumbers(numbers);
         StaticData.setActiveLabelsNames(names);
         StaticData.setTypeAndElementOfIngeretion("Edit", "Performance");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
 
 
     @FXML
     public void deleteEventClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Event");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deletePersonClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Person");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deletePlaceClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Place");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deleteTownClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Town");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deleteSongClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Song");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deleteMusicDiscClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "MusicDisc");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
     @FXML
     public void deletePerformanceClick(){
         StaticData.setTypeAndElementOfIngeretion("Delete", "Performance");
-        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreenScreen.fxml");
+        openScreenFromFXMLFilesPackage("AdminSelectingToDeleteOrEditScreen.fxml");
     }
 }

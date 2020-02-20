@@ -74,6 +74,43 @@ public class PlytaController {
         resultSet = prepStat.executeQuery();
     }
 
+    public static String getTitleFromPlyta(double id) throws SQLException {
+        return getOneParameterFromPlyta(id,"tytuł");
+    }
+
+    public static String getReleaseYearFromPlyta(double id) throws SQLException {
+        return getOneParameterFromPlyta(id,"rok_wydania");
+    }
+    
+    public static ArrayList<Double> getListOfMusiciansIDsFromPlyta(double musicDiscID) throws SQLException {
+       return MuzycyPlytyController.getAllMusiciansIDsByMusicDiscID(musicDiscID);
+    }
+
+    public static ArrayList<Double> getListOfSongsIDsFromPlyta(double musicDiscID) throws SQLException {
+        return UtworController.getAllIDsFromUtworByMusicDiscId(musicDiscID);
+    }
+
+
+    private static double getOneIDFromPlyta(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from płyta where id_plyty = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+        return -1;
+    }
+
+    private static String getOneParameterFromPlyta(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from płyta where id_plyty = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
     public static void editPlyta(double id, String tytul, int rok) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE płyta SET tytuł = ? , rok_wydania = ? WHERE id_plyty = ?");
         prepStat.setString(1,tytul);

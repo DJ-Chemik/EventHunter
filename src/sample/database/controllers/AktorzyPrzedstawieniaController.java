@@ -3,6 +3,7 @@ package sample.database.controllers;
 import sample.database.ConnectionWithDatabase;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AktorzyPrzedstawieniaController {
 
@@ -40,6 +41,28 @@ public class AktorzyPrzedstawieniaController {
         prepStat = connection.prepareStatement("SELECT * from aktorzy_przedstawienia where id_aktora = ?");
         prepStat.setDouble(1,idAktora);
         resultSet = prepStat.executeQuery();
+    }
+
+    public static ArrayList<Double> getAllActorsIDsByPerforenceID(double performanceID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_aktora from aktorzy_przedstawienia where id_przedstawienia = ?");
+        prepStat.setDouble(1,performanceID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
+    }
+
+    public static ArrayList<Double> getAllPerformancesIDsByActorID(double performanceID) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT id_przedstawienia from aktorzy_przedstawienia where id_aktora = ?");
+        prepStat.setDouble(1,performanceID);
+        resultSet = prepStat.executeQuery();
+        ArrayList<Double> tmp = new ArrayList<>();
+        while (resultSet.next()) {
+            tmp.add(resultSet.getDouble(1));
+        }
+        return tmp;
     }
 
     public static void EditAktorByIdPrzedstawienia(double idPrzedstawienia,double idAktora) throws SQLException{
