@@ -40,6 +40,28 @@ public class AktorController {
         resultSet = prepStat.executeQuery();
     }
 
+    public static String getNameFromAktor(double id) throws SQLException {
+        return getOneParameterFromAktor(id,"imie");
+    }
+
+    public static String getSurameFromAktor(double id) throws SQLException {
+        return getOneParameterFromAktor(id,"nazwisko");
+    }
+
+    public static String getBandNameFromAktor(double id) throws SQLException {
+        return getOneParameterFromAktor(id,"nazwa_grupy");
+    }
+
+    private static String getOneParameterFromAktor(double id, String whatDownload) throws SQLException {
+        prepStat = connection.prepareStatement("SELECT " + whatDownload + " from aktor where id_aktora = ?");
+        prepStat.setDouble(1,id);
+        resultSet = prepStat.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
     public static void editAktor(double id, String imie, String nazwisko, String grupa) throws SQLException{
         prepStat = connection.prepareStatement("UPDATE aktor SET imie = ? , nazwisko = ?, grupa = ? WHERE id_aktora = ?");
         prepStat.setString(1,imie);

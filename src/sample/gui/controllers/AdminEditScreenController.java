@@ -112,6 +112,19 @@ public class AdminEditScreenController extends Screen{
             idInListView1.addAll(Editing.getListOfIDsOne());
             mainListView.getItems().setAll(Editing.getListOfStringsOne());
         }
+        if (StaticData.getElementOfIngerention()=="Person"){
+            comboBox6.getSelectionModel().select(Editing.getFilledFields().get(3));
+            textField3.setText(Editing.getFilledFields().get(2));
+            label3.setVisible(true);
+            textField3.setVisible(true);
+            if (comboBox6.getValue()=="Muzyk"){
+                label0.setText("ID Muzyka");
+                label3.setText("Pseudonim");
+            }else if (comboBox6.getValue()=="Aktor"){
+                label0.setText("ID Aktora");
+                label3.setText("Nazwa Grupy");
+            }
+        }
         actualListViewInView=1;
     }
 

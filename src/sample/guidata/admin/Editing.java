@@ -20,8 +20,26 @@ public class Editing {
             if (type == DatabaseEnum.objectTypes.CONCERT || type == DatabaseEnum.objectTypes.CABARET || type == DatabaseEnum.objectTypes.THEATRE_SPECTACLE) {
 
             } else if (type == DatabaseEnum.objectTypes.ACTOR) {
+                String name = AktorController.getBandNameFromAktor(objectID);
+                String surname = AktorController.getSurameFromAktor(objectID);
+                String bandname = AktorController.getBandNameFromAktor(objectID);
+                String specialization = "Aktor";
+                filledFields.clear();
+                filledFields.add(name);
+                filledFields.add(surname);
+                filledFields.add(bandname);
+                filledFields.add(specialization);
 
             } else if (type == DatabaseEnum.objectTypes.MUSICIAN) {
+                String name = MuzykController.getNameFromMuzyk(objectID);
+                String surname = MuzykController.getSurameFromMuzyk(objectID);
+                String nickname = MuzykController.getNicknameFromMuzyk(objectID);
+                String specialization = "Muzyk";
+                filledFields.clear();
+                filledFields.add(name);
+                filledFields.add(surname);
+                filledFields.add(nickname);
+                filledFields.add(specialization);
 
             } else if (type == DatabaseEnum.objectTypes.MUSIC_DISC) {
                 String title = PlytaController.getTitleFromPlyta(objectID);

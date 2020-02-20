@@ -55,7 +55,7 @@ public class PrzedstawienieController {
     }
 
     public static ArrayList<Double> getListOfActorsIDsFromPrzedstawienie(double performanceId) throws SQLException {
-        return AktorzyPrzedstawieniaController.getAllIDsFromAktorByPerforenceID(performanceId);
+        return AktorzyPrzedstawieniaController.getAllActorsIDsByPerforenceID(performanceId);
     }
 
     public static String getTitleFromPrzedstawienie(double id) throws SQLException {
