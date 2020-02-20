@@ -17,8 +17,8 @@ public class WydarzenieController {
     private static PreparedStatement prepStat;
     private static int result;
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-    // example of string: String dateInString = "2013-07-06";
 
+    // example of string: String dateInString = "2013-07-06";
     public WydarzenieController(Connection conn) {
         connection = conn;
     }
@@ -100,6 +100,59 @@ public class WydarzenieController {
                 TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);
             }
         }
+    }
+
+    public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String placeID, ArrayList<String> showsIDs) throws SQLException, ParseException {
+        double placeIdDouble = Double.parseDouble(placeID);
+        prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
+        prepStat.setString(1, nazwa);
+        prepStat.setDate(2, convertDate(data));
+        prepStat.setDouble(3, cenaBiletu);
+        prepStat.setDouble(4, iloscMiejsc);
+        prepStat.setString(5, typ);
+        prepStat.setDouble(6, placeIdDouble);
+        result = prepStat.executeUpdate();
+        result = prepStat.executeUpdate();
+        // TODO: 20.02.2020 Jeśli zmienimy typ wydarzenia to niech to zaktualizuje w tych podtabelach!!! IMPORTANT!!!
+//        if (typ.toUpperCase().equals("KABARET")) {
+//            statement = connection.createStatement();
+//            result = statement.executeUpdate("INSERT INTO kabaret(id_wydarzenia) VALUES (LAST_INSERT_ID())");
+//        } else if (typ.toUpperCase().equals("KONCERT")) {
+//            statement = connection.createStatement();
+//            result = statement.executeUpdate("INSERT INTO koncert(id_wydarzenia) VALUES (LAST_INSERT_ID())");
+//        } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
+//            statement = connection.createStatement();
+//            result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
+//        }
+        double eventID = -1;
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
+        while (resultSet.next()){
+            eventID=resultSet.getDouble(1);
+        }
+        // TODO: 20.02.2020 Mamy listę nowych muzyków/przesdstawień w edytowanymwydarzeniu. Trzeba to uaktualnić (mogły pojawić się nowe, albo nikeóre zniknąć).
+        for (String strID : showsIDs) {
+            double showId = Double.parseDouble(strID);
+            if (typ.toUpperCase().equals("KABARET")) {
+                KabaretPrzedstawieniaController.addKabaretPrzedstawienia(eventID, showId);
+            } else if (typ.toUpperCase().equals("KONCERT")) {
+                KoncertMuzycyController.addKoncertMuzycy(eventID, showId);
+            } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
+                TeatrPrzedstawieniaController.addTeatrPrzedstawienia(eventID, showId);s
+            }
+        }
+    }
+
+    public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, double idObiektu) throws SQLException, ParseException {
+        prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
+        prepStat.setString(1, nazwa);
+        prepStat.setDate(2, convertDate(data));
+        prepStat.setDouble(3, cenaBiletu);
+        prepStat.setDouble(4, iloscMiejsc);
+        prepStat.setString(5, typ);
+        prepStat.setDouble(6, idObiektu);
+        prepStat.setDouble(7, id);
+        result = prepStat.executeUpdate();
     }
 
     public static void getAllFromWydarzenie() throws SQLException {
@@ -241,18 +294,6 @@ public class WydarzenieController {
             return resultSet.getString(1);
         }
         return null;
-    }
-
-    public static void editWydarzenie(double id, String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, double idObiektu) throws SQLException, ParseException {
-        prepStat = connection.prepareStatement("UPDATE wydarzenie SET nazwa = ? , data = ?,cena_biletu = ?,ilosc_miejsc = ?,typ =?, id_obiektu = ? WHERE id_wydarzenia = ?");
-        prepStat.setString(1, nazwa);
-        prepStat.setDate(2, convertDate(data));
-        prepStat.setDouble(3, cenaBiletu);
-        prepStat.setDouble(4, iloscMiejsc);
-        prepStat.setString(5, typ);
-        prepStat.setDouble(6, idObiektu);
-        prepStat.setDouble(7, id);
-        result = prepStat.executeUpdate();
     }
 
     public static void deleteWydarzenie(double id) throws SQLException {

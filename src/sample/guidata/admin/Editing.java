@@ -4,6 +4,7 @@ import sample.database.controllers.*;
 import sample.gui.StaticData;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Editing {
@@ -13,6 +14,112 @@ public class Editing {
     private static ArrayList<String> listOfStringsTwo = new ArrayList<>();
     private static ArrayList<Double> listOfIDsOne = new ArrayList<>();
     private static ArrayList<Double> listOfIDsTwo = new ArrayList<>();
+
+    private static double objectIDToUpdate;
+
+    public static void updateInDatabase() throws SQLException {
+        //only for tests is this code below
+        /*for (DatabaseEnum.fields field : tupleParameters.keySet()) {
+            System.out.println(tupleParameters.get(field));;
+        }*/
+        if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.CONCERT){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NAME).get(0);
+            String date = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.DATE).get(0);
+            String numberOfSeatsString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS).get(0);
+            double numberOfSeats = Double.valueOf(numberOfSeatsString);
+            String ticketCostString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
+            double ticketCost = Double.valueOf(ticketCostString);
+            String type = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
+            String placeID = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> musiciansIDs = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.MUSICIANS);
+            try {
+                WydarzenieController.editWydarzenie(objectIDToUpdate, name,date, ticketCost, numberOfSeats, type, placeID, musiciansIDs);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.CABARET){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NAME).get(0);
+            String date = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.DATE).get(0);
+            String numberOfSeatsString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS).get(0);
+            double numberOfSeats = Double.valueOf(numberOfSeatsString);
+            String ticketCostString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
+            double ticketCost = Double.valueOf(ticketCostString);
+            String type = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
+            String placeID = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> performancesIDs = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES);
+            try {
+                WydarzenieController.editWydarzenie(objectIDToUpdate, name,date, ticketCost, numberOfSeats, type, placeID, performancesIDs);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.THEATRE_SPECTACLE){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NAME).get(0);
+            String date = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.DATE).get(0);
+            String numberOfSeatsString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS).get(0);
+            double numberOfSeats = Double.parseDouble(numberOfSeatsString);
+            String ticketCostString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TICKET_COST).get(0);
+            double ticketCost = Double.parseDouble(ticketCostString);
+            String type = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.TYPE).get(0);
+            String placeID = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.PLACE).get(0);
+            ArrayList<String> performancesIDs = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.eventFields.PERFORMANCES);
+            try {
+                WydarzenieController.editWydarzenie(objectIDToUpdate, name,date, ticketCost, numberOfSeats, type, placeID, performancesIDs);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.PERFORMANCE){
+            String title = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.performanceFields.TITLE).get(0);
+            String length = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.performanceFields.LENGTH).get(0);
+            String type = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.performanceFields.TYPE).get(0);
+            ArrayList<String> actors = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.performanceFields.ACTORS);
+            PrzedstawienieController.addPrzedstawienie(title, length, type, actors);
+
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.ACTOR){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.actorFields.NAME).get(0);
+            String surname = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.actorFields.SURNAME).get(0);
+            String bandName = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.actorFields.BAND_NAME).get(0);
+            ArrayList<String> performances = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.actorFields.PERFORMANCES);
+            AktorController.AddAktor(name,surname,bandName);
+
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.MUSICIAN){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicianFields.NAME).get(0);
+            String surname = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicianFields.SURNAME).get(0);
+            String nickName = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicianFields.NICKNAME).get(0);
+            MuzykController.addMuzyk(name,surname,nickName);
+
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.MUSIC_DISC){
+            String title = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicDiscFields.TITLE).get(0);
+            String releaseYearString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR).get(0);
+            int releaseYear = Integer.parseInt(releaseYearString);
+            ArrayList<String> musicians = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS);
+            ArrayList<String> songs = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.musicDiscFields.SONGS);
+
+            PlytaController.addPlyta(title,releaseYear,songs, musicians);
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.SONG){
+            String title = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.TITLE).get(0);
+            String releaseYearString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR).get(0);
+            int releaseYear = Integer.parseInt(releaseYearString);
+            String genre = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.GENRE).get(0);
+            String youtubeViewsString = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS).get(0);
+            Double youtubeViews = Double.valueOf(youtubeViewsString);
+            String musicianID = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.MUSICIAN).get(0);
+            String discID = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.songFields.MUSIC_DISC).get(0);
+            UtworController.addUtwor(title,releaseYear,genre,youtubeViews,musicianID,discID);
+
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.PLACE){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.placeFields.NAME).get(0);
+            String type = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.placeFields.TYPE).get(0);
+            String town_id = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.placeFields.TOWN).get(0);
+            MiejsceController.AddMiejsce(name,type,town_id);
+        }else if (AddingOrPrepareToUpdate.getTypeOfObject()==DatabaseEnum.objectTypes.TOWN){
+            String name = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.townFields.NAME).get(0);
+            String state = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.townFields.STATE).get(0);
+            String zipCode = AddingOrPrepareToUpdate.getElementFromTupleParameters(DatabaseEnum.townFields.ZIP_CODE).get(0);
+            MiejscowoscController.editMiejscowosc(objectIDToUpdate,name, state, zipCode);
+        }
+    }
 
     public static void directToEditScreen(DatabaseEnum.objectTypes type, double objectID) {
         ArrayList<Integer> numberOfFileds = StaticData.getActiveFieldsNumbers();
@@ -160,6 +267,7 @@ public class Editing {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        objectIDToUpdate=objectID;
     }
 
     public static ArrayList<String> getFilledFields() {
@@ -180,5 +288,13 @@ public class Editing {
 
     public static ArrayList<Double> getListOfIDsTwo() {
         return listOfIDsTwo;
+    }
+
+    public static double getObjectIDToUpdate() {
+        return objectIDToUpdate;
+    }
+
+    public static void setObjectIDToUpdate(double objectIDToUpdate) {
+        Editing.objectIDToUpdate = objectIDToUpdate;
     }
 }
