@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.database.controllers.*;
 import sample.gui.StaticData;
-import sample.guidata.admin.Adding;
+import sample.guidata.admin.AddingOrPrepareToUpdate;
 import sample.guidata.admin.DatabaseEnum;
 
 import java.sql.SQLException;
@@ -272,10 +272,10 @@ public class AdminAddScreenController extends Screen {
     @FXML
     public void addButtonMainClick(){
         addCorrectTypeOfObject();
-        Adding.clearTupleParameters();
+        AddingOrPrepareToUpdate.clearTupleParameters();
         addParametersOfTuple();
         try {
-            Adding.addToDatabase();
+            AddingOrPrepareToUpdate.addToDatabase();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -300,28 +300,28 @@ public class AdminAddScreenController extends Screen {
         String type = StaticData.getElementOfIngerention();
         if (type=="Event"){
             if (comboBox6.getValue()=="Koncert"){
-                Adding.setTypeOfObject(DatabaseEnum.objectTypes.CONCERT);
+                AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.CONCERT);
             }else if (comboBox6.getValue()=="Kabaret"){
-                Adding.setTypeOfObject(DatabaseEnum.objectTypes.CABARET);
+                AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.CABARET);
             }else if (comboBox6.getValue()=="Występ Teatralny"){
-                Adding.setTypeOfObject(DatabaseEnum.objectTypes.THEATRE_SPECTACLE);
+                AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.THEATRE_SPECTACLE);
             }
         }else if (type=="Person"){
             if (comboBox6.getValue()=="Aktor"){
-                Adding.setTypeOfObject(DatabaseEnum.objectTypes.ACTOR);
+                AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.ACTOR);
             }else if (comboBox6.getValue()=="Muzyk"){
-                Adding.setTypeOfObject(DatabaseEnum.objectTypes.MUSICIAN);
+                AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.MUSICIAN);
             }
         }else if (type=="Place"){
-            Adding.setTypeOfObject(DatabaseEnum.objectTypes.PLACE);
+            AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.PLACE);
         }else if (type=="Town"){
-            Adding.setTypeOfObject(DatabaseEnum.objectTypes.TOWN);
+            AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.TOWN);
         }else if (type=="Song"){
-            Adding.setTypeOfObject(DatabaseEnum.objectTypes.SONG);
+            AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.SONG);
         }else if (type=="MusicDisc"){
-            Adding.setTypeOfObject(DatabaseEnum.objectTypes.MUSIC_DISC);
+            AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.MUSIC_DISC);
         }else if (type=="Performance"){
-            Adding.setTypeOfObject(DatabaseEnum.objectTypes.PERFORMANCE);
+            AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.PERFORMANCE);
         }
     }
 
@@ -332,33 +332,33 @@ public class AdminAddScreenController extends Screen {
         if (type=="Event"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.NAME, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.NAME, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2,false));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.DATE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.DATE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField3,false));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.TICKET_COST, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.TICKET_COST, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField4,false));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfComboBox(comboBox6,false));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.TYPE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox7.getSelectionModel().getSelectedIndex();
             double id = idListOfElementsToComboBoxes1.get(numberComboBoxFiledSelected);
             parameters.add(String.valueOf(id));
-            Adding.addToTupleParameters(DatabaseEnum.eventFields.PLACE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.PLACE, parameters);
 
             parameters = new ArrayList<>();
             for (double i : idInListView1){
                 parameters.add(String.valueOf(i));
             }
             if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
-                Adding.addToTupleParameters(DatabaseEnum.eventFields.PERFORMANCES,parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.PERFORMANCES,parameters);
             }else if (comboBox6.getValue()=="Koncert"){
-                Adding.addToTupleParameters(DatabaseEnum.eventFields.MUSICIANS,parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.MUSICIANS,parameters);
             }
 
 
@@ -366,65 +366,65 @@ public class AdminAddScreenController extends Screen {
             if (subtype=="Aktor"){
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField1,false));
-                Adding.addToTupleParameters(DatabaseEnum.actorFields.NAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.NAME, parameters);
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField2,false));
-                Adding.addToTupleParameters(DatabaseEnum.actorFields.SURNAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.SURNAME, parameters);
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField3,true));
-                Adding.addToTupleParameters(DatabaseEnum.actorFields.BAND_NAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.BAND_NAME, parameters);
                 parameters = new ArrayList<>(getValuesOfListView(mainListView,true));
-                Adding.addToTupleParameters(DatabaseEnum.actorFields.PERFORMANCES, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.PERFORMANCES, parameters);
             }else if (subtype=="Muzyk"){
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField1,false));
-                Adding.addToTupleParameters(DatabaseEnum.musicianFields.NAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.NAME, parameters);
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField2,false));
-                Adding.addToTupleParameters(DatabaseEnum.musicianFields.SURNAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.SURNAME, parameters);
                 parameters = new ArrayList<>();
                 parameters.add(getValueOfField(textField3,true));
-                Adding.addToTupleParameters(DatabaseEnum.musicianFields.NICKNAME, parameters);
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.NICKNAME, parameters);
             }
         }else if (type=="Place"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.placeFields.NAME, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.NAME, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2,true));
-            Adding.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox6.getSelectionModel().getSelectedIndex();
             double id = idListOfElementsToComboBoxes1.get(numberComboBoxFiledSelected);
             parameters.add(String.valueOf(id));
-            Adding.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
         }else if (type=="Town"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.townFields.NAME, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.NAME, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2,true));
-            Adding.addToTupleParameters(DatabaseEnum.townFields.ZIP_CODE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.ZIP_CODE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfComboBox(comboBox6,false));
-            Adding.addToTupleParameters(DatabaseEnum.townFields.STATE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.STATE, parameters);
         }else if (type=="Song"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.songFields.TITLE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.TITLE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2,true));
-            Adding.addToTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField3,true));
-            Adding.addToTupleParameters(DatabaseEnum.songFields.GENRE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.GENRE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField4,true));
-            Adding.addToTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS, parameters);
             parameters = new ArrayList<>();
             int index = comboBox6.getSelectionModel().getSelectedIndex();
             parameters.add(String.valueOf(idListOfElementsToComboBoxes1.get(index)));
-            Adding.addToTupleParameters(DatabaseEnum.songFields.MUSICIAN, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.MUSICIAN, parameters);
             parameters = new ArrayList<>();
             int index2 = comboBox7.getSelectionModel().getSelectedIndex();
             if (index2!=-1){
@@ -432,42 +432,42 @@ public class AdminAddScreenController extends Screen {
             }else{
                 parameters.add(null);
             }
-            Adding.addToTupleParameters(DatabaseEnum.songFields.MUSIC_DISC, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.MUSIC_DISC, parameters);
 
 
         }else if (type=="MusicDisc"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.TITLE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.TITLE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2, true));
-            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR, parameters);
             parameters = new ArrayList<>();
             for (double i : idInListView1){
                 parameters.add(String.valueOf(i));
             }
-            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS,parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS,parameters);
             parameters = new ArrayList<>();
             for (double i : idInListView2){
                 parameters.add(String.valueOf(i));
             }
-            Adding.addToTupleParameters(DatabaseEnum.musicDiscFields.SONGS,parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.SONGS,parameters);
 
         }else if (type=="Performance"){
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField1,false));
-            Adding.addToTupleParameters(DatabaseEnum.performanceFields.TITLE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.TITLE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2,false));
-            Adding.addToTupleParameters(DatabaseEnum.performanceFields.LENGTH, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.LENGTH, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfComboBox(comboBox6,false));
-            Adding.addToTupleParameters(DatabaseEnum.performanceFields.TYPE, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.TYPE, parameters);
             parameters = new ArrayList<>();
             for (double i: idInListView1) {
                 parameters.add(String.valueOf(i));
             }
-            Adding.addToTupleParameters(DatabaseEnum.performanceFields.ACTORS, parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.ACTORS, parameters);
         }
     }
 

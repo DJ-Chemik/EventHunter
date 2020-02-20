@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Adding {
+public class AddingOrPrepareToUpdate {
 
     private static DatabaseEnum.objectTypes typeOfObject; //All options in DatabaseEnum enum class
     private static Map<DatabaseEnum.fields, ArrayList<String>> tupleParameters = new HashMap<>();
@@ -123,7 +123,7 @@ public class Adding {
     }
 
     public static void setTypeOfObject(DatabaseEnum.objectTypes typeOfObject) {
-        Adding.typeOfObject = typeOfObject;
+        AddingOrPrepareToUpdate.typeOfObject = typeOfObject;
     }
 
     public static void addToTupleParameters(DatabaseEnum.fields field, ArrayList<String> value){
