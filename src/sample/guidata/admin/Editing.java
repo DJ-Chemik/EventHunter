@@ -170,7 +170,7 @@ public class Editing {
                 }
                 listOfIDsOne = ids;
             } else if (type == DatabaseEnum.objectTypes.ACTOR) {
-                String name = AktorController.getBandNameFromAktor(objectID);
+                String name = AktorController.getNameFromAktor(objectID);
                 String surname = AktorController.getSurameFromAktor(objectID);
                 String bandname = AktorController.getBandNameFromAktor(objectID);
                 String specialization = "Aktor";

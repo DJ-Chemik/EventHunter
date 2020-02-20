@@ -210,10 +210,13 @@ public class UserMenuScreenController extends Screen {
 
     }
 
+    private static double eventID;
     @FXML
     public void showMoreInfoButtonClick() {
         // TODO: 18.02.2020 Keep data about actual view in static field when user show more info
-        // TODO: 18.02.2020 Open new panel with information about event
+        String s = listView.getSelectionModel().getSelectedItem();
+        eventID = eventsIdMap.get(s);
+        openScreenFromFXMLFilesPackage("UserInformationScreen.fxml");
     }
 
     @FXML
@@ -221,4 +224,7 @@ public class UserMenuScreenController extends Screen {
         openScreenFromFXMLFilesPackage("StartScreen.fxml");
     }
 
+    public static double getEventID() {
+        return eventID;
+    }
 }

@@ -16,19 +16,19 @@ public class MuzykController {
     private static CallableStatement callStat;
     private static int result;
 
-    public MuzykController(Connection conn){
+    public MuzykController(Connection conn) {
         connection = conn;
     }
 
     public static void addMuzyk(String imie, String nazwisko, String pseudonim) throws SQLException {
         prepStat = connection.prepareStatement("INSERT INTO muzyk(imie, nazwisko, pseudonim) VALUES(?,?,?)");
-        prepStat.setString(1,imie);
-        prepStat.setString(2,nazwisko);
-        prepStat.setString(3,pseudonim);
+        prepStat.setString(1, imie);
+        prepStat.setString(2, nazwisko);
+        prepStat.setString(3, pseudonim);
         result = prepStat.executeUpdate();
     }
 
-    public static void getAllFromMuzyk() throws SQLException{
+    public static void getAllFromMuzyk() throws SQLException {
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from muzyk");
     }
@@ -37,8 +37,8 @@ public class MuzykController {
         int count = -1;
         String query = "{? = call LiczbaUtworowMuzyka(?)}";
         callStat = connection.prepareCall(query);
-        callStat.registerOutParameter(1,Types.INTEGER);
-        callStat.setInt(1,count);
+        callStat.registerOutParameter(1, Types.INTEGER);
+        callStat.setInt(1, count);
         callStat.setDouble(2, idMuzyka);
         callStat.execute();
         return count;
@@ -46,25 +46,29 @@ public class MuzykController {
 
     public static void getOneMuzyk(double id) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from muzyk where id_muzyka = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         resultSet = prepStat.executeQuery();
     }
 
+    public static ArrayList<Double> getAllSongsFromMuzyk(double id) throws SQLException {
+        return UtworController.getAllIDsFromUtworByMusician(id);
+    }
+
     public static String getNameFromMuzyk(double id) throws SQLException {
-        return getOneParameterFromMuzyk(id,"imie");
+        return getOneParameterFromMuzyk(id, "imie");
     }
 
     public static String getSurameFromMuzyk(double id) throws SQLException {
-        return getOneParameterFromMuzyk(id,"nazwisko");
+        return getOneParameterFromMuzyk(id, "nazwisko");
     }
 
     public static String getNicknameFromMuzyk(double id) throws SQLException {
-        return getOneParameterFromMuzyk(id,"pseudonim");
+        return getOneParameterFromMuzyk(id, "pseudonim");
     }
 
     private static String getOneParameterFromMuzyk(double id, String whatDownload) throws SQLException {
         prepStat = connection.prepareStatement("SELECT " + whatDownload + " from muzyk where id_muzyka = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {
             return resultSet.getString(1);
@@ -72,18 +76,18 @@ public class MuzykController {
         return null;
     }
 
-    public static void editMuzyk(double id, String imie, String nazwisko, String pseudonim) throws SQLException{
+    public static void editMuzyk(double id, String imie, String nazwisko, String pseudonim) throws SQLException {
         prepStat = connection.prepareStatement("UPDATE muzyk SET imie = ? , nazwisko = ?, pseudonim = ? WHERE id_muzyka = ?");
-        prepStat.setString(1,imie);
-        prepStat.setString(2,nazwisko);
-        prepStat.setString(3,pseudonim);
-        prepStat.setDouble(4,id);
+        prepStat.setString(1, imie);
+        prepStat.setString(2, nazwisko);
+        prepStat.setString(3, pseudonim);
+        prepStat.setDouble(4, id);
         result = prepStat.executeUpdate();
     }
 
     public static void deleteMuzyk(double id) throws SQLException {
         prepStat = connection.prepareStatement("DELETE FROM muzyk WHERE id_muzyka = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         result = prepStat.executeUpdate();
     }
 
@@ -112,13 +116,15 @@ public class MuzykController {
             String imie = resultSet.getString(2);
             String nazwisko = resultSet.getString(3);
             String pseudonim = resultSet.getString(4);
-            String allString = imie + " \"" + pseudonim + "\" " + nazwisko  + " (id: " + idStr + ")";
+            String allString = imie + " \"" + pseudonim + "\" " + nazwisko + " (id: " + idStr + ")";
             temp.add(allString);
         }
         return temp;
     }
+
     private static ArrayList<Double> idList = new ArrayList<>();
-    public static ArrayList<Double> getListOfIDs(){
+
+    public static ArrayList<Double> getListOfIDs() {
         return idList;
     }
 }
