@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import sample.database.controllers.MiejscowoscController;
 import sample.database.controllers.WydarzenieController;
 
@@ -20,6 +21,8 @@ public class UserMenuScreenController extends Screen {
     private ComboBox<String> comboBoxTypeSelect, comboBoxStateSelect, comboBoxTownSelect;
     @FXML
     private Button showMoreInfoButton;
+    @FXML
+    private TextField searchTextField;
 
     private static Map<String, Double> eventsIdMap = new HashMap<>();
     private static Map<String, Double> townsIdMap = new HashMap<>();
@@ -144,6 +147,28 @@ public class UserMenuScreenController extends Screen {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void searchTextFieldChange() {
+        comboBoxTypeSelect.getSelectionModel().clearSelection();
+        comboBoxStateSelect.getSelectionModel().clearSelection();
+        comboBoxTownSelect.getSelectionModel().clearSelection();
+        String filterText = searchTextField.getText().toLowerCase();
+        ArrayList<String> allRecords = new ArrayList<>();
+        allRecords.clear();
+        for (String key : eventsIdMap.keySet()){
+            allRecords.add(key);
+        }
+        boolean found = false;
+        ArrayList<String> newRecordsToListView = new ArrayList<>();
+        for (String record : allRecords){
+            found = record.toLowerCase().contains(filterText);
+            if (found){
+                newRecordsToListView.add(record);
+            }
+        }
+        listView.getItems().setAll(newRecordsToListView);
     }
 
     // TODO: 19.02.2020 Add button(s) to cancel a restrict type/state/town
