@@ -2,17 +2,12 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.StringConverter;
-import javafx.util.converter.DateStringConverter;
-import javafx.util.converter.DateTimeStringConverter;
 import sample.database.controllers.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.AddingOrPrepareToUpdate;
 import sample.guidata.admin.DatabaseEnum;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class AdminAddScreenController extends Screen {
@@ -353,13 +348,72 @@ public class AdminAddScreenController extends Screen {
         // TODO: 19.02.2020
         if (!isDateOkFormat){
             System.out.println("Date uncorrect");
+            showUncorrectElement(textField2);
         }
         if (!isAllNumberFieldsOk){
             System.out.println("Number fields uncorrectly filled");
+            if (StaticData.getElementOfIngerention() == "Event") {
+                showUncorrectElement(textField3);
+                showUncorrectElement(textField4);
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                showUncorrectElement(textField2);
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                showUncorrectElement(textField2);
+                showUncorrectElement(textField4);
+            }
+            if (StaticData.getElementOfIngerention() == "Performance") {
+                showUncorrectElement(textField2);
+            }
         }
         if (!isAllNeededFieldsFilled){
             System.out.println("Fill all needed fields (witch * sign)");
+            showUncorrectElement(textField1);
+            if (StaticData.getElementOfIngerention() == "Event") {
+                showUncorrectElement(textField2);
+                showUncorrectElement(textField3);
+                showUncorrectElement(textField4);
+                showUncorrectElement(comboBox6);
+                showUncorrectElement(comboBox7);
+            }
+            if (StaticData.getElementOfIngerention() == "Person") {
+                showUncorrectElement(textField2);
+                showUncorrectElement(comboBox6);
+            }
+            if (StaticData.getElementOfIngerention() == "Place") {
+                showUncorrectElement(comboBox6);
+            }
+            if (StaticData.getElementOfIngerention() == "Town") {
+                showUncorrectElement(comboBox6);
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                showUncorrectElement(comboBox6);
+                showUncorrectElement(addButton6);
+                showUncorrectElement(comboBox7);
+                showUncorrectElement(addButton7);
+                showUncorrectElement(mainListView);
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                showUncorrectElement(comboBox6);
+            }
         }
+    }
+
+    private void showUncorrectElement(Control control){
+        new Thread(() -> {
+            String normalStyle = control.getStyle();
+            control.setStyle("-fx-background-color: #FF0000");
+            addButtonMain.setDisable(true);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            control.setStyle(normalStyle);
+            addButtonMain.setDisable(false);
+
+        }).start();
     }
 
     private void refresh() {
