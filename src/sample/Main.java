@@ -5,10 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import sample.database.ConnectionWithDatabase;
-import sample.database.controllers.AktorController;
-
-import java.sql.SQLException;
 
 public class Main extends Application {
 

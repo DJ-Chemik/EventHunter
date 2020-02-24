@@ -38,9 +38,9 @@ public class MuzykController {
         String query = "{? = call LiczbaUtworowMuzyka(?)}";
         callStat = connection.prepareCall(query);
         callStat.registerOutParameter(1, Types.INTEGER);
-        callStat.setInt(1, count);
         callStat.setDouble(2, idMuzyka);
         callStat.execute();
+        count = callStat.getInt(1);
         return count;
     }
 
