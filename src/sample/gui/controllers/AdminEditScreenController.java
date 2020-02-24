@@ -529,7 +529,7 @@ public class AdminEditScreenController extends Screen{
 
     private boolean isDateOkFormat =true;
     @FXML
-    public void changeTEetField2(){
+    public void changeTextField2(){
         addButtonMain.setDisable(true);
         if (StaticData.getElementOfIngerention()=="Event"){
             StaticData.getCorrectDateFormats().forEach(s -> {

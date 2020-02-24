@@ -12,9 +12,9 @@
    <children>
       <TextField fx:id="textField0" layoutX="140.0" layoutY="248.0" prefHeight="25.0" prefWidth="500.0" />
       <TextField fx:id="textField1" layoutX="140.0" layoutY="288.0" prefHeight="25.0" prefWidth="500.0" />
-      <TextField fx:id="textField2" layoutX="140.0" layoutY="328.0" onKeyReleased="#changeTEetField2" prefHeight="25.0" prefWidth="500.0" />
-      <TextField fx:id="textField3" layoutX="140.0" layoutY="368.0" prefHeight="25.0" prefWidth="500.0" />
-      <TextField fx:id="textField4" layoutX="140.0" layoutY="408.0" prefHeight="25.0" prefWidth="500.0" />
+      <TextField fx:id="textField2" layoutX="140.0" layoutY="328.0" onKeyReleased="#changeTextField2" prefHeight="25.0" prefWidth="500.0" />
+      <TextField fx:id="textField3" layoutX="140.0" layoutY="368.0" onKeyReleased="#changeTextField3" prefHeight="25.0" prefWidth="500.0" />
+      <TextField fx:id="textField4" layoutX="140.0" layoutY="408.0" onKeyReleased="#changeTextField4" prefHeight="25.0" prefWidth="500.0" />
       <TextField fx:id="textField5" layoutX="140.0" layoutY="448.0" prefHeight="25.0" prefWidth="500.0" />
       <Label fx:id="label1" layoutX="25.0" layoutY="292.0" text="Label 1" />
       <Label fx:id="label2" layoutX="25.0" layoutY="330.0" text="Label 2" />

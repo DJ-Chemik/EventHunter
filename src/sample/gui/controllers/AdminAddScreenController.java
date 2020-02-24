@@ -48,7 +48,7 @@ public class AdminAddScreenController extends Screen {
 
     }
 
-    private void addElementsofViewToArrays(){
+    private void addElementsofViewToArrays() {
         labels.add(label0);
         labels.add(label1);
         labels.add(label2);
@@ -83,8 +83,8 @@ public class AdminAddScreenController extends Screen {
         fields.addAll(comboBoxes);
     }
 
-    private void displayOnlyNeededFieldsAndLabels(){
-        int[] j= {0};
+    private void displayOnlyNeededFieldsAndLabels() {
+        int[] j = {0};
         StaticData.getActiveFieldsNumbers().forEach(
                 (i) -> {
                     labels.get(i).setVisible(true);
@@ -94,10 +94,10 @@ public class AdminAddScreenController extends Screen {
                 });
     }
 
-    private void specificTypeDataInitialize(){
-        if (StaticData.getTypeOfIngerention()=="Add"){
+    private void specificTypeDataInitialize() {
+        if (StaticData.getTypeOfIngerention() == "Add") {
 
-            if (StaticData.getElementOfIngerention()=="Event"){
+            if (StaticData.getElementOfIngerention() == "Event") {
                 textField2.setPromptText("RRRR/MM/DD");
                 comboBox6.setEditable(false);
                 comboBox7.setEditable(false);
@@ -106,17 +106,17 @@ public class AdminAddScreenController extends Screen {
                 comboBox6.getItems().add("Występ Teatralny");
                 addPlacesToComboBox();
                 idListOfElementsToComboBoxes1.clear();
-                idListOfElementsToComboBoxes1=MiejsceController.getListOfIDs();
+                idListOfElementsToComboBoxes1 = MiejsceController.getListOfIDs();
                 idListOfElementsToComboBoxes2.clear();
-                isDateOkFormat=false;
+                isDateOkFormat = false;
 
             }
-            if (StaticData.getElementOfIngerention()=="Person"){
+            if (StaticData.getElementOfIngerention() == "Person") {
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
             }
-            if (StaticData.getElementOfIngerention()=="Place"){
+            if (StaticData.getElementOfIngerention() == "Place") {
                 //addButton7.setVisible(true);
                 //addButton7.setDisable(true);
                 comboBox6.setEditable(false);
@@ -128,12 +128,12 @@ public class AdminAddScreenController extends Screen {
                     e.printStackTrace();
                 }
             }
-            if (StaticData.getElementOfIngerention()=="Town"){
+            if (StaticData.getElementOfIngerention() == "Town") {
                 addStatesToComboBox();
                 comboBox6.setEditable(false);
                 comboBox6.setPromptText("Wybierz wojewódzwtwo");
             }
-            if (StaticData.getElementOfIngerention()=="MusicDisc"){
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
                 addButton6.setVisible(true);
                 addButton6.setDisable(true);
                 addButton7.setVisible(true);
@@ -147,7 +147,7 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes2.clear();
                 idListOfElementsToComboBoxes2 = UtworController.getListOfIDs();
             }
-            if (StaticData.getElementOfIngerention()=="Song"){
+            if (StaticData.getElementOfIngerention() == "Song") {
                 comboBox6.setEditable(false);
                 comboBox7.setEditable(false);
                 addMusiciansToComboBox6();
@@ -157,7 +157,7 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes2.clear();
                 idListOfElementsToComboBoxes2 = PlytaController.getListOfIDs();
             }
-            if (StaticData.getElementOfIngerention()=="Performance"){
+            if (StaticData.getElementOfIngerention() == "Performance") {
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Kabaret");
                 comboBox6.getItems().add("Występ Teatralny");
@@ -169,14 +169,14 @@ public class AdminAddScreenController extends Screen {
                 addButton7.setDisable(true);
             }
 
-        }else if (StaticData.getTypeOfIngerention()=="Edit"){
+        } else if (StaticData.getTypeOfIngerention() == "Edit") {
 
-        }else if (StaticData.getTypeOfIngerention()=="Delete"){
+        } else if (StaticData.getTypeOfIngerention() == "Delete") {
 
         }
     }
 
-    private void addStatesToComboBox(){
+    private void addStatesToComboBox() {
         comboBox6.getItems().add("Dolnośląskie");
         comboBox6.getItems().add("Kujawsko-Pomorskie");
         comboBox6.getItems().add("Lubelskie");
@@ -195,7 +195,7 @@ public class AdminAddScreenController extends Screen {
         comboBox6.getItems().add("Zachodniopomorskie");
     }
 
-    private void addTownsToComboBox(){
+    private void addTownsToComboBox() {
         try {
             MiejscowoscController.getAllFromMiejscowosc();
             ArrayList<String> towns = MiejscowoscController.getListOfStrings();
@@ -206,7 +206,7 @@ public class AdminAddScreenController extends Screen {
 
     }
 
-    private void addActorsToComboBox(){
+    private void addActorsToComboBox() {
         try {
             AktorController.getAllFromAktor();
             ArrayList<String> actors = AktorController.getListOfStrings();
@@ -216,7 +216,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addMusiciansToComboBox6(){
+    private void addMusiciansToComboBox6() {
         try {
             MuzykController.getAllFromMuzyk();
             ArrayList<String> musicians = MuzykController.getListOfStrings();
@@ -226,7 +226,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addMusiciansToComboBox8(){
+    private void addMusiciansToComboBox8() {
         try {
             MuzykController.getAllFromMuzyk();
             ArrayList<String> musicians = MuzykController.getListOfStrings();
@@ -236,7 +236,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addPerformancesToComboBox(){
+    private void addPerformancesToComboBox() {
         try {
             PrzedstawienieController.getAllFromPrzedstawienie();
             ArrayList<String> performances = PrzedstawienieController.getListOfStrings();
@@ -246,7 +246,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addPlacesToComboBox(){
+    private void addPlacesToComboBox() {
         try {
             MiejsceController.getAllFromMiejsce();
             ArrayList<String> places = MiejsceController.getListOfStrings();
@@ -256,7 +256,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addMusicDiscsToComboBox(){
+    private void addMusicDiscsToComboBox() {
         try {
             PlytaController.getAllFromPlyta();
             ArrayList<String> discs = PlytaController.getListOfStrings();
@@ -266,7 +266,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void addSongsToComboBox(){
+    private void addSongsToComboBox() {
         try {
             UtworController.getAllFromUtwor();
             ArrayList<String> songs = UtworController.getListOfStrings();
@@ -277,19 +277,28 @@ public class AdminAddScreenController extends Screen {
     }
 
     @FXML
-    public void addButtonMainClick(){
-        addCorrectTypeOfObject();
-        AddingOrPrepareToUpdate.clearTupleParameters();
-        addParametersOfTuple();
-        try {
-            AddingOrPrepareToUpdate.addToDatabase();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void addButtonMainClick() {
+        if (isDateOkFormat && isAllNumberFieldsOk){
+            addCorrectTypeOfObject();
+            AddingOrPrepareToUpdate.clearTupleParameters();
+            addParametersOfTuple();
+            try {
+                AddingOrPrepareToUpdate.addToDatabase();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            refresh();
+        }else{
+            checkWitchFieldsWrong();
         }
-        refresh();
     }
 
-    private void refresh(){
+    private void checkWitchFieldsWrong(){
+        // TODO: 24.02.2020
+        System.out.println("DUPA");
+    }
+
+    private void refresh() {
         Runnable runnable = () -> {
             addButtonMain.setStyle("-fx-background-color: #DDDDDD");
             try {
@@ -303,54 +312,54 @@ public class AdminAddScreenController extends Screen {
         textFields.forEach(textField -> textField.clear());
     }
 
-    private void addCorrectTypeOfObject(){
+    private void addCorrectTypeOfObject() {
         String type = StaticData.getElementOfIngerention();
-        if (type=="Event"){
-            if (comboBox6.getValue()=="Koncert"){
+        if (type == "Event") {
+            if (comboBox6.getValue() == "Koncert") {
                 AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.CONCERT);
-            }else if (comboBox6.getValue()=="Kabaret"){
+            } else if (comboBox6.getValue() == "Kabaret") {
                 AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.CABARET);
-            }else if (comboBox6.getValue()=="Występ Teatralny"){
+            } else if (comboBox6.getValue() == "Występ Teatralny") {
                 AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.THEATRE_SPECTACLE);
             }
-        }else if (type=="Person"){
-            if (comboBox6.getValue()=="Aktor"){
+        } else if (type == "Person") {
+            if (comboBox6.getValue() == "Aktor") {
                 AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.ACTOR);
-            }else if (comboBox6.getValue()=="Muzyk"){
+            } else if (comboBox6.getValue() == "Muzyk") {
                 AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.MUSICIAN);
             }
-        }else if (type=="Place"){
+        } else if (type == "Place") {
             AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.PLACE);
-        }else if (type=="Town"){
+        } else if (type == "Town") {
             AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.TOWN);
-        }else if (type=="Song"){
+        } else if (type == "Song") {
             AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.SONG);
-        }else if (type=="MusicDisc"){
+        } else if (type == "MusicDisc") {
             AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.MUSIC_DISC);
-        }else if (type=="Performance"){
+        } else if (type == "Performance") {
             AddingOrPrepareToUpdate.setTypeOfObject(DatabaseEnum.objectTypes.PERFORMANCE);
         }
     }
 
-    private void addParametersOfTuple(){
+    private void addParametersOfTuple() {
         String type = StaticData.getElementOfIngerention();
         String subtype = comboBox6.getValue();
         ArrayList<String> parameters;
-        if (type=="Event"){
+        if (type == "Event") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.NAME, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField2,false));
+            parameters.add(getValueOfField(textField2, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.DATE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField3,false));
+            parameters.add(getValueOfField(textField3, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.TICKET_COST, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField4,false));
+            parameters.add(getValueOfField(textField4, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.NUMBER_OF_SEATS, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,false));
+            parameters.add(getValueOfComboBox(comboBox6, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox7.getSelectionModel().getSelectedIndex();
@@ -359,74 +368,74 @@ public class AdminAddScreenController extends Screen {
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.PLACE, parameters);
 
             parameters = new ArrayList<>();
-            for (double i : idInListView1){
+            for (double i : idInListView1) {
                 parameters.add(String.valueOf(i));
             }
-            if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
-                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.PERFORMANCES,parameters);
-            }else if (comboBox6.getValue()=="Koncert"){
-                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.MUSICIANS,parameters);
+            if (comboBox6.getValue() == "Kabaret" || comboBox6.getValue() == "Występ Teatralny") {
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.PERFORMANCES, parameters);
+            } else if (comboBox6.getValue() == "Koncert") {
+                AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.eventFields.MUSICIANS, parameters);
             }
 
 
-        }else if (type=="Person"){
-            if (subtype=="Aktor"){
+        } else if (type == "Person") {
+            if (subtype == "Aktor") {
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField1,false));
+                parameters.add(getValueOfField(textField1, false));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.NAME, parameters);
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField2,false));
+                parameters.add(getValueOfField(textField2, false));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.SURNAME, parameters);
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField3,true));
+                parameters.add(getValueOfField(textField3, true));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.BAND_NAME, parameters);
-                parameters = new ArrayList<>(getValuesOfListView(mainListView,true));
+                parameters = new ArrayList<>(getValuesOfListView(mainListView, true));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.actorFields.PERFORMANCES, parameters);
-            }else if (subtype=="Muzyk"){
+            } else if (subtype == "Muzyk") {
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField1,false));
+                parameters.add(getValueOfField(textField1, false));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.NAME, parameters);
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField2,false));
+                parameters.add(getValueOfField(textField2, false));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.SURNAME, parameters);
                 parameters = new ArrayList<>();
-                parameters.add(getValueOfField(textField3,true));
+                parameters.add(getValueOfField(textField3, true));
                 AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicianFields.NICKNAME, parameters);
             }
-        }else if (type=="Place"){
+        } else if (type == "Place") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.NAME, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField2,true));
+            parameters.add(getValueOfField(textField2, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.TYPE, parameters);
             parameters = new ArrayList<>();
             int numberComboBoxFiledSelected = comboBox6.getSelectionModel().getSelectedIndex();
             double id = idListOfElementsToComboBoxes1.get(numberComboBoxFiledSelected);
             parameters.add(String.valueOf(id));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.placeFields.TOWN, parameters);
-        }else if (type=="Town"){
+        } else if (type == "Town") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.NAME, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField2,true));
+            parameters.add(getValueOfField(textField2, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.ZIP_CODE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,false));
+            parameters.add(getValueOfComboBox(comboBox6, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.townFields.STATE, parameters);
-        }else if (type=="Song"){
+        } else if (type == "Song") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.TITLE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField2,true));
+            parameters.add(getValueOfField(textField2, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.RELEASE_YEAR, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField3,true));
+            parameters.add(getValueOfField(textField3, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.GENRE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField4,true));
+            parameters.add(getValueOfField(textField4, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.YOUTUBE_VIEWS, parameters);
             parameters = new ArrayList<>();
             int index = comboBox6.getSelectionModel().getSelectedIndex();
@@ -434,111 +443,171 @@ public class AdminAddScreenController extends Screen {
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.MUSICIAN, parameters);
             parameters = new ArrayList<>();
             int index2 = comboBox7.getSelectionModel().getSelectedIndex();
-            if (index2!=-1){
+            if (index2 != -1) {
                 parameters.add(String.valueOf(idListOfElementsToComboBoxes2.get(index2)));
-            }else{
+            } else {
                 parameters.add(null);
             }
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.songFields.MUSIC_DISC, parameters);
 
 
-        }else if (type=="MusicDisc"){
+        } else if (type == "MusicDisc") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.TITLE, parameters);
             parameters = new ArrayList<>();
             parameters.add(getValueOfField(textField2, true));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.RELEASE_YEAR, parameters);
             parameters = new ArrayList<>();
-            for (double i : idInListView1){
+            for (double i : idInListView1) {
                 parameters.add(String.valueOf(i));
             }
-            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS,parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.MUSICIANS, parameters);
             parameters = new ArrayList<>();
-            for (double i : idInListView2){
+            for (double i : idInListView2) {
                 parameters.add(String.valueOf(i));
             }
-            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.SONGS,parameters);
+            AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.musicDiscFields.SONGS, parameters);
 
-        }else if (type=="Performance"){
+        } else if (type == "Performance") {
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField1,false));
+            parameters.add(getValueOfField(textField1, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.TITLE, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfField(textField2,false));
+            parameters.add(getValueOfField(textField2, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.LENGTH, parameters);
             parameters = new ArrayList<>();
-            parameters.add(getValueOfComboBox(comboBox6,false));
+            parameters.add(getValueOfComboBox(comboBox6, false));
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.TYPE, parameters);
             parameters = new ArrayList<>();
-            for (double i: idInListView1) {
+            for (double i : idInListView1) {
                 parameters.add(String.valueOf(i));
             }
             AddingOrPrepareToUpdate.addToTupleParameters(DatabaseEnum.performanceFields.ACTORS, parameters);
         }
     }
 
-    private boolean isDateOkFormat =true;
-    @FXML
-    public void changeTEetField2(){
-        addButtonMain.setDisable(true);
-        if (StaticData.getElementOfIngerention()=="Event"){
-            StaticData.getCorrectDateFormats().forEach(s -> {
-                if (textField2.getText().matches(s)){
-                    isDateOkFormat = true;
-                }
-            });
+    private boolean isDateOkFormat = true; //only in Event isn't
+    private boolean isAllNumberFieldsOk = false;
+    private boolean isAllNeededFieldsFilled = false;
 
+    @FXML
+    public void changeTextField2() {
+        if (StaticData.getElementOfIngerention() == "Event") {
+            String text = textField2.getText();
+            for (String s : StaticData.getCorrectDateFormats()) {
+                if (text.matches(s)) {
+                    isDateOkFormat = true;
+                    break;
+                } else {
+                    isDateOkFormat = false;
+                }
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (textField2.getText().matches("[0-2][0-9][0-9][0-9]")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
+            if (textField2.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            if (textField2.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+    }
+
+    @FXML
+    public void changeTextField3() {
+        if (StaticData.getElementOfIngerention() == "Event") {
+            if (textField3.getText().matches("[0-9]+")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+
+    }
+
+    @FXML
+    public void changeTextField4() {
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (textField2.getText().matches("[0-2][0-9][0-9][0-9]")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Event") {
+            if (textField3.getText().matches("[0-9]+")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
         }
     }
 
     private int concertOrPerformanceInComboBox6 = -1;
 
     @FXML
-    public void changeComboBox6(){
-        if (StaticData.getElementOfIngerention()=="Event"){
+    public void changeComboBox6() {
+        if (StaticData.getElementOfIngerention() == "Event") {
             label8.setVisible(true);
             comboBox8.setVisible(true);
             addButton8.setVisible(true);
             addButton8.setDisable(true);
             comboBox8.setEditable(false);
-            if (comboBox6.getValue()=="Koncert"){
+            if (comboBox6.getValue() == "Koncert") {
                 label8.setText("Muzycy");
                 comboBox8.getItems().clear();
                 addMusiciansToComboBox8();
-                if (concertOrPerformanceInComboBox6!=0){
+                if (concertOrPerformanceInComboBox6 != 0) {
                     mainListView.getItems().clear();
                     idInListView1.clear();
                     idListOfElementsToComboBoxes2.clear();
-                    idListOfElementsToComboBoxes2=MuzykController.getListOfIDs();
-                    concertOrPerformanceInComboBox6=0;
+                    idListOfElementsToComboBoxes2 = MuzykController.getListOfIDs();
+                    concertOrPerformanceInComboBox6 = 0;
                 }
-            }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
+            } else if (comboBox6.getValue() == "Kabaret" || comboBox6.getValue() == "Występ Teatralny") {
                 label8.setText("Przedstawienia");
                 comboBox8.getItems().clear();
                 addPerformancesToComboBox();
-                if (concertOrPerformanceInComboBox6!=1){
+                if (concertOrPerformanceInComboBox6 != 1) {
                     mainListView.getItems().clear();
                     idInListView1.clear();
                     idListOfElementsToComboBoxes2.clear();
-                    idListOfElementsToComboBoxes2=PrzedstawienieController.getListOfIDs();
-                    concertOrPerformanceInComboBox6=1;
+                    idListOfElementsToComboBoxes2 = PrzedstawienieController.getListOfIDs();
+                    concertOrPerformanceInComboBox6 = 1;
                 }
 
             }
         }
-        if (StaticData.getElementOfIngerention()=="Person"){
+        if (StaticData.getElementOfIngerention() == "Person") {
             label3.setVisible(true);
             textField3.setVisible(true);
-            if (comboBox6.getValue()=="Muzyk"){
+            if (comboBox6.getValue() == "Muzyk") {
                 label0.setText("ID Muzyka");
                 label3.setText("Pseudonim");
-            }else if (comboBox6.getValue()=="Aktor"){
+            } else if (comboBox6.getValue() == "Aktor") {
                 label0.setText("ID Aktora");
                 label3.setText("Nazwa Grupy");
             }
         }
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             addButton6.setDisable(false);
         }
 
@@ -549,46 +618,47 @@ public class AdminAddScreenController extends Screen {
         if (StaticData.getElementOfIngerention() == "Performance") {
             addButton7.setDisable(false);
         }
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             addButton7.setDisable(false);
         }
     }
 
     @FXML
-    public void changeComboBox8(){
-        if (StaticData.getElementOfIngerention()=="Event"){
+    public void changeComboBox8() {
+        if (StaticData.getElementOfIngerention() == "Event") {
             addButton8.setDisable(false);
         }
     }
 
     @FXML
-    public void changeComboBox9(){
+    public void changeComboBox9() {
 
     }
 
 
     private boolean isThisIdInListView(double id, int numberOfList) {
         if (numberOfList == 1) {
-            for (double idd:idInListView1) {
-                if (idd==id){
+            for (double idd : idInListView1) {
+                if (idd == id) {
                     return true;
                 }
             }
         } else if (numberOfList == 2) {
-            for (Double idd:idInListView2) {
-                if (idd==id){
+            for (Double idd : idInListView2) {
+                if (idd == id) {
                     return true;
                 }
             }
         }
         return false;
     }
+
     private ArrayList<String> additionalListViewData = new ArrayList<>();
 
     private int actualListViewInView = 0;
 
-    private void swapListView(int newNumberOfListView){
-        if (newNumberOfListView!=actualListViewInView) {
+    private void swapListView(int newNumberOfListView) {
+        if (newNumberOfListView != actualListViewInView) {
             ArrayList<String> tmpListView = new ArrayList<>();
             for (String s : mainListView.getItems()) {
                 tmpListView.add(s);
@@ -596,85 +666,85 @@ public class AdminAddScreenController extends Screen {
             mainListView.getItems().clear();
             mainListView.getItems().addAll(additionalListViewData);
             additionalListViewData = tmpListView;
-            actualListViewInView=newNumberOfListView;
+            actualListViewInView = newNumberOfListView;
         }
     }
 
     @FXML
-    public void clickComboBox6(){
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+    public void clickComboBox6() {
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             swapListView(1);
         }
     }
 
     @FXML
-    public void clickComboBox7(){
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+    public void clickComboBox7() {
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             swapListView(2);
         }
     }
 
     @FXML
-    public void addButton6Click(){
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+    public void addButton6Click() {
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             int selectedField = comboBox6.getSelectionModel().getSelectedIndex();
             double selectedMusicianID = idListOfElementsToComboBoxes1.get(selectedField);
-            if (isThisIdInListView(selectedMusicianID,1)==false){
+            if (isThisIdInListView(selectedMusicianID, 1) == false) {
                 String actualFieldOfComboBox = comboBox6.getItems().get(selectedField);
                 mainListView.getItems().add(actualFieldOfComboBox);
                 idInListView1.add(selectedMusicianID);
-            }else {
+            } else {
                 System.out.println("This Musician exists in this Disc now.");
             }
         }
     }
 
     @FXML
-    public void addButton7Click(){
+    public void addButton7Click() {
         if (StaticData.getElementOfIngerention() == "Performance") {
             int selectedField = comboBox7.getSelectionModel().getSelectedIndex();
             double selectedActorID = idListOfElementsToComboBoxes1.get(selectedField);
-            if (isThisIdInListView(selectedActorID, 1)==false){
+            if (isThisIdInListView(selectedActorID, 1) == false) {
                 String actualFieldOfComboBox = comboBox7.getItems().get(selectedField);
                 mainListView.getItems().add(actualFieldOfComboBox);
                 idInListView1.add(selectedActorID);
-            }else{
+            } else {
                 System.out.println("This Actor exists in this Performance now.");
             }
         }
-        if (StaticData.getElementOfIngerention()=="MusicDisc"){
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
             int selectedField = comboBox7.getSelectionModel().getSelectedIndex();
             double selectedSongID = idListOfElementsToComboBoxes2.get(selectedField);
-            if (isThisIdInListView(selectedSongID,2)==false){
+            if (isThisIdInListView(selectedSongID, 2) == false) {
                 String actualFieldOfComboBox = comboBox7.getItems().get(selectedField);
                 mainListView.getItems().add(actualFieldOfComboBox);
                 idInListView2.add(selectedSongID);
-            }else {
+            } else {
                 System.out.println("This Song exists in this Disc now.");
             }
         }
     }
 
     @FXML
-    public void addButton8Click(){
-        if (StaticData.getElementOfIngerention()=="Event"){
+    public void addButton8Click() {
+        if (StaticData.getElementOfIngerention() == "Event") {
             int selectedField = comboBox8.getSelectionModel().getSelectedIndex();
             double selectedSongID = idListOfElementsToComboBoxes2.get(selectedField);
-            if (comboBox6.getValue()=="Koncert"){
-                if (isThisIdInListView(selectedSongID,1)==false){
+            if (comboBox6.getValue() == "Koncert") {
+                if (isThisIdInListView(selectedSongID, 1) == false) {
                     String actualFieldOfComboBox = comboBox8.getItems().get(selectedField);
                     mainListView.getItems().add(actualFieldOfComboBox);
                     idInListView1.add(selectedSongID);
-                }else {
+                } else {
                     System.out.println("This Musician exists in this Event now.");
                 }
 
-            }else if (comboBox6.getValue()=="Kabaret" || comboBox6.getValue()=="Występ Teatralny"){
-                if (isThisIdInListView(selectedSongID,1)==false){
+            } else if (comboBox6.getValue() == "Kabaret" || comboBox6.getValue() == "Występ Teatralny") {
+                if (isThisIdInListView(selectedSongID, 1) == false) {
                     String actualFieldOfComboBox = comboBox8.getItems().get(selectedField);
                     mainListView.getItems().add(actualFieldOfComboBox);
                     idInListView1.add(selectedSongID);
-                }else {
+                } else {
                     System.out.println("This Performance exists in this Event now.");
                 }
 
@@ -683,33 +753,32 @@ public class AdminAddScreenController extends Screen {
     }
 
     @FXML
-    public void addButton9Click(){
+    public void addButton9Click() {
 
     }
 
     /**
-     *
      * @return text from textField with or without blocade of return empty string
      */
-    private String getValueOfField(TextField textField, boolean canBeEmpty){
-        if (canBeEmpty){
+    private String getValueOfField(TextField textField, boolean canBeEmpty) {
+        if (canBeEmpty) {
             return textField.getText();
-        }else{
-            if (textField.getText().isEmpty()){
+        } else {
+            if (textField.getText().isEmpty()) {
                 throw new NullPointerException();
-            }else{
+            } else {
                 return textField.getText();
             }
         }
     }
 
-    private String getValueOfComboBox(ComboBox<String> comboBox, boolean canBeEmpty){
-        if (canBeEmpty){
+    private String getValueOfComboBox(ComboBox<String> comboBox, boolean canBeEmpty) {
+        if (canBeEmpty) {
             return comboBox.getValue();
-        }else{
-            if (comboBox.getValue().isEmpty()){
+        } else {
+            if (comboBox.getValue().isEmpty()) {
                 throw new NullPointerException();
-            }else{
+            } else {
                 return comboBox.getValue();
             }
         }
@@ -734,7 +803,7 @@ public class AdminAddScreenController extends Screen {
 
 
     @FXML
-    public void backButtonClick(){
+    public void backButtonClick() {
         openScreenFromFXMLFilesPackage("AdminMenuScreen.fxml");
     }
 }
