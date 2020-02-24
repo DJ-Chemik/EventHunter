@@ -168,6 +168,7 @@ public class AdminEditScreenController extends Screen{
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention()=="Place"){
                 //addButton7.setVisible(true);
@@ -180,11 +181,13 @@ public class AdminEditScreenController extends Screen{
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention()=="Town"){
                 addStatesToComboBox();
                 comboBox6.setEditable(false);
                 comboBox6.setPromptText("Wybierz wojewódzwtwo");
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention()=="MusicDisc"){
                 addButton6.setVisible(true);

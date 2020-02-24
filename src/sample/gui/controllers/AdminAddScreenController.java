@@ -104,12 +104,12 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes1 = MiejsceController.getListOfIDs();
                 idListOfElementsToComboBoxes2.clear();
                 isDateOkFormat = false;
-
             }
             if (StaticData.getElementOfIngerention() == "Person") {
                 comboBox6.setEditable(false);
                 comboBox6.getItems().add("Muzyk");
                 comboBox6.getItems().add("Aktor");
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention() == "Place") {
                 //addButton7.setVisible(true);
@@ -122,11 +122,13 @@ public class AdminAddScreenController extends Screen {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention() == "Town") {
                 addStatesToComboBox();
                 comboBox6.setEditable(false);
                 comboBox6.setPromptText("Wybierz wojewódzwtwo");
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention() == "MusicDisc") {
                 addButton6.setVisible(true);
@@ -367,6 +369,7 @@ public class AdminAddScreenController extends Screen {
                 showUncorrectElement(textField2);
             }
         }
+
         if (!isAllNeededFieldsFilled){
             System.out.println("Fill all needed fields (witch * sign)");
             showUncorrectElement(textField1);
@@ -400,7 +403,7 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
-    private void showUncorrectElement(Control control){
+    private synchronized void showUncorrectElement(Control control){
         new Thread(() -> {
             String normalStyle = control.getStyle();
             control.setStyle("-fx-background-color: #FF0000");
