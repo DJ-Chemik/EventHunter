@@ -278,7 +278,8 @@ public class AdminAddScreenController extends Screen {
 
     @FXML
     public void addButtonMainClick() {
-        if (isDateOkFormat && isAllNumberFieldsOk){
+        isAllNeededFieldsFilled();
+        if (isDateOkFormat && isAllNumberFieldsOk && isAllNeededFieldsFilled){
             addCorrectTypeOfObject();
             AddingOrPrepareToUpdate.clearTupleParameters();
             addParametersOfTuple();
@@ -293,9 +294,72 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
+    private boolean isAllNeededFieldsFilled(){
+        if (textField1.getText().isEmpty()){
+            isAllNeededFieldsFilled = false;
+            return false;
+        }
+
+        if (StaticData.getElementOfIngerention() == "Event") {
+            boolean b1 = textField2.getText().isEmpty();
+            boolean b2 = textField3.getText().isEmpty();
+            boolean b3 = textField4.getText().isEmpty();
+            int i1 = comboBox6.getSelectionModel().getSelectedIndex();
+            int i2 = comboBox7.getSelectionModel().getSelectedIndex();
+            if (!b1 && !b2 && !b3 && i1!=-1 && i2!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+
+        }
+        if (StaticData.getElementOfIngerention() == "Person") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1 && textField2.getText().isEmpty()==false){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Place") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Town") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
+            if (!idInListView1.isEmpty() && !idInListView2.isEmpty()){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            isAllNeededFieldsFilled=true;
+            return true;
+        }
+        return false;
+    }
+
     private void checkWitchFieldsWrong(){
-        // TODO: 24.02.2020
-        System.out.println("DUPA");
+        // TODO: 19.02.2020
+        if (!isDateOkFormat){
+            System.out.println("Date uncorrect");
+        }
+        if (!isAllNumberFieldsOk){
+            System.out.println("Number fields uncorrectly filled");
+        }
+        if (!isAllNeededFieldsFilled){
+            System.out.println("Fill all needed fields (witch * sign)");
+        }
     }
 
     private void refresh() {
