@@ -143,7 +143,11 @@ public class UtworController {
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {
-            return resultSet.getString(1);
+            if (whatDownload.equals("ilość_wyświetleń_na_yt")){
+                return String.valueOf(resultSet.getInt(1));
+            }else{
+                return resultSet.getString(1);
+            }
         }
         return null;
     }
@@ -204,7 +208,7 @@ public class UtworController {
             String tytul = resultSet.getString(2);
             String rokWydania = String.valueOf(resultSet.getInt(3));
             String gatunek = resultSet.getString(4);
-            String wyswietlenia = String.valueOf(resultSet.getDouble(5));
+            String wyswietlenia = String.valueOf(resultSet.getInt(5));
             String idMuzyka = String.valueOf(resultSet.getDouble(6));
             double idPlyty =  resultSet.getDouble(7);
             String idPlytyStr = String.valueOf(idPlyty);

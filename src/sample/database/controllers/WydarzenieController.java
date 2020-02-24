@@ -114,7 +114,6 @@ public class WydarzenieController {
         prepStat.setDouble(6, placeIdDouble);
         prepStat.setDouble(7,id);
         result = prepStat.executeUpdate();
-       //  TODO: 20.02.2020 Jeśli zmienimy typ wydarzenia to niech to zaktualizuje w tych podtabelach!!! IMPORTANT!!!
         if(!oldType.toUpperCase().equals(typ.toUpperCase())){
             //  Usuwanie starego wpisu
             if (oldType.toUpperCase().equals("KABARET")) {
@@ -218,7 +217,6 @@ public class WydarzenieController {
 
     public static void getSelectedWydarzenie(ArrayList<Double> eventsIDs) throws SQLException {
        // statement = connection.createStatement();
-        // TODO: 18.02.2020 Download events which IDs is in eventsIDs parameter
         prepStat = connection.prepareStatement("SELECT * from wydarzenie WHERE id_wydarzenia IN ?");
         prepStat.setObject(1,eventsIDs);
         resultSet = prepStat.executeQuery();
@@ -312,7 +310,11 @@ public class WydarzenieController {
         prepStat.setDouble(1,id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {
-            return resultSet.getString(1);
+            if (whatDownload.equals("ilosc_miejsc")){
+                return String.valueOf(resultSet.getInt(1));
+            }else{
+                return resultSet.getString(1);
+            }
         }
         return null;
     }

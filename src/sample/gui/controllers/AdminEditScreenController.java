@@ -410,7 +410,7 @@ public class AdminEditScreenController extends Screen{
         if (!isAllNumberFieldsOk) {
             System.out.println("Number fields uncorrectly filled");
             if (StaticData.getElementOfIngerention() == "Event") {
-                if (!textField3.getText().matches("[0-9]+")){
+                if (!textField3.getText().matches("[0-9]+(\\.[0-9][0-9]?)?")){
                     checkWrongControlElement(textField3);
                 }
                 if (!textField4.getText().matches("[0-9]+")){
@@ -730,7 +730,7 @@ public class AdminEditScreenController extends Screen{
             }
         }
         if (StaticData.getElementOfIngerention() == "Performance") {
-            if (textField2.getText().matches("[0-9]+")) {
+            if (textField2.getText().matches("[0-9]+(\\.[0-9]*)?")) {
                 isAllNumberFieldsOk = true;
             } else {
                 isAllNumberFieldsOk = false;
@@ -741,7 +741,7 @@ public class AdminEditScreenController extends Screen{
     @FXML
     public void changeTextField3() {
         if (StaticData.getElementOfIngerention() == "Event") {
-            if (textField3.getText().matches("[0-9]+")
+            if (textField3.getText().matches("[0-9]+(\\.[0-9][0-9]?)?")
                     && textField4.getText().matches("[0-9]+")) {
                 isAllNumberFieldsOk = true;
             } else {
@@ -762,7 +762,7 @@ public class AdminEditScreenController extends Screen{
             }
         }
         if (StaticData.getElementOfIngerention() == "Event") {
-            if (textField3.getText().matches("[0-9]+")
+            if (textField3.getText().matches("[0-9]+(\\.[0-9][0-9]?)?")
                     && textField4.getText().matches("[0-9]+")) {
                 isAllNumberFieldsOk = true;
             } else {
