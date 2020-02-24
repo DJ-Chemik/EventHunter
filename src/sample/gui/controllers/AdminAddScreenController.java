@@ -2,12 +2,17 @@ package sample.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
+import javafx.util.converter.DateStringConverter;
+import javafx.util.converter.DateTimeStringConverter;
 import sample.database.controllers.*;
 import sample.gui.StaticData;
 import sample.guidata.admin.AddingOrPrepareToUpdate;
 import sample.guidata.admin.DatabaseEnum;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class AdminAddScreenController extends Screen {
@@ -35,11 +40,11 @@ public class AdminAddScreenController extends Screen {
     private ArrayList<Double> idInListView1 = new ArrayList<>();
     private ArrayList<Double> idInListView2 = new ArrayList<>();
 
-
     public void initialize() {
         addElementsofViewToArrays();
         displayOnlyNeededFieldsAndLabels();
         specificTypeDataInitialize();
+        StaticData.addCorrectDateFormats();
 
     }
 
@@ -103,6 +108,8 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes1.clear();
                 idListOfElementsToComboBoxes1=MiejsceController.getListOfIDs();
                 idListOfElementsToComboBoxes2.clear();
+                isDateOkFormat=false;
+
             }
             if (StaticData.getElementOfIngerention()=="Person"){
                 comboBox6.setEditable(false);
@@ -471,7 +478,22 @@ public class AdminAddScreenController extends Screen {
         }
     }
 
+    private boolean isDateOkFormat =true;
+    @FXML
+    public void changeTEetField2(){
+        addButtonMain.setDisable(true);
+        if (StaticData.getElementOfIngerention()=="Event"){
+            StaticData.getCorrectDateFormats().forEach(s -> {
+                if (textField2.getText().matches(s)){
+                    isDateOkFormat = true;
+                }
+            });
+
+        }
+    }
+
     private int concertOrPerformanceInComboBox6 = -1;
+
     @FXML
     public void changeComboBox6(){
         if (StaticData.getElementOfIngerention()=="Event"){
@@ -561,8 +583,8 @@ public class AdminAddScreenController extends Screen {
         }
         return false;
     }
-
     private ArrayList<String> additionalListViewData = new ArrayList<>();
+
     private int actualListViewInView = 0;
 
     private void swapListView(int newNumberOfListView){
@@ -709,6 +731,7 @@ public class AdminAddScreenController extends Screen {
             }
         }
     }
+
 
     @FXML
     public void backButtonClick(){

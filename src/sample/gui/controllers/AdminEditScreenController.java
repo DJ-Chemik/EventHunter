@@ -527,6 +527,20 @@ public class AdminEditScreenController extends Screen{
         }
     }
 
+    private boolean isDateOkFormat =true;
+    @FXML
+    public void changeTEetField2(){
+        addButtonMain.setDisable(true);
+        if (StaticData.getElementOfIngerention()=="Event"){
+            StaticData.getCorrectDateFormats().forEach(s -> {
+                if (textField2.getText().matches(s)){
+                    isDateOkFormat = true;
+                }
+            });
+
+        }
+    }
+
     private int cabaretOrPerformanceInComboBox6 = -1;
     @FXML
     public void changeComboBox6(){

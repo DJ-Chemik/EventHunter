@@ -16,7 +16,7 @@ public class WydarzenieController {
     private static ResultSet resultSet;
     private static PreparedStatement prepStat;
     private static int result;
-    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     // example of string: String dateInString = "2013-07-06";
     public WydarzenieController(Connection conn) {
