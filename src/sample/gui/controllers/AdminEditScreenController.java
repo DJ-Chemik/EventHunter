@@ -20,7 +20,7 @@ public class AdminEditScreenController extends Screen{
     @FXML
     private ComboBox<String> comboBox6, comboBox7, comboBox8, comboBox9;
     @FXML
-    private Button addButton6, addButton7, addButton8, addButton9, addButtonMain;
+    private Button addButton6, addButton7, addButton8, addButton9, updateButtonMain;
     @FXML
     private ListView<String> mainListView;
 
@@ -342,12 +342,12 @@ public class AdminEditScreenController extends Screen{
             }
             backButtonClick();
         }else{
-            checkWitchFieldsWrong();
+            checkWhichFieldsWrong();
         }
     }
 
-    private boolean isAllNeededFieldsFilled(){
-        if (textField1.getText().isEmpty()){
+    private boolean isAllNeededFieldsFilled() {
+        if (textField1.getText().isEmpty()) {
             isAllNeededFieldsFilled = false;
             return false;
         }
@@ -358,74 +358,168 @@ public class AdminEditScreenController extends Screen{
             boolean b3 = textField4.getText().isEmpty();
             int i1 = comboBox6.getSelectionModel().getSelectedIndex();
             int i2 = comboBox7.getSelectionModel().getSelectedIndex();
-            if (!b1 && !b2 && !b3 && i1!=-1 && i2!=-1){
-                isAllNeededFieldsFilled=true;
+            if (!b1 && !b2 && !b3 && i1 != -1 && i2 != -1) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
 
         }
         if (StaticData.getElementOfIngerention() == "Person") {
-            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1 && textField2.getText().isEmpty()==false){
-                isAllNeededFieldsFilled=true;
+            if (comboBox6.getSelectionModel().getSelectedIndex() != -1 && textField2.getText().isEmpty() == false) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
         }
         if (StaticData.getElementOfIngerention() == "Place") {
-            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
-                isAllNeededFieldsFilled=true;
+            if (comboBox6.getSelectionModel().getSelectedIndex() != -1) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
         }
         if (StaticData.getElementOfIngerention() == "Town") {
-            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
-                isAllNeededFieldsFilled=true;
+            if (comboBox6.getSelectionModel().getSelectedIndex() != -1) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
         }
         if (StaticData.getElementOfIngerention() == "MusicDisc") {
-            if (!idInListView1.isEmpty() && !idInListView2.isEmpty()){
-                isAllNeededFieldsFilled=true;
+            if (!idInListView1.isEmpty() && !idInListView2.isEmpty()) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
         }
         if (StaticData.getElementOfIngerention() == "Song") {
-            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
-                isAllNeededFieldsFilled=true;
+            if (comboBox6.getSelectionModel().getSelectedIndex() != -1) {
+                isAllNeededFieldsFilled = true;
                 return true;
             }
         }
         if (StaticData.getElementOfIngerention() == "Performance") {
-            isAllNeededFieldsFilled=true;
+            isAllNeededFieldsFilled = true;
             return true;
         }
         return false;
     }
 
-    private void checkWitchFieldsWrong(){
-        // TODO: 19.02.2020
-        if (!isDateOkFormat){
+    private void checkWhichFieldsWrong() {
+        if (!isDateOkFormat) {
             System.out.println("Date uncorrect");
+            checkWrongControlElement(textField2);
         }
-        if (!isAllNumberFieldsOk){
-            System.out.println("Number fields uncorrectly filled");
-        }
-        if (!isAllNeededFieldsFilled){
-            System.out.println("Fill all needed fields (witch * sign)");
-        }
-    }
 
-    private void refresh(){
-        Runnable runnable = () -> {
-            addButtonMain.setStyle("-fx-background-color: #DDDDDD");
+        if (!isAllNumberFieldsOk) {
+            System.out.println("Number fields uncorrectly filled");
+            if (StaticData.getElementOfIngerention() == "Event") {
+                if (!textField3.getText().matches("[0-9]+")){
+                    checkWrongControlElement(textField3);
+                }
+                if (!textField4.getText().matches("[0-9]+")){
+                    checkWrongControlElement(textField4);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                checkWrongControlElement(textField2);
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                if (!textField2.getText().matches("[0-2][0-9][0-9][0-9]")){
+                    checkWrongControlElement(textField2);
+                }
+                if (!textField4.getText().matches("[0-9]+")){
+                    checkWrongControlElement(textField4);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Performance") {
+                checkWrongControlElement(textField2);
+            }
+        }
+
+        if (!isAllNeededFieldsFilled) {
+            System.out.println("Fill all needed fields (witch * sign)");
+            if (textField1.getText().isEmpty()){
+                checkWrongControlElement(textField1);
+            }
+            if (StaticData.getElementOfIngerention() == "Event") {
+                if (textField2.getText().isEmpty()){
+                    checkWrongControlElement(textField2);
+                }
+                if (textField3.getText().isEmpty()){
+                    checkWrongControlElement(textField3);
+                }
+                if (textField4.getText().isEmpty()){
+                    checkWrongControlElement(textField4);
+                }
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                }
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox7);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Person") {
+                if (textField2.getText().isEmpty()){
+                    checkWrongControlElement(textField2);
+                }
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Place") {
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Town") {
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "MusicDisc") {
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                    checkWrongControlElement(addButton6);
+                    checkWrongControlElement(mainListView);
+                }
+                if (comboBox7.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox7);
+                    checkWrongControlElement(addButton7);
+                    checkWrongControlElement(mainListView);
+                }
+            }
+            if (StaticData.getElementOfIngerention() == "Song") {
+                if (comboBox6.getSelectionModel().getSelectedIndex()==-1){
+                    checkWrongControlElement(comboBox6);
+                }
+            }
+        }
+
+        updateButtonMain.setDisable(true);
+        new Thread(() -> {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            addButtonMain.setStyle("-fx-default-button");
-        };
-        new Thread(runnable).start();
-        textFields.forEach(textField -> textField.clear());
+            updateButtonMain.setDisable(false);
+            textFields.forEach(textField -> unchenckWrongControlElement(textField));
+            comboBoxes.forEach(comboBox -> unchenckWrongControlElement(comboBox));
+            unchenckWrongControlElement(mainListView);
+            unchenckWrongControlElement(addButton6);
+            unchenckWrongControlElement(addButton7);
+
+        }).start();
+
+
+
+    }
+
+    private static String defaultStyle = new TextField().getStyle();
+
+    private void checkWrongControlElement(Control control) {
+        control.setStyle("-fx-background-color: #FF0000");
+    }
+
+    private void unchenckWrongControlElement(Control control){
+        control.setStyle(defaultStyle);
     }
 
     private void addCorrectTypeOfObject(){
