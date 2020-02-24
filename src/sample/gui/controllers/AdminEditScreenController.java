@@ -327,15 +327,88 @@ public class AdminEditScreenController extends Screen{
 
     @FXML
     public void updateButtonMainClick(){
-        addCorrectTypeOfObject();
-        AddingOrPrepareToUpdate.clearTupleParameters();
-        addParametersOfTuple();
-        try {
-            Editing.updateInDatabase();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        isAllNeededFieldsFilled();
+        if (isDateOkFormat && isAllNumberFieldsOk && isAllNeededFieldsFilled) {
+            addCorrectTypeOfObject();
+            AddingOrPrepareToUpdate.clearTupleParameters();
+            addParametersOfTuple();
+            try {
+                Editing.updateInDatabase();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            backButtonClick();
+        }else{
+            checkWitchFieldsWrong();
         }
-        backButtonClick();
+    }
+
+    private boolean isAllNeededFieldsFilled(){
+        if (textField1.getText().isEmpty()){
+            isAllNeededFieldsFilled = false;
+            return false;
+        }
+
+        if (StaticData.getElementOfIngerention() == "Event") {
+            boolean b1 = textField2.getText().isEmpty();
+            boolean b2 = textField3.getText().isEmpty();
+            boolean b3 = textField4.getText().isEmpty();
+            int i1 = comboBox6.getSelectionModel().getSelectedIndex();
+            int i2 = comboBox7.getSelectionModel().getSelectedIndex();
+            if (!b1 && !b2 && !b3 && i1!=-1 && i2!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+
+        }
+        if (StaticData.getElementOfIngerention() == "Person") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1 && textField2.getText().isEmpty()==false){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Place") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Town") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
+            if (!idInListView1.isEmpty() && !idInListView2.isEmpty()){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (comboBox6.getSelectionModel().getSelectedIndex()!=-1){
+                isAllNeededFieldsFilled=true;
+                return true;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            isAllNeededFieldsFilled=true;
+            return true;
+        }
+        return false;
+    }
+
+    private void checkWitchFieldsWrong(){
+        // TODO: 19.02.2020
+        if (!isDateOkFormat){
+            System.out.println("Date uncorrect");
+        }
+        if (!isAllNumberFieldsOk){
+            System.out.println("Number fields uncorrectly filled");
+        }
+        if (!isAllNeededFieldsFilled){
+            System.out.println("Fill all needed fields (witch * sign)");
+        }
     }
 
     private void refresh(){
@@ -527,17 +600,77 @@ public class AdminEditScreenController extends Screen{
         }
     }
 
-    private boolean isDateOkFormat =true;
-    @FXML
-    public void changeTextField2(){
-        addButtonMain.setDisable(true);
-        if (StaticData.getElementOfIngerention()=="Event"){
-            StaticData.getCorrectDateFormats().forEach(s -> {
-                if (textField2.getText().matches(s)){
-                    isDateOkFormat = true;
-                }
-            });
+    private boolean isDateOkFormat = true;
+    private boolean isAllNumberFieldsOk = true;
+    private boolean isAllNeededFieldsFilled = true;
 
+    @FXML
+    public void changeTextField2() {
+        if (StaticData.getElementOfIngerention() == "Event") {
+            String text = textField2.getText();
+            for (String s : StaticData.getCorrectDateFormats()) {
+                if (text.matches(s)) {
+                    isDateOkFormat = true;
+                    break;
+                } else {
+                    isDateOkFormat = false;
+                }
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (textField2.getText().matches("[0-2][0-9][0-9][0-9]")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "MusicDisc") {
+            if (textField2.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Performance") {
+            if (textField2.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+    }
+
+    @FXML
+    public void changeTextField3() {
+        if (StaticData.getElementOfIngerention() == "Event") {
+            if (textField3.getText().matches("[0-9]+")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+
+    }
+
+    @FXML
+    public void changeTextField4() {
+        if (StaticData.getElementOfIngerention() == "Song") {
+            if (textField2.getText().matches("[0-2][0-9][0-9][0-9]")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
+        }
+        if (StaticData.getElementOfIngerention() == "Event") {
+            if (textField3.getText().matches("[0-9]+")
+                    && textField4.getText().matches("[0-9]+")) {
+                isAllNumberFieldsOk = true;
+            } else {
+                isAllNumberFieldsOk = false;
+            }
         }
     }
 
