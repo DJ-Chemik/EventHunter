@@ -93,7 +93,7 @@ public class AdminAddScreenController extends Screen {
         if (StaticData.getTypeOfIngerention() == "Add") {
 
             if (StaticData.getElementOfIngerention() == "Event") {
-                textField2.setPromptText("RRRR/MM/DD");
+                textField2.setPromptText("RRRR-MM-DD");
                 comboBox6.setEditable(false);
                 comboBox7.setEditable(false);
                 comboBox6.getItems().add("Koncert");

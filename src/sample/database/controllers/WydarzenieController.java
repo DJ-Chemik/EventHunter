@@ -41,14 +41,14 @@ public class WydarzenieController {
     }
 
     public static void addWydarzenie(String nazwa, String data, double cenaBiletu, double iloscMiejsc, String typ, String nazwaM, String typM) throws SQLException, ParseException {
-        double idObiektu = getIdFromMiejsce(nazwaM,typM);
+        double idObiektu = getIdFromMiejsce(nazwaM, typM);
         prepStat = connection.prepareStatement("INSERT INTO wydarzenie(nazwa, data, cena_biletu, ilosc_miejsc, typ, id_obiektu) VALUES(?,?,?,?,?,?)");
-        prepStat.setString(1,nazwa);
+        prepStat.setString(1, nazwa);
         prepStat.setDate(2, convertDate(data));
-        prepStat.setDouble(3,cenaBiletu);
-        prepStat.setDouble(4,iloscMiejsc);
-        prepStat.setString(5,typ);
-        prepStat.setDouble(6,idObiektu);
+        prepStat.setDouble(3, cenaBiletu);
+        prepStat.setDouble(4, iloscMiejsc);
+        prepStat.setString(5, typ);
+        prepStat.setDouble(6, idObiektu);
         result = prepStat.executeUpdate();
         if (typ.toUpperCase().equals("KABARET")) {
             statement = connection.createStatement();
@@ -83,12 +83,12 @@ public class WydarzenieController {
             result = statement.executeUpdate("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (LAST_INSERT_ID())");
         }
 
-       // getOneWydarzenie(nazwa,cenaBiletu,iloscMiejsc);
+        // getOneWydarzenie(nazwa,cenaBiletu,iloscMiejsc);
         double eventID = -1;
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()");
-        while (resultSet.next()){
-            eventID=resultSet.getDouble(1);
+        while (resultSet.next()) {
+            eventID = resultSet.getDouble(1);
         }
         for (String strID : showsIDs) {
             double showId = Double.parseDouble(strID);
@@ -112,35 +112,35 @@ public class WydarzenieController {
         prepStat.setDouble(4, iloscMiejsc);
         prepStat.setString(5, typ);
         prepStat.setDouble(6, placeIdDouble);
-        prepStat.setDouble(7,id);
+        prepStat.setDouble(7, id);
         result = prepStat.executeUpdate();
-        if(!oldType.toUpperCase().equals(typ.toUpperCase())){
+        if (!oldType.toUpperCase().equals(typ.toUpperCase())) {
             //  Usuwanie starego wpisu
             if (oldType.toUpperCase().equals("KABARET")) {
                 prepStat = connection.prepareStatement("DELETE FROM kabaret WHERE id_wydarzenia = ?");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             } else if (typ.toUpperCase().equals("KONCERT")) {
                 prepStat = connection.prepareStatement("DELETE FROM koncert WHERE id_wydarzenia = ?");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
                 prepStat = connection.prepareStatement("DELETE FROM wystep_teatralny WHERE id_wydarzenia = ?");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             }
             //Dodanie nowego wpisu
             if (typ.toUpperCase().equals("KABARET")) {
                 prepStat = connection.prepareStatement("INSERT INTO kabaret(id_wydarzenia) VALUES (?)");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             } else if (typ.toUpperCase().equals("KONCERT")) {
                 prepStat = connection.prepareStatement("INSERT INTO koncert(id_wydarzenia) VALUES (?)");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             } else if (typ.toUpperCase().equals("WYSTĘP TEATRALNY")) {
                 prepStat = connection.prepareStatement("INSERT INTO wystep_teatralny(id_wydarzenia) VALUES (?)");
-                prepStat.setDouble(1,id);
+                prepStat.setDouble(1, id);
                 result = prepStat.executeUpdate();
             }
         }
@@ -150,7 +150,7 @@ public class WydarzenieController {
             eventID=resultSet.getDouble(1);
         }*/
         // TODO: 20.02.2020 Mamy listę nowych muzyków/przesdstawień w edytowanymwydarzeniu. Trzeba to uaktualnić (mogły pojawić się nowe, albo nikeóre zniknąć).
-        deleteMusicianOrShowByEventId(id,oldType);
+        deleteMusicianOrShowByEventId(id, oldType);
         for (String strID : showsIDs) {
             double showId = Double.parseDouble(strID);
             if (typ.toUpperCase().equals("KABARET")) {
@@ -189,36 +189,36 @@ public class WydarzenieController {
     public static void getSelectedWydarzeniebyTown(double townID) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where id_obiektu " +
                 "IN (SELECT id_obiektu from miejsce where id_miasta = ?)");
-        prepStat.setDouble(1,townID);
+        prepStat.setDouble(1, townID);
         resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByState(String state) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where id_obiektu " +
                 "IN(SELECT id_obiektu from miejsce z JOIN miejscowość m on z.id_miasta = m.id_miasta WHERE m.województwo = ?)");
-        prepStat.setString(1,state);
+        prepStat.setString(1, state);
         resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByTypeAndTown(String type, double townID) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ? AND id_obiektu IN (SELECT id_obiektu FROM miejsce WHERE id_miasta = ?)");
-        prepStat.setString(1,type);
-        prepStat.setDouble(2,townID);
+        prepStat.setString(1, type);
+        prepStat.setDouble(2, townID);
         resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenieByTypeAndState(String type, String state) throws SQLException {
         prepStat = connection.prepareStatement("SELECT * from wydarzenie where typ = ? AND id_obiektu " +
                 "IN(SELECT id_obiektu from miejsce z JOIN miejscowość m on z.id_miasta = m.id_miasta WHERE m.województwo = ?)");
-        prepStat.setString(1,type);
-        prepStat.setString(2,state);
+        prepStat.setString(1, type);
+        prepStat.setString(2, state);
         resultSet = prepStat.executeQuery();
     }
 
     public static void getSelectedWydarzenie(ArrayList<Double> eventsIDs) throws SQLException {
-       // statement = connection.createStatement();
+        // statement = connection.createStatement();
         prepStat = connection.prepareStatement("SELECT * from wydarzenie WHERE id_wydarzenia IN ?");
-        prepStat.setObject(1,eventsIDs);
+        prepStat.setObject(1, eventsIDs);
         resultSet = prepStat.executeQuery();
         //resultSet = statement.executeQuery("SELECT * from wydarzenie where id_wydarzenia = ?");
         //prepStat.setString(1,eventsIDs);
@@ -239,32 +239,32 @@ public class WydarzenieController {
     }
 
     public static String getNameFromWydarzenie(double id) throws SQLException {
-        return getOneParameterFromWydarzenie(id,"nazwa");
+        return getOneParameterFromWydarzenie(id, "nazwa");
     }
 
     public static String getDateFromWydarzenie(double id) throws SQLException {
-        return getOneParameterFromWydarzenie(id,"data");
+        return getOneParameterFromWydarzenie(id, "data");
     }
 
     public static String getCostFromWydarzenie(double id) throws SQLException {
-        return getOneParameterFromWydarzenie(id,"cena_biletu");
+        return getOneParameterFromWydarzenie(id, "cena_biletu");
     }
 
     public static String getSeatsFromWydarzenie(double id) throws SQLException {
-        return getOneParameterFromWydarzenie(id,"ilosc_miejsc");
+        return getOneParameterFromWydarzenie(id, "ilosc_miejsc");
     }
 
     public static String getTypeFromWydarzenie(double id) throws SQLException {
-        return getOneParameterFromWydarzenie(id,"typ");
+        return getOneParameterFromWydarzenie(id, "typ");
     }
 
     public static double getPlaceIDFromWydarzenie(double id) throws SQLException {
-        return getOneIDFromWydarzenie(id,"id_obiektu");
+        return getOneIDFromWydarzenie(id, "id_obiektu");
     }
 
     public static ArrayList<Double> getMusiciansIDsFromWydarzenie(double concertID) throws SQLException {
         prepStat = connection.prepareStatement("SELECT id_muzyka from koncert_muzycy where id_wydarzenia = ?");
-        prepStat.setDouble(1,concertID);
+        prepStat.setDouble(1, concertID);
         resultSet = prepStat.executeQuery();
         ArrayList<Double> tmp = new ArrayList<>();
         while (resultSet.next()) {
@@ -275,7 +275,7 @@ public class WydarzenieController {
 
     public static ArrayList<Double> getPerformancesIDsFromTeatr(double theathreID) throws SQLException {
         prepStat = connection.prepareStatement("SELECT id_przedstawienia from teatr_przedstawienia where id_wydarzenia = ?");
-        prepStat.setDouble(1,theathreID);
+        prepStat.setDouble(1, theathreID);
         resultSet = prepStat.executeQuery();
         ArrayList<Double> tmp = new ArrayList<>();
         while (resultSet.next()) {
@@ -286,7 +286,7 @@ public class WydarzenieController {
 
     public static ArrayList<Double> getPerformancesIDsFromKabaret(double cabaretID) throws SQLException {
         prepStat = connection.prepareStatement("SELECT id_przedstawienia from kabaret_przedstawienia where id_wydarzenia = ?");
-        prepStat.setDouble(1,cabaretID);
+        prepStat.setDouble(1, cabaretID);
         resultSet = prepStat.executeQuery();
         ArrayList<Double> tmp = new ArrayList<>();
         while (resultSet.next()) {
@@ -297,7 +297,7 @@ public class WydarzenieController {
 
     private static double getOneIDFromWydarzenie(double id, String whatDownload) throws SQLException {
         prepStat = connection.prepareStatement("SELECT " + whatDownload + " from wydarzenie where id_wydarzenia = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {
             return resultSet.getDouble(1);
@@ -307,30 +307,34 @@ public class WydarzenieController {
 
     private static String getOneParameterFromWydarzenie(double id, String whatDownload) throws SQLException {
         prepStat = connection.prepareStatement("SELECT " + whatDownload + " from wydarzenie where id_wydarzenia = ?");
-        prepStat.setDouble(1,id);
+        prepStat.setDouble(1, id);
         resultSet = prepStat.executeQuery();
         while (resultSet.next()) {
-            if (whatDownload.equals("ilosc_miejsc")){
+            if (whatDownload.equals("ilosc_miejsc")) {
                 return String.valueOf(resultSet.getInt(1));
-            }else{
+            } else if (whatDownload.equals("data")) {
+                String allDate = resultSet.getString(1);
+                return allDate.split(" ")[0];
+            } else {
                 return resultSet.getString(1);
+
             }
         }
         return null;
     }
 
-    public static void deleteMusicianOrShowByEventId(double id,String oldType) throws SQLException{
-        if(oldType.toUpperCase().equals("KONCERT")){
+    public static void deleteMusicianOrShowByEventId(double id, String oldType) throws SQLException {
+        if (oldType.toUpperCase().equals("KONCERT")) {
             prepStat = connection.prepareStatement("DELETE FROM koncert_muzycy WHERE id_wydarzenia = ?");
-            prepStat.setDouble(1,id);
+            prepStat.setDouble(1, id);
             result = prepStat.executeUpdate();
-        }else if(oldType.toUpperCase().equals("KABARET")){
+        } else if (oldType.toUpperCase().equals("KABARET")) {
             prepStat = connection.prepareStatement("DELETE FROM kabaret_przedstawienia WHERE id_wydarzenia = ?");
-            prepStat.setDouble(1,id);
+            prepStat.setDouble(1, id);
             result = prepStat.executeUpdate();
-        }else if(oldType.toUpperCase().equals("WYSTĘP TEATRALNY")){
+        } else if (oldType.toUpperCase().equals("WYSTĘP TEATRALNY")) {
             prepStat = connection.prepareStatement("DELETE FROM teatr_przedstawienia WHERE id_wydarzenia = ?");
-            prepStat.setDouble(1,id);
+            prepStat.setDouble(1, id);
             result = prepStat.executeUpdate();
         }
     }
