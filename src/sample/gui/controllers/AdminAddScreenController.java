@@ -143,6 +143,7 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes1 = MuzykController.getListOfIDs();
                 idListOfElementsToComboBoxes2.clear();
                 idListOfElementsToComboBoxes2 = UtworController.getListOfIDs();
+                isAllNumberFieldsOk=true;
             }
             if (StaticData.getElementOfIngerention() == "Song") {
                 comboBox6.setEditable(false);
@@ -153,6 +154,7 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes1 = MuzykController.getListOfIDs();
                 idListOfElementsToComboBoxes2.clear();
                 idListOfElementsToComboBoxes2 = PlytaController.getListOfIDs();
+                isAllNumberFieldsOk = true;
             }
             if (StaticData.getElementOfIngerention() == "Performance") {
                 comboBox6.setEditable(false);
@@ -164,6 +166,7 @@ public class AdminAddScreenController extends Screen {
                 idListOfElementsToComboBoxes1 = AktorController.getListOfIDs();
                 addButton7.setVisible(true);
                 addButton7.setDisable(true);
+                isAllNumberFieldsOk=true;
             }
 
         } else if (StaticData.getTypeOfIngerention() == "Edit") {
@@ -691,7 +694,8 @@ public class AdminAddScreenController extends Screen {
             }
         }
         if (StaticData.getElementOfIngerention() == "Performance") {
-            if (textField2.getText().matches("[0-9]+(\\.[0-9]*)?")) {
+            if (textField2.getText().matches("[0-9]+(\\.[0-9]*)?")
+            || textField2.getText().matches("")) {
                 isAllNumberFieldsOk = true;
             } else {
                 isAllNumberFieldsOk = false;

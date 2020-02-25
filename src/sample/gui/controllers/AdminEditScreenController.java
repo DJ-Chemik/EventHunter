@@ -730,7 +730,8 @@ public class AdminEditScreenController extends Screen{
             }
         }
         if (StaticData.getElementOfIngerention() == "Performance") {
-            if (textField2.getText().matches("[0-9]+(\\.[0-9]*)?")) {
+            if (textField2.getText().matches("[0-9]+(\\.[0-9]*)?")
+                    || textField2.getText().matches("")) {
                 isAllNumberFieldsOk = true;
             } else {
                 isAllNumberFieldsOk = false;
