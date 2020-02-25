@@ -421,10 +421,14 @@ public class AdminEditScreenController extends Screen{
                 checkWrongControlElement(textField2);
             }
             if (StaticData.getElementOfIngerention() == "Song") {
-                if (!textField2.getText().matches("[0-2][0-9][0-9][0-9]")){
+                boolean con1_1 = textField2.getText().matches("[0-2][0-9][0-9][0-9]");
+                boolean con1_2 = textField2.getText().matches("");
+                boolean con2_1 = textField4.getText().matches("[0-9]+");
+                boolean con2_2 = textField4.getText().matches("");
+                if (!(con1_1 || con1_2)){
                     checkWrongControlElement(textField2);
                 }
-                if (!textField4.getText().matches("[0-9]+")){
+                if (!(con2_1 || con2_2)){
                     checkWrongControlElement(textField4);
                 }
             }
@@ -715,15 +719,19 @@ public class AdminEditScreenController extends Screen{
             }
         }
         if (StaticData.getElementOfIngerention() == "Song") {
-            if (textField2.getText().matches("[0-2][0-9][0-9][0-9]")
-                    && textField4.getText().matches("[0-9]+")) {
+            boolean con1_1 = textField2.getText().matches("[0-2][0-9][0-9][0-9]");
+            boolean con1_2 = textField2.getText().matches("");
+            boolean con2_1 = textField4.getText().matches("[0-9]+");
+            boolean con2_2 = textField4.getText().matches("");
+            if ((con1_1 || con1_2) && (con2_1 || con2_2)) {
                 isAllNumberFieldsOk = true;
             } else {
                 isAllNumberFieldsOk = false;
             }
         }
         if (StaticData.getElementOfIngerention() == "MusicDisc") {
-            if (textField2.getText().matches("[0-9]+")) {
+            if (textField2.getText().matches("[0-9]+")
+                    || textField2.getText().matches("")) {
                 isAllNumberFieldsOk = true;
             } else {
                 isAllNumberFieldsOk = false;
