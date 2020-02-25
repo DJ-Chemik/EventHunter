@@ -20,7 +20,6 @@ public class KoncertMuzycyController {
         result = prepStat.executeUpdate();
     }
 
-    // TODO: 17.02.2020 Add a rest of function like is in AktorzyPrzedstawieniaController
     public static void GetAllFromKoncertMuzycy() throws SQLException{
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT * from koncert_muzycy");

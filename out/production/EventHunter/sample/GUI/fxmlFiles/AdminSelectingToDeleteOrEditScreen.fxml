@@ -21,6 +21,6 @@
       <font>
          <Font size="27.0" />
       </font></Label>
-   <TextField fx:id="searchTextField" layoutX="25.0" layoutY="263.0" onKeyPressed="#searchTextFieldChange" prefHeight="65.0" prefWidth="621.0" />
+   <TextField fx:id="searchTextField" layoutX="25.0" layoutY="263.0" onKeyReleased="#searchTextFieldChange" prefHeight="65.0" prefWidth="621.0" />
 
 </AnchorPane>

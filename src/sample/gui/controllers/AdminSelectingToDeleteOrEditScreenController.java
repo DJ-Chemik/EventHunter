@@ -35,6 +35,7 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
     private static Map<String, Double> objectsIdMap = new HashMap<>();
 
     public void initialize() {
+        objectsIdMap.clear();
         try {
             setSpecificTypeData();
         } catch (SQLException e) {
@@ -45,8 +46,8 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
 
     private void setSpecificTypeData() throws SQLException {
         if (StaticData.getTypeOfIngerention() == "Delete" || StaticData.getTypeOfIngerention() == "Edit") {
-            ArrayList<String> objectNames = null;
-            ArrayList<Double> objectsIDs = null;
+            ArrayList<String> objectNames = new ArrayList<>();
+            ArrayList<Double> objectsIDs = new ArrayList<>();
             if (StaticData.getElementOfIngerention() == "Event") {
                 WydarzenieController.getAllFromWydarzenie();
                 objectNames = WydarzenieController.getListOfStrings();
@@ -179,6 +180,7 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
 
     @FXML
     public void searchTextFieldChange() {
+        //comboBoxSpecificType.getSelectionModel().clearSelection();
         String filterText = searchTextField.getText().toLowerCase();
         ArrayList<String> allRecords = new ArrayList<>();
         allRecords.clear();
@@ -187,6 +189,7 @@ public class AdminSelectingToDeleteOrEditScreenController extends Screen {
         }
         boolean found = false;
         ArrayList<String> newRecordsToListView = new ArrayList<>();
+        newRecordsToListView.clear();
         for (String record : allRecords){
              found = record.toLowerCase().contains(filterText);
              if (found){

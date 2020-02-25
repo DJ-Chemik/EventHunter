@@ -149,7 +149,7 @@ public class WydarzenieController {
         while (resultSet.next()){
             eventID=resultSet.getDouble(1);
         }*/
-        // TODO: 20.02.2020 Mamy listę nowych muzyków/przesdstawień w edytowanymwydarzeniu. Trzeba to uaktualnić (mogły pojawić się nowe, albo nikeóre zniknąć).
+
         deleteMusicianOrShowByEventId(id, oldType);
         for (String strID : showsIDs) {
             double showId = Double.parseDouble(strID);
