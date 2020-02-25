@@ -118,11 +118,11 @@ public class UserInformationScreenController extends Screen{
             musicianSongsAmountLabelText.setVisible(true);
             musicianSongsAmountLabel.setText(String.valueOf(numberOfSongs));
         }else{
-            ArrayList<Double> actorsIDs = PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(eventID);
+            ArrayList<Double> actorsIDs = PrzedstawienieController.getListOfActorsIDsFromPrzedstawienie(objectID);
             ArrayList<String> actorsStrs = new ArrayList<>();
             for (double id : actorsIDs){
-                PrzedstawienieController.getOnePrzedstawienie(id);
-                actorsStrs.add(PrzedstawienieController.getListOfStrings().get(0));
+                AktorController.getOneAktor(id);
+                actorsStrs.add(AktorController.getListOfStrings().get(0));
             }
             listView2.getItems().setAll(actorsStrs);
         }

@@ -247,8 +247,8 @@ public class Editing {
                 filledFields.add(title);
                 filledFields.add(length);
                 for (double d : actorsIDs) {
-                    UtworController.getOneUtwor(d);
-                    listOfStringsTwo.add(UtworController.getListOfStrings().get(0));
+                    AktorController.getOneAktor(d);
+                    listOfStringsOne.add(AktorController.getListOfStrings().get(0));
                 }
                 listOfIDsOne = actorsIDs;
 

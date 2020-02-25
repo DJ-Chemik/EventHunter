@@ -34,7 +34,6 @@ public class PrzedstawienieController {
             double actorId = Double.parseDouble(strID);
             AktorzyPrzedstawieniaController.AddAktorzyPrzedstawienia(actorId, performanceID);
         }
-        // TODO: 16.02.2020 We must use a type of Performance (CABARET / THEATHRE SPECTACLE)
     }
 
     public static void getAllFromPrzedstawienie() throws SQLException{
